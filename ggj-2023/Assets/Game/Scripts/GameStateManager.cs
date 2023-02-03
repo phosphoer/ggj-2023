@@ -16,22 +16,22 @@ public class GameStateManager : Singleton<GameStateManager>
 
   private GameStage _gameStage = GameStage.Invalid;
   public GameStage CurrentStage => _gameStage;
-  public GameStage EditorDefaultStage = GameStage.ScenarioIntro;
+  public GameStage EditorDefaultStage = GameStage.MainMenu;
 
   public SoundBank MusicMenuLoop;
   public CameraControllerBase MenuCamera;
 
-  private List<PlayerCharacterController> _players;
+  //private List<PlayerCharacterController> _players;
 
   private void Awake()
   {
     Instance = this;
-    PlayerManager.PlayerJoined += OnPlayerJoined;
+    //PlayerManager.PlayerJoined += OnPlayerJoined;
   }
 
   private void OnDestroy()
   {
-    PlayerManager.PlayerJoined -= OnPlayerJoined;
+    //PlayerManager.PlayerJoined -= OnPlayerJoined;
   }
 
   // Start is called before the first frame update
@@ -56,7 +56,6 @@ public class GameStateManager : Singleton<GameStateManager>
     switch (_gameStage)
     {
       case GameStage.MainMenu:
-      case GameStage.Settings:
         break;
       case GameStage.Gameplay:
         break;
@@ -70,7 +69,7 @@ public class GameStateManager : Singleton<GameStateManager>
   public void NewGame()
   {
     ResetGameStats();
-    SetGameStage(GameStage.ScenarioIntro);
+    SetGameStage(GameStage.Gameplay);
   }
 
   public void SetGameStage(GameStage newGameStage)
@@ -89,7 +88,7 @@ public class GameStateManager : Singleton<GameStateManager>
     {
       case GameStage.MainMenu:
         {
-          if (MusicMenuLoop != null && newGameStage != GameStage.Settings)
+          if (MusicMenuLoop != null)
           {
             AudioManager.Instance.FadeOutSound(gameObject, MusicMenuLoop, 3f);
           }
@@ -162,46 +161,46 @@ public class GameStateManager : Singleton<GameStateManager>
 
   void ResetGameStats()
   {
-    ScenarioManager.Instance.ResetGameStats();
+    //ScenarioManager.Instance.ResetGameStats();
   }
 
-  public PlayerCharacterController GetPlayerGameObject(ePlayer player)
-  {
-    return null;
-  }
+  //public PlayerCharacterController GetPlayerGameObject(int playerId)
+  //{
+  //  return null;
+  //}
 
-  private void OnPlayerJoined(PlayerCharacterController player)
-  {
-    // if (PlayerManager.Instance.Players.Count == 1)
-    // {
-    //   player.CameraStack.Camera = CameraManager.Instance.LeftPlayerCamera;
-    //   player.Team = ePlayer.DevilPlayer;
+  //private void OnPlayerJoined(PlayerCharacterController player)
+  //{
+  //  if (PlayerManager.Instance.Players.Count == 1)
+  //  {
+  //    player.CameraStack.Camera = CameraManager.Instance.LeftPlayerCamera;
+  //    player.Team = ePlayer.DevilPlayer;
 
-    //   if (DevilProps != null)
-    //   {
-    //     Instantiate(DevilProps, player.gameObject.transform, false);
-    //   }
+  //    if (DevilProps != null)
+  //    {
+  //      Instantiate(DevilProps, player.gameObject.transform, false);
+  //    }
 
-    //   _devilPlayer = player;
-    // }
-  }
+  //    _devilPlayer = player;
+  //  }
+  //}
 
   private void SpawnPlayers()
   {
-    PlayerManager.Instance.enabled = true;
+    //PlayerManager.Instance.enabled = true;
   }
 
   private void DespawnPlayers()
   {
-    PlayerManager.Instance.enabled = false;
-    PlayerManager.Instance.RespawnAllPlayers();
+    //PlayerManager.Instance.enabled = false;
+    //PlayerManager.Instance.RespawnAllPlayers();
   }
 
-  public PlayerCharacterController GetPlayer(int playerId)
-  {
-    if (playerId >= 0 && playerId < _players.Length)
-      return _players[playerId];
-    else
-      return null;
-  }
+  //public PlayerCharacterController GetPlayer(int playerId)
+  //{
+  //  if (playerId >= 0 && playerId < _players.Length)
+  //    return _players[playerId];
+  //  else
+  //    return null;
+  //}
 }

@@ -17,11 +17,6 @@ public class MainMenuUIHandler : UIPageBase
     GameStateManager.Instance.NewGame();
   }
 
-  public void OnSettingsClicked()
-  {
-    GameStateManager.Instance.Settings();
-  }
-
   public void OnQuitGameClicked()
   {
     //If we are running in a standalone build of the game

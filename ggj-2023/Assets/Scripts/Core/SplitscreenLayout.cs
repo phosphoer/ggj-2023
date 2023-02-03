@@ -31,6 +31,14 @@ public class SplitscreenLayout
     new Rect(0.0f, 0.0f, 1.0f, 1.0f),
   };
 
+  public void SetEnabled(bool bEnable)
+  {
+    foreach (Camera camera in _activeCameras)
+    {
+      camera.enabled = bEnable;
+    }
+  }
+
   public void AddCamera(Camera cam)
   {
     _activeCameras.Add(cam);

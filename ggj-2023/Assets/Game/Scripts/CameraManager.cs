@@ -17,6 +17,9 @@ public class CameraManager : Singleton<CameraManager>
   private CameraControllerStack _menuCameraStack = null;
 
   [SerializeField]
+  private Camera _menuCamera = null;
+
+  [SerializeField]
   private SplitscreenLayout _splitscreenLayout = new SplitscreenLayout();
 
   private eScreenLayout _cameraLayout = eScreenLayout.Invalid;
