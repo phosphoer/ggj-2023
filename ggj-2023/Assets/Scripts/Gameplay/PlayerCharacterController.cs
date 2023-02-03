@@ -1,5 +1,5 @@
 using UnityEngine;
-// using Rewired;
+using Rewired;
 
 public class PlayerCharacterController : MonoBehaviour
 {
@@ -22,26 +22,11 @@ public class PlayerCharacterController : MonoBehaviour
       CameraStack.SnapTransformToTarget();
     }
 
-    // var rewiredPlayer = ReInput.players.GetPlayer(RewiredPlayerId);
-    // if (rewiredPlayer != null)
-    // {
-    //   Character.DesiredSpeed = rewiredPlayer.GetAxis(RewiredConsts.Action.Move);
-    //   Character.DesiredTurn = rewiredPlayer.GetAxis(RewiredConsts.Action.Turn);
-
-    //   if (rewiredPlayer.GetButtonDown(RewiredConsts.Action.SelfDestruct))
-    //   {
-    //     PlayerManager.Instance.RespawnPlayer(this);
-    //     _playerCamera.CameraStart();
-    //     CameraStack.SnapTransformToTarget();
-    //   }
-    //   if (rewiredPlayer.GetButtonDoublePressDown(RewiredConsts.Action.Slap))
-    //   {
-    //     Character.DoubleSlap();
-    //   }
-    //   else if (rewiredPlayer.GetButtonSinglePressDown(RewiredConsts.Action.Slap))
-    //   {
-    //     Character.FastSlap();
-    //   }
-    // }
+    var rewiredPlayer = ReInput.players.GetPlayer(RewiredPlayerId);
+    if (rewiredPlayer != null)
+    {
+      Character.DesiredSpeed = rewiredPlayer.GetAxis(RewiredConsts.Action.MoveForward);
+      Character.DesiredTurn = rewiredPlayer.GetAxis(RewiredConsts.Action.Strafe);
+    }
   }
 }
