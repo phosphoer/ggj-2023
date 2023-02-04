@@ -23,7 +23,7 @@ public class PlayerCharacterController : MonoBehaviour
   private PlayerUI _playerUI;
 
   public int PlayerID => _playerID;
-  private int _playerID= -1;
+  private int _playerID = -1;
 
   [SerializeField]
   private Transform _playerHudUIAnchor;
@@ -78,7 +78,7 @@ public class PlayerCharacterController : MonoBehaviour
 
   public void AssignPlayerId(int playerID)
   {
-    _playerID= playerID;
+    _playerID = playerID;
   }
 
   private void Update()
@@ -103,6 +103,11 @@ public class PlayerCharacterController : MonoBehaviour
         if (rewiredPlayer.GetButtonDown(RewiredConsts.Action.Interact))
         {
           Character.Interact();
+        }
+
+        if (rewiredPlayer.GetButtonDown(RewiredConsts.Action.Attack))
+        {
+          Character.Attack();
         }
       }
     }
