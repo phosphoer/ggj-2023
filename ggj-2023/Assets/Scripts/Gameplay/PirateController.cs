@@ -128,6 +128,7 @@ public class PirateController : MonoBehaviour
     Debug.Log($"{name} has finished eating {_currentFood.name}");
 
     _foodWeight += _currentFood.FoodWeightValue;
+    Destroy(_currentFood.gameObject);
     _currentFood = null;
 
     if (_foodWeight >= _desiredFoodWeight)

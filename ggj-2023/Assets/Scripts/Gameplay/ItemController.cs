@@ -62,7 +62,7 @@ public class ItemController : MonoBehaviour
   {
     yield return Tween.CustomTween(0.75f, t =>
     {
-      transform.localEulerAngles += Random.insideUnitSphere * 50 * Time.deltaTime;
+      transform.localEulerAngles += Random.insideUnitSphere * 150 * Time.deltaTime;
     });
 
     Quaternion startRot = transform.localRotation;
