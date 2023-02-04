@@ -111,6 +111,7 @@ public class GameCharacterController : MonoBehaviour
     transform.Rotate(Vector3.up, LookHorizontalAxis * _turnSpeed * Time.deltaTime, Space.Self);
     _cameraRoot.Rotate(Vector3.right, -LookVerticalAxis * _turnSpeed * Time.deltaTime, Space.Self);
 
+    // Clamp camera look
     float verticalAngle = Vector3.SignedAngle(transform.forward, _cameraRoot.forward, transform.right);
     float delta = 0;
     if (verticalAngle < LookVerticalRange.MinValue)
