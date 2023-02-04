@@ -5,13 +5,8 @@ using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class EndGameUIHandler : UIPageBase
-{
-  public List<Text> ScenarioWinnerLabels;
-  public Text FinalResultLabel;
-  public List<Button> Buttons;
-
+{  
   public SoundBank UIReveal;
-  public SoundBank TieAudio;
 
   protected override void Awake()
   {
@@ -21,11 +16,6 @@ public class EndGameUIHandler : UIPageBase
 
   private void OnShown()
   {
-  }
-
-  void Update()
-  {
-
   }
 
   public void OnPlayAgainClicked()
