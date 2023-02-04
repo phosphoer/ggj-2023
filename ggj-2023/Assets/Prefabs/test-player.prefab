@@ -180,10 +180,22 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: -7511558181221131132, guid: 486c4dc566d294b6dabc63db23536a8f, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: d6d76b8e0c836bb4594f843c15e6568a, type: 2}
+    - target: {fileID: -4772940845636481599, guid: 486c4dc566d294b6dabc63db23536a8f, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: c7e40060726761b4ba566ce174a68048, type: 2}
     - target: {fileID: 919132149155446097, guid: 486c4dc566d294b6dabc63db23536a8f, type: 3}
       propertyPath: m_Name
       value: SquidDude
       objectReference: {fileID: 0}
+    - target: {fileID: 8269114235564740031, guid: 486c4dc566d294b6dabc63db23536a8f, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: c7e40060726761b4ba566ce174a68048, type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 486c4dc566d294b6dabc63db23536a8f, type: 3}
 --- !u!4 &1272869712506437721 stripped
