@@ -23,6 +23,9 @@ public class ItemController : MonoBehaviour
   private Interactable _interactable = null;
 
   [SerializeField]
+  private Rigidbody _rigidbody = null;
+
+  [SerializeField]
   private ItemType _type = default;
 
   [SerializeField]
@@ -42,15 +45,26 @@ public class ItemController : MonoBehaviour
 
   private float _toothHealth;
 
+  public void PlayDamageAnim()
+  {
+    StartCoroutine(DamageAnimAsync());
+  }
+
   public void DamageTooth(float damage)
   {
     _toothHealth -= damage;
-    StartCoroutine(DamageAnimAsync());
+    PlayDamageAnim();
 
     if (_toothHealth <= 0)
     {
       ToothDestroyed?.Invoke(this);
     }
+  }
+
+  public void SetInteractable(bool isInteractable)
+  {
+    _interactable.enabled = isInteractable;
+    _rigidbody.isKinematic = !isInteractable;
   }
 
   private void Awake()
@@ -62,13 +76,14 @@ public class ItemController : MonoBehaviour
   {
     yield return Tween.CustomTween(0.75f, t =>
     {
-      transform.localEulerAngles += Random.insideUnitSphere * 50 * Time.deltaTime;
+      transform.localPosition += Random.insideUnitSphere * Time.deltaTime;
+      transform.localPosition = Mathfx.Damp(transform.localPosition, Vector3.zero, 0.25f, Time.deltaTime);
     });
 
-    Quaternion startRot = transform.localRotation;
+    Vector3 startPos = transform.localPosition;
     yield return Tween.CustomTween(0.25f, t =>
     {
-      transform.localRotation = Quaternion.Slerp(startRot, Quaternion.identity, t);
+      transform.localPosition = Vector3.Slerp(startPos, Vector3.zero, t);
     });
   }
 }

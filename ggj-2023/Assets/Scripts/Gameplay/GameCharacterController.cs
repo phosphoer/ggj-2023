@@ -67,15 +67,36 @@ public class GameCharacterController : MonoBehaviour
   private RaycastHit _obstacleRaycast;
   private Vector3 _lastGroundPos;
   private ItemController _heldItem;
+  private float _holdItemBlend;
 
   private Vector3 _raycastStartPos => transform.position + transform.up * _raycastUpStartOffset;
 
   private static int kAnimMoveSpeed = Animator.StringToHash("MoveSpeed");
+  private static int kAnimHoldItemBlend = Animator.StringToHash("HoldItemBlend");
   private static int kAnimIsMoving = Animator.StringToHash("IsMoving");
+  private static int kAnimIsStunned = Animator.StringToHash("IsStunned");
+  private static int kAnimAttack = Animator.StringToHash("Attack");
+  private static int kAnimRecoil = Animator.StringToHash("Recoil");
 
   public void Interact()
   {
-    _interactionController.TriggerInteraction();
+    if (_interactionController.ClosestInteractable != null)
+    {
+      _interactionController.TriggerInteraction();
+    }
+    else if (_heldItem != null)
+    {
+      DropItem();
+    }
+    else
+    {
+      Attack();
+    }
+  }
+
+  public void Attack()
+  {
+    _animator.SetTrigger(kAnimAttack);
   }
 
   private void OnEnable()
@@ -140,6 +161,10 @@ public class GameCharacterController : MonoBehaviour
     _animator.SetFloat(kAnimMoveSpeed, moveAxisTotal * moveDir);
     _animator.SetBool(kAnimIsMoving, moveAxisTotal > 0);
 
+    float holdItemBlendTarget = _heldItem != null ? 1 : 0;
+    _holdItemBlend = Mathfx.Damp(_holdItemBlend, holdItemBlendTarget, 0.25f, Time.deltaTime * 3);
+    _animator.SetFloat(kAnimHoldItemBlend, _holdItemBlend);
+
     // Apply movement
     transform.position = newPosition;
     transform.Rotate(Vector3.up, LookHorizontalAxis * _turnSpeed * Time.deltaTime, Space.Self);
@@ -161,7 +186,7 @@ public class GameCharacterController : MonoBehaviour
     DropItem();
     item.transform.parent = _heldItemRoot;
     item.transform.SetIdentityTransformLocal();
-    item.Interactable.enabled = false;
+    item.SetInteractable(false);
     _heldItem = item;
   }
 
@@ -169,7 +194,7 @@ public class GameCharacterController : MonoBehaviour
   {
     if (_heldItem != null)
     {
-      _heldItem.Interactable.enabled = true;
+      _heldItem.SetInteractable(true);
       _heldItem.transform.parent = null;
       _heldItem = null;
     }

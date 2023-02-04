@@ -14,6 +14,9 @@ public class PirateController : MonoBehaviour
   private Transform[] _teethRoots = null;
 
   [SerializeField]
+  private Transform _foodRoot = null;
+
+  [SerializeField]
   private ParticleSystem _fxChomp = null;
 
   [SerializeField]
@@ -45,6 +48,9 @@ public class PirateController : MonoBehaviour
       {
         Debug.Log($"{name} is eating {foodItem.name}");
         _currentFood = foodItem;
+        _currentFood.transform.parent = _foodRoot;
+        _currentFood.transform.SetIdentityTransformLocal();
+        _currentFood.SetInteractable(false);
         _chompCount = 0;
       }
       else
@@ -68,7 +74,7 @@ public class PirateController : MonoBehaviour
         _teeth.Add(toothItem);
         toothItem.transform.parent = emptyTooth;
         toothItem.transform.SetIdentityTransformLocal();
-        toothItem.Interactable.enabled = false;
+        toothItem.SetInteractable(false);
         toothItem.ToothDestroyed += OnToothDestroyed;
 
         UIHydrate.Hydrate(toothItem.transform);
@@ -114,6 +120,8 @@ public class PirateController : MonoBehaviour
     var randomTooth = _teeth[Random.Range(0, _teeth.Count)];
     randomTooth.DamageTooth(_currentFood.FoodToothDamage);
 
+    // Play food eat anim
+    _currentFood.PlayDamageAnim();
     _fxChomp.Play();
 
     // Finish eating food if chomping is done
@@ -128,6 +136,7 @@ public class PirateController : MonoBehaviour
     Debug.Log($"{name} has finished eating {_currentFood.name}");
 
     _foodWeight += _currentFood.FoodWeightValue;
+    Destroy(_currentFood.gameObject);
     _currentFood = null;
 
     if (_foodWeight >= _desiredFoodWeight)
