@@ -13,7 +13,7 @@ public class PlayerManager : Singleton<PlayerManager>
   [SerializeField]
   private Transform[] _spawnPoints = null;
 
-  private bool _canSpawnPlayers= false;
+  private bool _canSpawnPlayers = false;
   private List<PlayerCharacterController> _players = new List<PlayerCharacterController>();
   private List<bool> _playerJoinedStates = new List<bool>();
   private int _nextSpawnIndex = 0;
@@ -27,7 +27,7 @@ public class PlayerManager : Singleton<PlayerManager>
       DespawnPlayers();
     }
 
-    _canSpawnPlayers= newCanSpawnPlayers;
+    _canSpawnPlayers = newCanSpawnPlayers;
   }
 
   public bool IsPlayerJoined(int playerId)
@@ -115,10 +115,10 @@ public class PlayerManager : Singleton<PlayerManager>
     return player;
   }
 
-  [ContextMenu("Add Debug Player")]
-  private void DebugAddPlayer()
+  [UnityEditor.MenuItem("Game/Add Debug Player")]
+  private static void DebugAddPlayer()
   {
-    var player = AddPlayer(null);
-    player.RewiredPlayerId = _players.Count - 1;
+    var player = Instance.AddPlayer(null);
+    player.RewiredPlayerId = Instance._players.Count - 1;
   }
 }
