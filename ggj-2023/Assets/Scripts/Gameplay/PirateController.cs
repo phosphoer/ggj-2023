@@ -4,8 +4,8 @@ using System.Collections.Generic;
 
 public class PirateController : MonoBehaviour
 {
-  private PlayerCharacterController _assignedPlayer = null;
   public event System.Action<PlayerCharacterController> PirateFull;
+
   public float FoodWeight => _foodWeight;
   public float FullPercent => Mathf.Clamp01(_foodWeight / _desiredFoodWeight);
   public float EatPercent => _currentFood != null ? Mathf.Clamp01(_chompCount / _currentFood.FoodChompCount) : 0;
@@ -23,6 +23,7 @@ public class PirateController : MonoBehaviour
   private float _chompCount;
   private float _chompTimer;
   private ItemController _currentFood;
+  private PlayerCharacterController _assignedPlayer;
 
   private List<ItemController> _teeth = new List<ItemController>();
 
