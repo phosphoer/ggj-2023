@@ -58,6 +58,15 @@ public class PlayerCharacterController : MonoBehaviour
     _isReady= false;
   }
 
+  public void SetReadyFlag()
+  {
+    if (!_isReady)
+    {
+      _isReady= true;
+      PlayerReady?.Invoke(this);
+    }
+  }
+
   public void SetIsAllowedToMove(bool flag)
   {
     _isAllowedToMove= flag;
@@ -73,8 +82,7 @@ public class PlayerCharacterController : MonoBehaviour
       {
         if (rewiredPlayer.GetButtonDown(RewiredConsts.Action.Interact))
         {
-          _isReady= true;
-          PlayerReady?.Invoke(this);
+          SetReadyFlag();
         }
       }
       else if (_isAllowedToMove)
