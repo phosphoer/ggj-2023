@@ -191,7 +191,11 @@ public class GameCharacterController : MonoBehaviour
       {
         ItemController giveItem = _heldItem;
         DropItem();
-        pirate.AddTooth(giveItem);
+
+        if (giveItem.Type == ItemType.Tooth)
+          pirate.AddTooth(giveItem);
+        else if (giveItem.Type == ItemType.Food)
+          pirate.AddFood(giveItem);
       }
     }
   }
