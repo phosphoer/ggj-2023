@@ -10,5 +10,5 @@ public class InteractableUI : MonoBehaviour
   }
 
   [SerializeField]
-  private Text _interactionTextUI = null;
+  private TMPro.TMP_Text _interactionTextUI = null;
 }

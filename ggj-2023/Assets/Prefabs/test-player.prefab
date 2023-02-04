@@ -42,6 +42,7 @@ GameObject:
   - component: {fileID: 1594447163315735891}
   - component: {fileID: 1594447163315735885}
   - component: {fileID: 1594447163315735890}
+  - component: {fileID: 4530258759955292238}
   m_Layer: 0
   m_Name: test-player
   m_TagString: Untagged
@@ -117,6 +118,19 @@ MonoBehaviour:
   _strafeSpeed: 2
   _turnSpeed: 360
   _gravity: 5
+--- !u!114 &4530258759955292238
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1594447163315735888}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f92a2f32f55234ee8addc8f1dfab91d5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _trackedTransform: {fileID: 1594447163315735891}
 --- !u!1001 &1594447162231596978
 PrefabInstance:
   m_ObjectHideFlags: 0
