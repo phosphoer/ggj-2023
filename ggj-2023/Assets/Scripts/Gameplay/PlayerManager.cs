@@ -121,4 +121,13 @@ public class PlayerManager : Singleton<PlayerManager>
     var player = Instance.AddPlayer(null);
     player.RewiredPlayerId = Instance._players.Count - 1;
   }
+
+  [UnityEditor.MenuItem("Game/Debug Mark All Ready")]
+  private static void DebugMarkAllReady()
+  {
+    foreach (PlayerCharacterController player in Instance._players)
+    {
+      player.SetReadyFlag();
+    }
+  }
 }

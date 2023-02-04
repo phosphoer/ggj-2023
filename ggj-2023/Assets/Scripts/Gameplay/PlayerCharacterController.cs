@@ -13,7 +13,6 @@ public class PlayerCharacterController : MonoBehaviour
   public CameraControllerPlayer CameraControllerPrefab = null;
   public PlayerUI PlayerUIPrefab = null;
 
-  public PlayerUI PlayerHudUI;
   private InteractableUI _hudMessageUI;
   public Transform PlayerHudUIAnchor => _playerHudUIAnchor;
   public InteractableUI PlayerHudPrefab => _playerHudPrefab;
@@ -22,6 +21,8 @@ public class PlayerCharacterController : MonoBehaviour
   private CameraControllerStack _cameraStack;
   private CameraControllerPlayer _cameraController;
   private PlayerUI _playerUI;
+
+  [SerializeField]
   private Transform _playerHudUIAnchor;
 
   private bool _isReady= true;
@@ -57,6 +58,15 @@ public class PlayerCharacterController : MonoBehaviour
     _isReady= false;
   }
 
+  public void SetReadyFlag()
+  {
+    if (!_isReady)
+    {
+      _isReady= true;
+      PlayerReady?.Invoke(this);
+    }
+  }
+
   public void SetIsAllowedToMove(bool flag)
   {
     _isAllowedToMove= flag;
@@ -72,8 +82,7 @@ public class PlayerCharacterController : MonoBehaviour
       {
         if (rewiredPlayer.GetButtonDown(RewiredConsts.Action.Interact))
         {
-          _isReady= true;
-          PlayerReady?.Invoke(this);
+          SetReadyFlag();
         }
       }
       else if (_isAllowedToMove)
@@ -95,7 +104,7 @@ public class PlayerCharacterController : MonoBehaviour
   {
     ClearHudMessage();
 
-    var uiRoot = PlayerHudUI.OnScreenUI.ShowItem(PlayerHudUIAnchor, Vector3.up * PlayerHudHeight);
+    var uiRoot = PlayerUI.OnScreenUI.ShowItem(PlayerHudUIAnchor, Vector3.up * PlayerHudHeight);
     _hudMessageUI = Instantiate(_playerHudPrefab, uiRoot);
     _hudMessageUI.transform.SetIdentityTransformLocal();
     _hudMessageUI.InteractionText = message;
@@ -103,7 +112,7 @@ public class PlayerCharacterController : MonoBehaviour
 
   public void ClearHudMessage()
   {
-    if (PlayerHudUI != null)
+    if (PlayerUI != null)
     {
       if (_hudMessageUI != null)
         PlayerUI.OnScreenUI.HideItem(_hudMessageUI.transform.parent as RectTransform);
