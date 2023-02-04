@@ -12,6 +12,7 @@ public class CameraManager : Singleton<CameraManager>
   }
 
   public CameraControllerStack MenuCameraStack => _menuCameraStack;
+  public SplitscreenLayout SplitscreenLayout => _splitscreenLayout;
 
   [SerializeField]
   private CameraControllerStack _menuCameraStack = null;
