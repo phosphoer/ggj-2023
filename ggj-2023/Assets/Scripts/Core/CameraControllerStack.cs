@@ -50,10 +50,6 @@ public class CameraControllerStack : MonoBehaviour
 
   public void CameraShake(float magnitude, float duration)
   {
-    // _shakeTime = duration;
-    // _shakeTimer += duration;
-    // _shakeMagnitude = Mathf.Max(magnitude, _shakeMagnitude);
-
     _activeShakes.Add(new CameraShakeInfo()
     {
       Duration = duration,

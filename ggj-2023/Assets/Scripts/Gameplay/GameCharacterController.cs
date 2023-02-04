@@ -2,13 +2,22 @@ using UnityEngine;
 
 public class GameCharacterController : MonoBehaviour
 {
-  public float CurrentSpeed => DesiredSpeed * _maxSpeed;
-
-  [Range(0, 1)]
-  public float DesiredSpeed = 0.0f;
+  public Transform CameraRoot => _cameraRoot;
 
   [Range(-1, 1)]
-  public float DesiredTurn = 0.0f;
+  public float MoveAxis = 0.0f;
+
+  [Range(-1, 1)]
+  public float StrafeAxis = 0.0f;
+
+  [Range(-1, 1)]
+  public float LookHorizontalAxis = 0.0f;
+
+  [Range(-1, 1)]
+  public float LookVerticalAxis = 0.0f;
+
+  [SerializeField]
+  private Transform _cameraRoot = null;
 
   [SerializeField]
   private LayerMask _groundLayer = default(LayerMask);
@@ -32,10 +41,13 @@ public class GameCharacterController : MonoBehaviour
   private float _terrainAlignmentSpeed = 3.0f;
 
   [SerializeField]
-  private float _maxSpeed = 1.0f;
+  private float _moveSpeed = 1.0f;
 
   [SerializeField]
-  private float _turnSpeed = 1.0f;
+  private float _strafeSpeed = 1.0f;
+
+  [SerializeField]
+  private float _turnSpeed = 90.0f;
 
   [SerializeField]
   private float _gravity = 5;
@@ -49,10 +61,11 @@ public class GameCharacterController : MonoBehaviour
   private void Update()
   {
     // Calculate next position based on movement
-    Vector3 newPosition = transform.position + transform.forward * DesiredSpeed * _maxSpeed * Time.deltaTime;
+    Vector3 newPosition = transform.position + transform.forward * MoveAxis * _moveSpeed * Time.deltaTime;
+    newPosition += transform.right.WithY(0) * StrafeAxis * _strafeSpeed * Time.deltaTime;
 
     // Snap and align to ground
-    Vector3 raycastDir = -transform.up + transform.forward * DesiredSpeed * 0.5f;
+    Vector3 raycastDir = -transform.up + (transform.forward * MoveAxis + transform.right * StrafeAxis) * 0.5f;
     if (Physics.SphereCast(_raycastStartPos, _groundRaycastRadius, raycastDir, out _groundRaycast, 3.0f, _groundLayer))
     {
       _lastGroundPos = _groundRaycast.point;
@@ -93,6 +106,7 @@ public class GameCharacterController : MonoBehaviour
 
     // Apply movement
     transform.position = newPosition;
-    transform.Rotate(Vector3.up, DesiredTurn * _turnSpeed * Time.deltaTime, Space.Self);
+    transform.Rotate(Vector3.up, LookHorizontalAxis * _turnSpeed * Time.deltaTime, Space.Self);
+    _cameraRoot.Rotate(Vector3.right, -LookVerticalAxis * _turnSpeed * Time.deltaTime, Space.Self);
   }
 }

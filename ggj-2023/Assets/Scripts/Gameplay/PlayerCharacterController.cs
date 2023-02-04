@@ -1,47 +1,40 @@
 using UnityEngine;
-// using Rewired;
+using Rewired;
 
 public class PlayerCharacterController : MonoBehaviour
 {
-  public CameraControllerPlayer PlayerCamera => _playerCamera;
+  public CameraControllerStack CameraStack => _cameraStack;
+  public CameraControllerPlayer CameraController => _cameraController;
 
   public int RewiredPlayerId = 0;
   public GameCharacterController Character = null;
-  public CameraControllerStack CameraStack = null;
-  public CameraControllerPlayer PlayerCameraPrefab = null;
+  public CameraControllerStack CameraStackPrefab = null;
+  public CameraControllerPlayer CameraControllerPrefab = null;
 
-  private CameraControllerPlayer _playerCamera;
+  private CameraControllerStack _cameraStack;
+  private CameraControllerPlayer _cameraController;
+
+  private void Awake()
+  {
+    _cameraStack = Instantiate(CameraStackPrefab);
+    _cameraController = Instantiate(CameraControllerPrefab, Character.CameraRoot);
+    _cameraController.transform.SetIdentityTransformLocal();
+
+    CameraStack.PushController(_cameraController);
+    CameraStack.SnapTransformToTarget();
+
+    Cursor.lockState = CursorLockMode.Locked;
+  }
 
   private void Update()
   {
-    if (CameraStack.Camera != null && _playerCamera == null)
+    var rewiredPlayer = ReInput.players.GetPlayer(RewiredPlayerId);
+    if (rewiredPlayer != null)
     {
-      _playerCamera = Instantiate(PlayerCameraPrefab);
-
-      CameraStack.PushController(_playerCamera);
-      CameraStack.SnapTransformToTarget();
+      Character.MoveAxis = rewiredPlayer.GetAxis(RewiredConsts.Action.MoveForward);
+      Character.StrafeAxis = rewiredPlayer.GetAxis(RewiredConsts.Action.Strafe);
+      Character.LookHorizontalAxis = rewiredPlayer.GetAxis(RewiredConsts.Action.LookHorizontal);
+      Character.LookVerticalAxis = rewiredPlayer.GetAxis(RewiredConsts.Action.LookVertical);
     }
-
-    // var rewiredPlayer = ReInput.players.GetPlayer(RewiredPlayerId);
-    // if (rewiredPlayer != null)
-    // {
-    //   Character.DesiredSpeed = rewiredPlayer.GetAxis(RewiredConsts.Action.Move);
-    //   Character.DesiredTurn = rewiredPlayer.GetAxis(RewiredConsts.Action.Turn);
-
-    //   if (rewiredPlayer.GetButtonDown(RewiredConsts.Action.SelfDestruct))
-    //   {
-    //     PlayerManager.Instance.RespawnPlayer(this);
-    //     _playerCamera.CameraStart();
-    //     CameraStack.SnapTransformToTarget();
-    //   }
-    //   if (rewiredPlayer.GetButtonDoublePressDown(RewiredConsts.Action.Slap))
-    //   {
-    //     Character.DoubleSlap();
-    //   }
-    //   else if (rewiredPlayer.GetButtonSinglePressDown(RewiredConsts.Action.Slap))
-    //   {
-    //     Character.FastSlap();
-    //   }
-    // }
   }
 }
