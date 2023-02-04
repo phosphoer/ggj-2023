@@ -21,7 +21,7 @@ public class CameraManager : Singleton<CameraManager>
   private Camera _menuCamera = null;
 
   [SerializeField]
-  private SplitscreenLayout _splitscreenLayout = new SplitscreenLayout();
+  private SplitscreenLayout _splitscreenLayout = null;
 
   private eScreenLayout _cameraLayout = eScreenLayout.Invalid;
   public eScreenLayout CameraLayout => _cameraLayout;

@@ -13,9 +13,24 @@ public class PlayerCharacterController : MonoBehaviour
   public CameraControllerPlayer CameraControllerPrefab = null;
   public PlayerUI PlayerUIPrefab = null;
 
+  public PlayerUI PlayerHudUI;
+  private InteractableUI _hudMessageUI;
+  public Transform PlayerHudUIAnchor => _playerHudUIAnchor;
+  public InteractableUI PlayerHudPrefab => _playerHudPrefab;
+  public float PlayerHudHeight = 0;
+
   private CameraControllerStack _cameraStack;
   private CameraControllerPlayer _cameraController;
   private PlayerUI _playerUI;
+  private Transform _playerHudUIAnchor;
+
+  private bool _isReady= true;
+  private bool _isAllowedToMove= true;
+
+  [SerializeField]
+  private InteractableUI _playerHudPrefab = null;
+
+  public event System.Action<PlayerCharacterController> PlayerReady;
 
   private void Awake()
   {
@@ -30,8 +45,22 @@ public class PlayerCharacterController : MonoBehaviour
     _playerUI.Canvas.worldCamera = _cameraStack.Camera;
 
     Character.InteractionController.PlayerUI = _playerUI;
+  }
 
-    Cursor.lockState = CursorLockMode.Locked;
+  public bool GetIsReady()
+  {
+    return _isReady;
+  }
+
+  public void ClearReadyFlag()
+  {
+    _isReady= false;
+  }
+
+  public void SetIsAllowedToMove(bool flag)
+  {
+    _isAllowedToMove= flag;
+    Cursor.lockState = flag ? CursorLockMode.Locked : CursorLockMode.None;
   }
 
   private void Update()
@@ -39,15 +68,47 @@ public class PlayerCharacterController : MonoBehaviour
     var rewiredPlayer = ReInput.players.GetPlayer(RewiredPlayerId);
     if (rewiredPlayer != null)
     {
-      Character.MoveAxis = rewiredPlayer.GetAxis(RewiredConsts.Action.MoveForward);
-      Character.StrafeAxis = rewiredPlayer.GetAxis(RewiredConsts.Action.Strafe);
-      Character.LookHorizontalAxis = rewiredPlayer.GetAxis(RewiredConsts.Action.LookHorizontal);
-      Character.LookVerticalAxis = rewiredPlayer.GetAxis(RewiredConsts.Action.LookVertical);
-
-      if (rewiredPlayer.GetButtonDown(RewiredConsts.Action.Interact))
+      if (!_isReady)
       {
-        Character.Interact();
+        if (rewiredPlayer.GetButtonDown(RewiredConsts.Action.Interact))
+        {
+          _isReady= true;
+          PlayerReady?.Invoke(this);
+        }
       }
+      else if (_isAllowedToMove)
+      {
+        Character.MoveAxis = rewiredPlayer.GetAxis(RewiredConsts.Action.MoveForward);
+        Character.StrafeAxis = rewiredPlayer.GetAxis(RewiredConsts.Action.Strafe);
+        Character.LookHorizontalAxis = rewiredPlayer.GetAxis(RewiredConsts.Action.LookHorizontal);
+        Character.LookVerticalAxis = rewiredPlayer.GetAxis(RewiredConsts.Action.LookVertical);
+
+        if (rewiredPlayer.GetButtonDown(RewiredConsts.Action.Interact))
+        {
+          Character.Interact();
+        }
+      }
+    }
+  }
+
+  public void ShowHudMessage(string message)
+  {
+    ClearHudMessage();
+
+    var uiRoot = PlayerHudUI.OnScreenUI.ShowItem(PlayerHudUIAnchor, Vector3.up * PlayerHudHeight);
+    _hudMessageUI = Instantiate(_playerHudPrefab, uiRoot);
+    _hudMessageUI.transform.SetIdentityTransformLocal();
+    _hudMessageUI.InteractionText = message;
+  }
+
+  public void ClearHudMessage()
+  {
+    if (PlayerHudUI != null)
+    {
+      if (_hudMessageUI != null)
+        PlayerUI.OnScreenUI.HideItem(_hudMessageUI.transform.parent as RectTransform);
+
+      _hudMessageUI = null;
     }
   }
 }

@@ -84,6 +84,9 @@ MonoBehaviour:
   CameraStackPrefab: {fileID: 7557654081706157210, guid: e9e24c02134ad482992ef04de1c1604b, type: 3}
   CameraControllerPrefab: {fileID: 9015923865928528377, guid: d0f8386a8b7f4428d951cec0cae50e47, type: 3}
   PlayerUIPrefab: {fileID: 4349979100163968351, guid: c9e2c379a32f04074b75f10cee27c451, type: 3}
+  PlayerHudUI: {fileID: 4349979100163968351, guid: c9e2c379a32f04074b75f10cee27c451, type: 3}
+  PlayerHudHeight: 0
+  _playerHudPrefab: {fileID: 8037233020907617472, guid: b8d891fd8e6e1df48af8817840a2b32b, type: 3}
 --- !u!114 &1594447163315735890
 MonoBehaviour:
   m_ObjectHideFlags: 0
