@@ -16,6 +16,11 @@ public class PirateController : MonoBehaviour
     _assignedPlayer= player;
   }
 
+  public void NotifyPirateFull()
+  {
+    PirateFull?.Invoke(_assignedPlayer);
+  }
+
   public void AddTooth(ItemController toothItem)
   {
     Transform emptyTooth = GetEmptyTooth();

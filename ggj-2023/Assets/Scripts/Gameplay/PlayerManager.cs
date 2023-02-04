@@ -60,34 +60,34 @@ public class PlayerManager : Singleton<PlayerManager>
     _nextSpawnIndex = 0;
   }
 
-  public void RespawnAllPlayers()
-  {
-    foreach (var player in _players)
-    {
-      RespawnPlayer(player);
-    }
-  }
+  //public void RespawnAllPlayers()
+  //{
+  //  foreach (var player in _players)
+  //  {
+  //    RespawnPlayer(player);
+  //  }
+  //}
 
-  public void RespawnPlayer(PlayerCharacterController player)
-  {
-    var playerId = _players.IndexOf(player);
+  //public void RespawnPlayer(PlayerCharacterController player)
+  //{
+  //  var playerId = _players.IndexOf(player);
 
-    if (_spawnPoints.IsIndexValid(playerId))
-    {
-      player.transform.position = _spawnPoints[playerId].position;
-      player.transform.rotation = _spawnPoints[playerId].rotation;
-      player.CameraStack.SnapTransformToTarget();
-      player.AssignPlayerId(playerId);
-    }
+  //  if (_spawnPoints.IsIndexValid(playerId))
+  //  {
+  //    player.transform.position = _spawnPoints[playerId].position;
+  //    player.transform.rotation = _spawnPoints[playerId].rotation;
+  //    player.CameraStack.SnapTransformToTarget();
+  //    player.AssignPlayerId(playerId);
+  //  }
 
-    if (_pirates.IsIndexValid(playerId))
-    {
-      PirateController pirateController= _pirates[playerId];
+  //  if (_pirates.IsIndexValid(playerId))
+  //  {
+  //    PirateController pirateController= _pirates[playerId];
 
-      pirateController.AssignPlayer(player);
-      pirateController.PirateFull += OnPirateFull;
-    }
-  }
+  //    pirateController.AssignPlayer(player);
+  //    pirateController.PirateFull += OnPirateFull;
+  //  }
+  //}
 
   private void OnPirateFull(PlayerCharacterController player)
   {
@@ -119,16 +119,27 @@ public class PlayerManager : Singleton<PlayerManager>
 
   private PlayerCharacterController AddPlayer(Rewired.Player rewiredPlayer)
   {
+    int playerId = _nextSpawnIndex;
     Transform spawnPoint = _spawnPoints[_nextSpawnIndex];
     PlayerCharacterController playerPrefab = _playerPrefabs[_nextPlayerPrefabIndex];
     PlayerCharacterController player = Instantiate(playerPrefab, transform);
     player.RewiredPlayerId = Rewired.ReInput.players.GetPlayers().IndexOf(rewiredPlayer);
     player.transform.position = spawnPoint.transform.position;
     player.transform.rotation = Quaternion.Euler(0, Random.value * 360, 0);
+    player.AssignPlayerId(playerId);
     _players.Add(player);
 
     _nextSpawnIndex = (_nextSpawnIndex + 1) % _spawnPoints.Length;
     _nextPlayerPrefabIndex = (_nextPlayerPrefabIndex + 1) % _playerPrefabs.Length;
+
+    // Assign a pirate if possible
+    if (_pirates.IsIndexValid(playerId))
+    {
+      PirateController pirateController= _pirates[playerId];
+
+      pirateController.AssignPlayer(player);
+      pirateController.PirateFull += OnPirateFull;
+    }
 
     // Set joined state
     if (rewiredPlayer != null)
@@ -157,5 +168,11 @@ public class PlayerManager : Singleton<PlayerManager>
     {
       player.SetReadyFlag();
     }
+  }
+
+  [UnityEditor.MenuItem("Game/Debug Fill Pirate")]
+  private static void DebugFillFirstPirate()
+  {
+    Instance._pirates[0].NotifyPirateFull();
   }
 }
