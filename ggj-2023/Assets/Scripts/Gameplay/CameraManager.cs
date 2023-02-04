@@ -8,7 +8,9 @@ public class CameraManager : Singleton<CameraManager>
   {
     Invalid,
     MenuCamera,
-    MultiCamera
+    MultiCamera,
+    WinCamera,
+    LoseCamera
   }
 
   public CameraControllerStack MenuCameraStack => _menuCameraStack;
@@ -23,6 +25,12 @@ public class CameraManager : Singleton<CameraManager>
   [SerializeField]
   private SplitscreenLayout _splitscreenLayout = null;
 
+  [SerializeField]
+  private Camera _winCamera = null;
+
+  [SerializeField]
+  private Camera _loseCamera = null;  
+
   private eScreenLayout _cameraLayout = eScreenLayout.Invalid;
   public eScreenLayout CameraLayout => _cameraLayout;
 
@@ -35,15 +43,26 @@ public class CameraManager : Singleton<CameraManager>
   {
     if (targetLayout != _cameraLayout)
     {
+      // Disable all cameras first
+      _menuCamera.enabled = false;
+      _splitscreenLayout.SetEnabled(false);
+      _winCamera.enabled = false;
+      _loseCamera.enabled = false;
+
+      // Then enable the one we want
       switch (targetLayout)
       {
         case eScreenLayout.MenuCamera:
           _menuCamera.enabled = true;
-          _splitscreenLayout.SetEnabled(false);
           break;
         case eScreenLayout.MultiCamera:
-          _menuCamera.enabled = false;
           _splitscreenLayout.SetEnabled(true);
+          break;
+        case eScreenLayout.WinCamera:
+          _winCamera.enabled = true;
+          break;
+        case eScreenLayout.LoseCamera:
+          _loseCamera.enabled = true;        
           break;
       }
 

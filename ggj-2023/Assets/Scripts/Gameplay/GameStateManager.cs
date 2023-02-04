@@ -11,6 +11,8 @@ public class GameStateManager : Singleton<GameStateManager>
     WaitingForPlayers,
     WaitingForReady,
     Gameplay,
+    PlayerWinCutscene,
+    PlayerLoseCutscene,
     EndGame
   }
 
@@ -19,6 +21,15 @@ public class GameStateManager : Singleton<GameStateManager>
   private GameStage _gameStage = GameStage.Invalid;
   public GameStage CurrentStage => _gameStage;
   public GameStage EditorDefaultStage = GameStage.MainMenu;
+
+  private float _timeInStage = 0;
+  public float TimeInState => _timeInStage;
+
+  public float GameplayDuration = 300.0f;
+  public float EndCutSceneDuration = 5.0f;
+
+  private int _winningPlayerID= -1;
+  public int WinningPlayerID => _winningPlayerID;
 
   public SoundBank MusicMenuLoop;
   public CameraControllerBase MenuCamera;
@@ -61,10 +72,22 @@ public class GameStateManager : Singleton<GameStateManager>
     case GameStage.WaitingForReady:
       break;
     case GameStage.Gameplay:
+      if (_timeInStage >= GameplayDuration)
+      {
+        nextGameStage= GameStage.PlayerLoseCutscene;
+      }
+      break;
+    case GameStage.PlayerWinCutscene:
+    case GameStage.PlayerLoseCutscene:
+      if (_timeInStage >= EndCutSceneDuration)
+      {
+        nextGameStage= GameStage.EndGame;
+      }
       break;
     case GameStage.EndGame:
       break;
     }
+    _timeInStage+= Time.deltaTime;
 
     SetGameStage(nextGameStage);
   }
@@ -124,10 +147,24 @@ public class GameStateManager : Singleton<GameStateManager>
       // GameUI.Instance.SidebarUI.Hide();
     }
     break;
+
+    case GameStage.PlayerWinCutscene:
+    {
+      GameUI.Instance.WinGameUI.Hide();
+    }
+    break;
+
+    case GameStage.PlayerLoseCutscene:
+    {
+      GameUI.Instance.LoseGameUI.Hide();
+    }
+    break;    
+
     case GameStage.EndGame:
     {
       GameUI.Instance.EndGameUI.Hide();
     }
+
     break;
     }
   }
@@ -186,6 +223,21 @@ public class GameStateManager : Singleton<GameStateManager>
       //GameUI.Instance.SidebarUI.Show();
     }
     break;
+
+    case GameStage.PlayerWinCutscene:
+    {
+      CameraManager.Instance.SetScreenLayout(CameraManager.eScreenLayout.WinCamera);
+      GameUI.Instance.WinGameUI.Show();
+    }
+    break;
+
+    case GameStage.PlayerLoseCutscene:
+    {
+      CameraManager.Instance.SetScreenLayout(CameraManager.eScreenLayout.LoseCamera);
+      GameUI.Instance.LoseGameUI.Show();
+    }
+    break;    
+
     case GameStage.EndGame:
     {
       CameraManager.Instance.SetScreenLayout(CameraManager.eScreenLayout.MenuCamera);
