@@ -26,7 +26,7 @@ public class CameraManager : Singleton<CameraManager>
   private SplitscreenLayout _splitscreenLayout = null;
 
   [SerializeField]
-  private Camera _winCamera = null;
+  private Camera[] _winCameras = null;
 
   [SerializeField]
   private Camera _loseCamera = null;  
@@ -46,8 +46,11 @@ public class CameraManager : Singleton<CameraManager>
       // Disable all cameras first
       _menuCamera.enabled = false;
       _splitscreenLayout.SetEnabled(false);
-      _winCamera.enabled = false;
       _loseCamera.enabled = false;
+      foreach (Camera camera in _winCameras)
+      {
+        camera.enabled = false;
+      }
 
       // Then enable the one we want
       switch (targetLayout)
@@ -59,7 +62,14 @@ public class CameraManager : Singleton<CameraManager>
           _splitscreenLayout.SetEnabled(true);
           break;
         case eScreenLayout.WinCamera:
-          _winCamera.enabled = true;
+          { 
+            // Show the corresponding winners camera
+            int winnerIndex= GameStateManager.Instance.WinningPlayerID;
+            if (_winCameras.IsIndexValid(winnerIndex))
+            {
+              _winCameras[winnerIndex].enabled = true;
+            }
+          }
           break;
         case eScreenLayout.LoseCamera:
           _loseCamera.enabled = true;        
