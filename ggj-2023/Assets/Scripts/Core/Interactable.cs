@@ -4,12 +4,14 @@ using System.Collections.Generic;
 
 public class Interactable : MonoBehaviour
 {
-  public static int InstanceCount => _instances.Count;
-  public static IEnumerable<Interactable> Instances => _instances;
+  public static IReadOnlyList<Interactable> Instances => _instances;
 
-  public event System.Action InteractionTriggered;
-  public event System.Action PromptShown;
-  public event System.Action PromptHidden;
+  public event System.Action<InteractionController> InteractionTriggered;
+
+  public Transform InteractionUIAnchor => _interactionUIAnchor;
+  public float InteractionUIHeight => _interactionUIHeight;
+  public InteractableUI InteractableUIPrefab => _interactableUIPrefab;
+  public string InteractionText => _disabledStack.Count > 0 ? _disabledStack[_disabledStack.Count - 1] : _interactionText;
 
   public float InteractionRadius
   {
@@ -35,7 +37,6 @@ public class Interactable : MonoBehaviour
   }
 
   public bool RequiresLineOfSight => _requiresLineOfSight;
-  public bool IsPromptShown => _uiRoot != null;
 
   [SerializeField]
   private InteractableUI _interactableUIPrefab = null;
@@ -64,22 +65,9 @@ public class Interactable : MonoBehaviour
   [SerializeField]
   private bool _disableOnInteract = false;
 
-  private InteractableUI _interactableUI;
-  private RectTransform _uiRoot;
   private List<string> _disabledStack = new List<string>();
 
   private static List<Interactable> _instances = new List<Interactable>();
-
-  public static Interactable GetInstance(int instanceIndex)
-  {
-    return _instances[instanceIndex];
-  }
-
-  public static void HideAll()
-  {
-    foreach (var instance in _instances)
-      instance.HidePrompt();
-  }
 
   private void OnEnable()
   {
@@ -94,14 +82,12 @@ public class Interactable : MonoBehaviour
   private void OnDisable()
   {
     _instances.Remove(this);
-
-    HidePrompt();
   }
 
   public IEnumerator WaitForInteractAsync(bool enableAndDisable = true)
   {
     bool didInteract = false;
-    System.Action onInteract = () =>
+    System.Action<InteractionController> onInteract = (InteractionController) =>
     {
       didInteract = true;
     };
@@ -130,79 +116,27 @@ public class Interactable : MonoBehaviour
     if (_disabledStack.Count > 0)
     {
       _disabledStack.RemoveAt(_disabledStack.Count - 1);
-      RefreshText();
     }
   }
 
   public void PushDisabledState(string disabledText)
   {
     _disabledStack.Add(disabledText);
-    RefreshText();
   }
 
   public void PopDisabledState(string disabledText)
   {
     _disabledStack.Remove(disabledText);
-    RefreshText();
   }
 
-  public void TriggerInteraction()
+  public void TriggerInteraction(InteractionController controller)
   {
     if (IsInteractionEnabled)
     {
-      InteractionTriggered?.Invoke();
-      HidePrompt();
+      InteractionTriggered?.Invoke(controller);
 
       if (_disableOnInteract)
         enabled = false;
-    }
-  }
-
-  public void ShowPrompt()
-  {
-    if (_uiRoot != null)
-    {
-      Debug.LogWarning("Skipping show prompt - already open");
-      return;
-    }
-
-    if (!AutoInteract)
-    {
-      // _uiRoot = PlayerUI.Instance.WorldAttachedUI.ShowItem(_interactionUIAnchor, Vector3.up * _interactionUIHeight);
-      _interactableUI = Instantiate(_interactableUIPrefab, _uiRoot);
-    }
-
-    RefreshText();
-
-    PromptShown?.Invoke();
-  }
-
-  public void HidePrompt()
-  {
-    if (_uiRoot != null)
-    {
-      // PlayerUI.Instance.WorldAttachedUI.HideItem(_uiRoot);
-      _uiRoot = null;
-      _interactableUI = null;
-    }
-
-    PromptHidden?.Invoke();
-  }
-
-  private void RefreshText()
-  {
-    if (_interactableUI != null)
-    {
-      if (_disabledStack.Count > 0)
-      {
-        _interactableUI.InteractionText = _disabledStack[_disabledStack.Count - 1];
-        _interactableUI.gameObject.SetActive(!string.IsNullOrEmpty(_interactableUI.InteractionText));
-      }
-      else
-      {
-        _interactableUI.InteractionText = _interactionText;
-        _interactableUI.gameObject.SetActive(true);
-      }
     }
   }
 

@@ -3,6 +3,7 @@ using UnityEngine;
 public class GameCharacterController : MonoBehaviour
 {
   public Transform CameraRoot => _cameraRoot;
+  public InteractionController InteractionController => _interactionController;
 
   [Range(-1, 1)]
   public float MoveAxis = 0.0f;
@@ -17,6 +18,9 @@ public class GameCharacterController : MonoBehaviour
   public float LookVerticalAxis = 0.0f;
 
   public RangedFloat LookVerticalRange = new RangedFloat(-45, 45);
+
+  [SerializeField]
+  private InteractionController _interactionController = null;
 
   [SerializeField]
   private Transform _cameraRoot = null;
@@ -59,6 +63,21 @@ public class GameCharacterController : MonoBehaviour
   private Vector3 _lastGroundPos;
 
   private Vector3 _raycastStartPos => transform.position + transform.up * _raycastUpStartOffset;
+
+  public void Interact()
+  {
+    _interactionController.TriggerInteraction();
+  }
+
+  private void OnEnable()
+  {
+    _interactionController.InteractionTriggered += OnInteractionTriggered;
+  }
+
+  private void OnDisable()
+  {
+    _interactionController.InteractionTriggered -= OnInteractionTriggered;
+  }
 
   private void Update()
   {
@@ -120,5 +139,14 @@ public class GameCharacterController : MonoBehaviour
       delta = verticalAngle - LookVerticalRange.MaxValue;
 
     _cameraRoot.Rotate(Vector3.right, -delta, Space.Self);
+  }
+
+  private void OnInteractionTriggered(Interactable interactable)
+  {
+    ItemController item = interactable.GetComponent<ItemController>();
+    if (item != null)
+    {
+      Debug.Log($"{name} interacted with item {item.name}");
+    }
   }
 }

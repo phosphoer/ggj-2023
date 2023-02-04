@@ -4,11 +4,11 @@ using UnityEngine;
 
 public class GameUI : Singleton<GameUI>
 {
-    public MainMenuUIHandler MainMenuUI;
-    public EndGameUIHandler EndGameUI;
+  public MainMenuUIHandler MainMenuUI;
+  public EndGameUIHandler EndGameUI;
 
-    private void Awake()
-    {
-        Instance = this;
-    }
+  private void Awake()
+  {
+    Instance = this;
+  }
 }

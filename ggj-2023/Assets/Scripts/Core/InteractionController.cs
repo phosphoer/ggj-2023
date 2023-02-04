@@ -1,12 +1,17 @@
 using UnityEngine;
+using System.Collections.Generic;
 
 public class InteractionController : MonoBehaviour
 {
+  public event System.Action<Interactable> InteractionTriggered;
+
   public Transform TrackedTransform
   {
     get { return _trackedTransform; }
     set { _trackedTransform = value; }
   }
+
+  public PlayerUI PlayerUI;
 
   public Interactable ClosestInteractable => _closestInteractable;
 
@@ -15,24 +20,29 @@ public class InteractionController : MonoBehaviour
 
   private int _lazyUpdateIndex;
   private Interactable _closestInteractable;
+  private InteractableUI _interactableUI;
 
-  private void OnDisable()
+  public void TriggerInteraction()
   {
     if (_closestInteractable != null)
     {
-      _closestInteractable.HidePrompt();
-      _closestInteractable = null;
+      _closestInteractable.TriggerInteraction(this);
     }
+  }
+
+  private void OnDisable()
+  {
+    SetClosestInteractable(null);
   }
 
   private void Update()
   {
     if (_closestInteractable != null && (!_closestInteractable.enabled || !_closestInteractable.gameObject.activeInHierarchy))
     {
-      _closestInteractable = null;
+      SetClosestInteractable(null);
     }
 
-    if (_lazyUpdateIndex < Interactable.InstanceCount)
+    if (_lazyUpdateIndex < Interactable.Instances.Count)
     {
       // Check if the current interactable is still in range
       float distToClosest = Mathf.Infinity;
@@ -40,10 +50,9 @@ public class InteractionController : MonoBehaviour
       {
         distToClosest = Vector3.Distance(_trackedTransform.position, _closestInteractable.transform.position);
         bool isInLightOfSight = IsInLineOfSight(_closestInteractable);
-        if (distToClosest >= _closestInteractable.InteractionRadius || !isInLightOfSight || !_closestInteractable.enabled || !_closestInteractable.IsPromptShown)
+        if (distToClosest >= _closestInteractable.InteractionRadius || !isInLightOfSight || !_closestInteractable.enabled)
         {
-          _closestInteractable.HidePrompt();
-          _closestInteractable = null;
+          SetClosestInteractable(null);
           distToClosest = Mathf.Infinity;
         }
       }
@@ -56,7 +65,7 @@ public class InteractionController : MonoBehaviour
       }
 
       // Get the distance to the next potential interactable
-      Interactable interactable = Interactable.GetInstance(_lazyUpdateIndex);
+      Interactable interactable = Interactable.Instances[_lazyUpdateIndex];
       Vector3 toInteractable = interactable.transform.position - _trackedTransform.position;
       float distToInteractable = toInteractable.magnitude;
 
@@ -75,29 +84,63 @@ public class InteractionController : MonoBehaviour
         // Make this interactable the current one, if it was in line of sight
         if (IsInLineOfSight(interactable))
         {
-          if (_closestInteractable != null)
-          {
-            _closestInteractable.HidePrompt();
-          }
-
-          _closestInteractable = interactable;
-          _closestInteractable.ShowPrompt();
+          SetClosestInteractable(interactable);
         }
       }
     }
     else
     {
-      if (_closestInteractable != null)
-      {
-        _closestInteractable.HidePrompt();
-      }
+      SetClosestInteractable(null);
+    }
 
+    if (Interactable.Instances.Count > 0)
+    {
+      _lazyUpdateIndex = (_lazyUpdateIndex + 1) % Interactable.Instances.Count;
+    }
+  }
+
+  private void OnInteractionTriggered(InteractionController _)
+  {
+    Debug.Log($"OnInteractionTriggered - {_closestInteractable.name}");
+    InteractionTriggered?.Invoke(_closestInteractable);
+  }
+
+  private void SetClosestInteractable(Interactable interactable)
+  {
+    if (_closestInteractable != null)
+    {
+      _closestInteractable.InteractionTriggered -= OnInteractionTriggered;
+      HidePrompt();
       _closestInteractable = null;
     }
 
-    if (Interactable.InstanceCount > 0)
+    if (interactable != null)
     {
-      _lazyUpdateIndex = (_lazyUpdateIndex + 1) % Interactable.InstanceCount;
+      _closestInteractable = interactable;
+      _closestInteractable.InteractionTriggered += OnInteractionTriggered;
+      ShowPrompt(_closestInteractable);
+    }
+  }
+
+  private void ShowPrompt(Interactable interactable)
+  {
+    if (PlayerUI != null)
+    {
+      var uiRoot = PlayerUI.OnScreenUI.ShowItem(interactable.InteractionUIAnchor, Vector3.up * interactable.InteractionUIHeight);
+      _interactableUI = Instantiate(interactable.InteractableUIPrefab, uiRoot);
+      _interactableUI.transform.SetIdentityTransformLocal();
+      _interactableUI.InteractionText = interactable.InteractionText;
+    }
+  }
+
+  private void HidePrompt()
+  {
+    if (PlayerUI != null)
+    {
+      if (_interactableUI != null)
+        PlayerUI.OnScreenUI.HideItem(_interactableUI.transform.parent as RectTransform);
+
+      _interactableUI = null;
     }
   }
 
