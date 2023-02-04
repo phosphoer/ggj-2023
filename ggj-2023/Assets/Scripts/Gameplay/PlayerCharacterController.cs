@@ -22,6 +22,9 @@ public class PlayerCharacterController : MonoBehaviour
   private CameraControllerPlayer _cameraController;
   private PlayerUI _playerUI;
 
+  public int PlayerID => _playerID;
+  private int _playerID= -1;
+
   [SerializeField]
   private Transform _playerHudUIAnchor;
 
@@ -71,6 +74,11 @@ public class PlayerCharacterController : MonoBehaviour
   {
     _isAllowedToMove = flag;
     Cursor.lockState = flag ? CursorLockMode.Locked : CursorLockMode.None;
+  }
+
+  public void AssignPlayerId(int playerID)
+  {
+    _playerID= playerID;
   }
 
   private void Update()
