@@ -19,7 +19,7 @@ public class UIHydrate : MonoBehaviour
   private bool _useNormalizedScale = true;
 
   [SerializeField]
-  private bool _enableRandomDelay = true;
+  private bool _enableRandomDelay = false;
 
   private Coroutine _currentRoutine;
   private Coroutine _showTimedRoutine;
@@ -29,6 +29,11 @@ public class UIHydrate : MonoBehaviour
 
   private const float kHydrateTime = 0.45f;
   private const float kDehydrateTime = 0.2f;
+
+  public static Coroutine Hydrate(Transform transform, float duration = kHydrateTime)
+  {
+    return CoroutineRoot.Instance.StartCoroutine(HydrateAsync(transform));
+  }
 
   public Coroutine ShowTimed(float duration)
   {
@@ -207,5 +212,23 @@ public class UIHydrate : MonoBehaviour
     }
 
     yield return Dehydrate();
+  }
+
+  private static IEnumerator HydrateAsync(Transform transform, float duration = kHydrateTime)
+  {
+    Vector3 startScale = Vector3.one * GameGlobals.Instance.UIHydrateCurve.Evaluate(0);
+    Vector3 endScale = Vector3.one * GameGlobals.Instance.UIHydrateCurve.Evaluate(1);
+    transform.localScale = startScale;
+
+    for (float time = 0; time < duration && transform != null; time += Time.unscaledDeltaTime)
+    {
+      float t = time / duration;
+      float tCurve = GameGlobals.Instance.UIHydrateCurve.Evaluate(t);
+      transform.localScale = Vector3.one * tCurve;
+      yield return null;
+    }
+
+    if (transform != null)
+      transform.localScale = endScale;
   }
 }

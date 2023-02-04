@@ -45,13 +45,13 @@ public class Interactable : MonoBehaviour
   private Transform _interactionUIAnchor = null;
 
   [SerializeField]
-  private float _interactionUIHeight = 8.0f;
+  private float _interactionUIHeight = 0.5f;
 
   [SerializeField]
   private string _interactionText = "Interact";
 
   [SerializeField]
-  private float _interactionRadius = 50.0f;
+  private float _interactionRadius = 2.0f;
 
   [SerializeField]
   private bool _requiresLineOfSight = false;

@@ -25,8 +25,8 @@ public class PlayerCharacterController : MonoBehaviour
   [SerializeField]
   private Transform _playerHudUIAnchor;
 
-  private bool _isReady= true;
-  private bool _isAllowedToMove= true;
+  private bool _isReady = true;
+  private bool _isAllowedToMove = true;
 
   [SerializeField]
   private InteractableUI _playerHudPrefab = null;
@@ -55,21 +55,21 @@ public class PlayerCharacterController : MonoBehaviour
 
   public void ClearReadyFlag()
   {
-    _isReady= false;
+    _isReady = false;
   }
 
   public void SetReadyFlag()
   {
     if (!_isReady)
     {
-      _isReady= true;
+      _isReady = true;
       PlayerReady?.Invoke(this);
     }
   }
 
   public void SetIsAllowedToMove(bool flag)
   {
-    _isAllowedToMove= flag;
+    _isAllowedToMove = flag;
     Cursor.lockState = flag ? CursorLockMode.Locked : CursorLockMode.None;
   }
 
