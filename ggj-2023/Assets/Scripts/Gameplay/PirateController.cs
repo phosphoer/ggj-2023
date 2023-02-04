@@ -129,6 +129,11 @@ public class PirateController : MonoBehaviour
 
     _foodWeight += _currentFood.FoodWeightValue;
     _currentFood = null;
+
+    if (_foodWeight >= _desiredFoodWeight)
+    {
+      NotifyPirateFull();
+    }
   }
 
   private Transform GetEmptyTooth()
