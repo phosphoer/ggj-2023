@@ -13,10 +13,22 @@ public class PlayerManager : Singleton<PlayerManager>
   [SerializeField]
   private Transform[] _spawnPoints = null;
 
+  private bool _canSpawnPlayers= false;
   private List<PlayerCharacterController> _players = new List<PlayerCharacterController>();
   private List<bool> _playerJoinedStates = new List<bool>();
   private int _nextSpawnIndex = 0;
   private int _nextPlayerPrefabIndex = 0;
+
+  public void SetCanSpawnPlayers(bool newCanSpawnPlayers)
+  {
+    // Despawn any existing players if we are going back to disallowing players to exist
+    if (_canSpawnPlayers && !newCanSpawnPlayers)
+    {
+      DespawnPlayers();
+    }
+
+    _canSpawnPlayers= newCanSpawnPlayers;
+  }
 
   public bool IsPlayerJoined(int playerId)
   {
@@ -61,7 +73,7 @@ public class PlayerManager : Singleton<PlayerManager>
 
   private void Update()
   {
-    if (!Rewired.ReInput.isReady)
+    if (!Rewired.ReInput.isReady || !_canSpawnPlayers)
     {
       return;
     }

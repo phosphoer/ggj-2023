@@ -334,6 +334,7 @@ GameObject:
   - component: {fileID: 7047233664641652137}
   - component: {fileID: 4955309080062074641}
   - component: {fileID: 1907292760679252178}
+  - component: {fileID: 8766298389763737646}
   m_Layer: 0
   m_Name: NewGame
   m_TagString: Untagged
@@ -446,6 +447,23 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls: []
+--- !u!114 &8766298389763737646
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5364819286050292778}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ed003a223ff5cec44a63f04754845d47, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  HydrateOnEnable: 0
+  StartDehydrated: 0
+  _targetTransform: {fileID: 0}
+  _useNormalizedScale: 1
+  _enableRandomDelay: 1
 --- !u!1 &6416461369169845469
 GameObject:
   m_ObjectHideFlags: 0
@@ -573,7 +591,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   ShowOnStart: 0
   IsModal: 0
-  _hydrateOnShow: []
+  _hydrateOnShow:
+  - {fileID: 2930336280803022724}
+  - {fileID: 8766298389763737646}
 --- !u!1 &8455878508825721101
 GameObject:
   m_ObjectHideFlags: 0

@@ -125,6 +125,9 @@ public class GameStateManager : Singleton<GameStateManager>
         {
           CameraManager.Instance.SetScreenLayout(CameraManager.eScreenLayout.MenuCamera);
 
+          // Not allowed to spawn players in the main menu
+          PlayerManager.Instance.SetCanSpawnPlayers(false);
+
           GameUI.Instance.MainMenuUI.Show();
 
           if (MusicMenuLoop != null)
@@ -147,6 +150,9 @@ public class GameStateManager : Singleton<GameStateManager>
           // GameUI.Instance.DevilUI.Show();
 
           //GameUI.Instance.SidebarUI.Show();
+
+          // Now we can spawn players
+          PlayerManager.Instance.SetCanSpawnPlayers(true);
         }
         break;
       case GameStage.EndGame:

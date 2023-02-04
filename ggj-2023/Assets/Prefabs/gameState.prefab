@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8473291381132134934}
   - component: {fileID: 8473291381132134933}
+  - component: {fileID: 6747696525931932296}
   m_Layer: 0
   m_Name: gameState
   m_TagString: Untagged
@@ -47,3 +48,21 @@ MonoBehaviour:
   EditorDefaultStage: 1
   MusicMenuLoop: {fileID: 0}
   MenuCamera: {fileID: 0}
+--- !u!114 &6747696525931932296
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8473291381132134932}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f02659fd184a547f0abd365f6979f0cc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _playerPrefabs:
+  - {fileID: 1594447163315735885, guid: b22dc2229e91047cfbd3b39cf0aa6ae1, type: 3}
+  - {fileID: 1594447163315735885, guid: b22dc2229e91047cfbd3b39cf0aa6ae1, type: 3}
+  - {fileID: 1594447163315735885, guid: b22dc2229e91047cfbd3b39cf0aa6ae1, type: 3}
+  - {fileID: 1594447163315735885, guid: b22dc2229e91047cfbd3b39cf0aa6ae1, type: 3}
+  _spawnPoints: []
