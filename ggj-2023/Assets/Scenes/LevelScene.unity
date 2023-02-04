@@ -300,7 +300,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!64 &866444014
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -528,10 +528,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 63256872501684320, guid: d3765c39c553973468a7a98cbef87cfc, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 10.38
-      objectReference: {fileID: 0}
     - target: {fileID: 4256571705432531453, guid: d3765c39c553973468a7a98cbef87cfc, type: 3}
       propertyPath: m_Name
       value: LevelPrefab
@@ -579,14 +575,6 @@ PrefabInstance:
     - target: {fileID: 4368868326509498496, guid: d3765c39c553973468a7a98cbef87cfc, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7660627422884956102, guid: d3765c39c553973468a7a98cbef87cfc, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 20.387
-      objectReference: {fileID: 0}
-    - target: {fileID: 8149751491260849116, guid: d3765c39c553973468a7a98cbef87cfc, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 21.24
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: d3765c39c553973468a7a98cbef87cfc, type: 3}
