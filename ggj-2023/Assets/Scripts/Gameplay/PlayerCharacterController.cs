@@ -13,7 +13,6 @@ public class PlayerCharacterController : MonoBehaviour
   public CameraControllerPlayer CameraControllerPrefab = null;
   public PlayerUI PlayerUIPrefab = null;
 
-  public PlayerUI PlayerHudUI;
   private InteractableUI _hudMessageUI;
   public Transform PlayerHudUIAnchor => _playerHudUIAnchor;
   public InteractableUI PlayerHudPrefab => _playerHudPrefab;
@@ -22,6 +21,8 @@ public class PlayerCharacterController : MonoBehaviour
   private CameraControllerStack _cameraStack;
   private CameraControllerPlayer _cameraController;
   private PlayerUI _playerUI;
+
+  [SerializeField]
   private Transform _playerHudUIAnchor;
 
   private bool _isReady= true;
@@ -95,7 +96,7 @@ public class PlayerCharacterController : MonoBehaviour
   {
     ClearHudMessage();
 
-    var uiRoot = PlayerHudUI.OnScreenUI.ShowItem(PlayerHudUIAnchor, Vector3.up * PlayerHudHeight);
+    var uiRoot = PlayerUI.OnScreenUI.ShowItem(PlayerHudUIAnchor, Vector3.up * PlayerHudHeight);
     _hudMessageUI = Instantiate(_playerHudPrefab, uiRoot);
     _hudMessageUI.transform.SetIdentityTransformLocal();
     _hudMessageUI.InteractionText = message;
@@ -103,7 +104,7 @@ public class PlayerCharacterController : MonoBehaviour
 
   public void ClearHudMessage()
   {
-    if (PlayerHudUI != null)
+    if (PlayerUI != null)
     {
       if (_hudMessageUI != null)
         PlayerUI.OnScreenUI.HideItem(_hudMessageUI.transform.parent as RectTransform);
