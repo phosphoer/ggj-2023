@@ -3,6 +3,8 @@ using UnityEngine;
 public class GameCharacterController : MonoBehaviour
 {
   public Transform CameraRoot => _cameraRoot;
+  public Transform HeldItemRoot => _heldItemRoot;
+  public ItemController HeldItem => _heldItem;
   public InteractionController InteractionController => _interactionController;
 
   [Range(-1, 1)]
@@ -24,6 +26,9 @@ public class GameCharacterController : MonoBehaviour
 
   [SerializeField]
   private Transform _cameraRoot = null;
+
+  [SerializeField]
+  private Transform _heldItemRoot = null;
 
   [SerializeField]
   private LayerMask _groundLayer = default(LayerMask);
@@ -61,6 +66,7 @@ public class GameCharacterController : MonoBehaviour
   private RaycastHit _groundRaycast;
   private RaycastHit _obstacleRaycast;
   private Vector3 _lastGroundPos;
+  private ItemController _heldItem;
 
   private Vector3 _raycastStartPos => transform.position + transform.up * _raycastUpStartOffset;
 
@@ -141,12 +147,28 @@ public class GameCharacterController : MonoBehaviour
     _cameraRoot.Rotate(Vector3.right, -delta, Space.Self);
   }
 
+  private void PickupItem(ItemController item)
+  {
+    if (_heldItem != null)
+    {
+      _heldItem.Interactable.enabled = true;
+      _heldItem.transform.parent = null;
+      _heldItem = null;
+    }
+
+    item.transform.parent = _heldItemRoot;
+    item.transform.SetIdentityTransformLocal();
+    item.Interactable.enabled = false;
+    _heldItem = item;
+  }
+
   private void OnInteractionTriggered(Interactable interactable)
   {
     ItemController item = interactable.GetComponent<ItemController>();
     if (item != null)
     {
       Debug.Log($"{name} interacted with item {item.name}");
+      PickupItem(item);
     }
   }
 }

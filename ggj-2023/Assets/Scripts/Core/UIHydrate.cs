@@ -50,7 +50,7 @@ public class UIHydrate : MonoBehaviour
 
   public Coroutine Hydrate()
   {
-    Debug.Log($"Calling hydrate on {name}", gameObject);
+    // Debug.Log($"Calling hydrate on {name}", gameObject);
     _isHydrated = true;
 
     if (_currentRoutine != null)
@@ -73,7 +73,7 @@ public class UIHydrate : MonoBehaviour
 
   public Coroutine Dehydrate(System.Action finishCallback = null)
   {
-    Debug.Log($"Calling dehydrate on {name}", gameObject);
+    // Debug.Log($"Calling dehydrate on {name}", gameObject);
     _isHydrated = false;
 
     if (_currentRoutine != null)
