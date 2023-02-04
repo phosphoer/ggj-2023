@@ -27,8 +27,8 @@ public class UIHydrate : MonoBehaviour
   private List<IEnumerator> _childEnumerators;
   private bool _isHydrated;
 
-  private const float kHydrateTime = 0.75f;
-  private const float kDehydrateTime = 0.3f;
+  private const float kHydrateTime = 0.45f;
+  private const float kDehydrateTime = 0.2f;
 
   public Coroutine ShowTimed(float duration)
   {
@@ -50,7 +50,7 @@ public class UIHydrate : MonoBehaviour
 
   public Coroutine Hydrate()
   {
-    // Debug.Log($"Calling hydrate on {name}", gameObject);
+    Debug.Log($"Calling hydrate on {name}", gameObject);
     _isHydrated = true;
 
     if (_currentRoutine != null)
@@ -73,7 +73,7 @@ public class UIHydrate : MonoBehaviour
 
   public Coroutine Dehydrate(System.Action finishCallback = null)
   {
-    // Debug.Log($"Calling dehydrate on {name}", gameObject);
+    Debug.Log($"Calling dehydrate on {name}", gameObject);
     _isHydrated = false;
 
     if (_currentRoutine != null)
