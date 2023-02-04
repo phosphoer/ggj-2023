@@ -25,6 +25,9 @@ public class GameCharacterController : MonoBehaviour
   private InteractionController _interactionController = null;
 
   [SerializeField]
+  private Animator _animator = null;
+
+  [SerializeField]
   private Transform _cameraRoot = null;
 
   [SerializeField]
@@ -55,9 +58,6 @@ public class GameCharacterController : MonoBehaviour
   private float _moveSpeed = 1.0f;
 
   [SerializeField]
-  private float _strafeSpeed = 1.0f;
-
-  [SerializeField]
   private float _turnSpeed = 90.0f;
 
   [SerializeField]
@@ -69,6 +69,9 @@ public class GameCharacterController : MonoBehaviour
   private ItemController _heldItem;
 
   private Vector3 _raycastStartPos => transform.position + transform.up * _raycastUpStartOffset;
+
+  private static int kAnimMoveSpeed = Animator.StringToHash("MoveSpeed");
+  private static int kAnimIsMoving = Animator.StringToHash("IsMoving");
 
   public void Interact()
   {
@@ -88,8 +91,9 @@ public class GameCharacterController : MonoBehaviour
   private void Update()
   {
     // Calculate next position based on movement
-    Vector3 newPosition = transform.position + transform.forward * MoveAxis * _moveSpeed * Time.deltaTime;
-    newPosition += transform.right.WithY(0) * StrafeAxis * _strafeSpeed * Time.deltaTime;
+    float moveAxisTotal = Mathf.Clamp01(Mathf.Abs(MoveAxis) + Mathf.Abs(StrafeAxis));
+    Vector3 moveVec = (transform.forward * MoveAxis + transform.right.WithY(0) * StrafeAxis).NormalizedSafe() * moveAxisTotal;
+    Vector3 newPosition = transform.position + moveVec * _moveSpeed * Time.deltaTime;
 
     // Snap and align to ground
     Vector3 raycastDir = -transform.up + (transform.forward * MoveAxis + transform.right * StrafeAxis) * 0.5f;
@@ -114,8 +118,8 @@ public class GameCharacterController : MonoBehaviour
     }
 
     // Collide with obstacles
-    Vector3 moveVec = newPosition - transform.position;
-    if (Physics.SphereCast(transform.position, _obstacleRaycastRadius, moveVec.normalized, out _obstacleRaycast, _minDistToObstacle + 1, _obstacleLayer))
+    Vector3 velocity = newPosition - transform.position;
+    if (Physics.SphereCast(transform.position, _obstacleRaycastRadius, velocity.NormalizedSafe(), out _obstacleRaycast, _minDistToObstacle + 1, _obstacleLayer))
     {
       // Find the plane representing the point + normal we hit
       Plane hitPlane = new Plane(_obstacleRaycast.normal, _obstacleRaycast.point);
@@ -130,6 +134,11 @@ public class GameCharacterController : MonoBehaviour
       float adjustedDist = Mathf.Max(planeDist, _minDistToObstacle);
       newPosition = closestPoint + closestPointToPos.normalized * adjustedDist;
     }
+
+    // Update animation
+    float moveDir = Mathf.Sign(MoveAxis);
+    _animator.SetFloat(kAnimMoveSpeed, moveAxisTotal * moveDir);
+    _animator.SetBool(kAnimIsMoving, moveAxisTotal > 0);
 
     // Apply movement
     transform.position = newPosition;

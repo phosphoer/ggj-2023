@@ -418,6 +418,14 @@ public static class VectorExtensions
     return v;
   }
 
+  public static Vector3 NormalizedSafe(this Vector3 v)
+  {
+    if (v.sqrMagnitude == 0)
+      return Vector3.zero;
+
+    return v.normalized;
+  }
+
   public static Vector3 OnXZPlane(this Vector2 v)
   {
     return new Vector3(v.x, 0, v.y);

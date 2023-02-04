@@ -135,6 +135,7 @@ MonoBehaviour:
     MinValue: -70
     MaxValue: 70
   _interactionController: {fileID: 4530258759955292238}
+  _animator: {fileID: 5136927769438001699}
   _cameraRoot: {fileID: 1594447162171137673}
   _heldItemRoot: {fileID: 7606062836508132136}
   _groundLayer:
@@ -249,6 +250,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: SquidDude
       objectReference: {fileID: 0}
+    - target: {fileID: 5866666021909216657, guid: 486c4dc566d294b6dabc63db23536a8f, type: 3}
+      propertyPath: m_Controller
+      value: 
+      objectReference: {fileID: 9100000, guid: 19007328e852846c1ad855f637b3ac43, type: 2}
     - target: {fileID: 8269114235564740031, guid: 486c4dc566d294b6dabc63db23536a8f, type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
@@ -262,6 +267,11 @@ PrefabInstance:
 --- !u!4 &1272869712506437721 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 486c4dc566d294b6dabc63db23536a8f, type: 3}
+  m_PrefabInstance: {fileID: 1594447162231596978}
+  m_PrefabAsset: {fileID: 0}
+--- !u!95 &5136927769438001699 stripped
+Animator:
+  m_CorrespondingSourceObject: {fileID: 5866666021909216657, guid: 486c4dc566d294b6dabc63db23536a8f, type: 3}
   m_PrefabInstance: {fileID: 1594447162231596978}
   m_PrefabAsset: {fileID: 0}
 --- !u!4 &5342284148462777272 stripped
