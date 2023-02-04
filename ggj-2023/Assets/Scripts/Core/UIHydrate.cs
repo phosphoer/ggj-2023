@@ -27,8 +27,8 @@ public class UIHydrate : MonoBehaviour
   private List<IEnumerator> _childEnumerators;
   private bool _isHydrated;
 
-  private const float kHydrateTime = 0.75f;
-  private const float kDehydrateTime = 0.3f;
+  private const float kHydrateTime = 0.45f;
+  private const float kDehydrateTime = 0.2f;
 
   public Coroutine ShowTimed(float duration)
   {
