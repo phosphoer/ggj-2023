@@ -83,6 +83,7 @@ MonoBehaviour:
   Character: {fileID: 1594447163315735890}
   CameraStackPrefab: {fileID: 7557654081706157210, guid: e9e24c02134ad482992ef04de1c1604b, type: 3}
   CameraControllerPrefab: {fileID: 9015923865928528377, guid: d0f8386a8b7f4428d951cec0cae50e47, type: 3}
+  PlayerUIPrefab: {fileID: 4349979100163968351, guid: c9e2c379a32f04074b75f10cee27c451, type: 3}
 --- !u!114 &1594447163315735890
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -102,6 +103,7 @@ MonoBehaviour:
   LookVerticalRange:
     MinValue: -70
     MaxValue: 70
+  _interactionController: {fileID: 4530258759955292238}
   _cameraRoot: {fileID: 1594447162171137673}
   _groundLayer:
     serializedVersion: 2
@@ -130,6 +132,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f92a2f32f55234ee8addc8f1dfab91d5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  PlayerUI: {fileID: 0}
   _trackedTransform: {fileID: 1594447163315735891}
 --- !u!1001 &1594447162231596978
 PrefabInstance:

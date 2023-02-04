@@ -13,6 +13,9 @@ public class WorldAttachedUI : UIPageBase
   [SerializeField]
   private RectTransform _rootCanvas = null;
 
+  [SerializeField]
+  private Canvas _cameraCanvas = null;
+
   private List<UIObject> _uiObjects = new List<UIObject>();
   private List<UIObject> _objectPool = new List<UIObject>();
   private Coroutine _updateRoutine;
@@ -31,7 +34,7 @@ public class WorldAttachedUI : UIPageBase
     public bool IsShown;
   }
 
-  public RectTransform ShowItem(Transform attachedTransform, Vector3 worldOffset, float avoidAimRadius = 0)
+  public RectTransform ShowItem(Transform attachedTransform, Vector3 worldOffset)
   {
     UIObject obj = null;
     if (_objectPool.Count > 0)
@@ -156,7 +159,7 @@ public class WorldAttachedUI : UIPageBase
         {
           // Position the ui at the screenspace position of the object 
           Vector3 worldPos = uiObject.WorldAnchor.position + uiObject.WorldOffset;
-          Vector3 canvasPos = Mathfx.WorldToCanvasPosition(_rootCanvas, MainCamera.Instance.Camera, worldPos, allowOffscreen: true);
+          Vector3 canvasPos = Mathfx.WorldToCanvasPosition(_rootCanvas, _cameraCanvas.worldCamera, worldPos, allowOffscreen: true);
           Vector2 anchorPos = canvasPos;
 
           RectTransform talkBubbleTransform = uiObject.UI.transform as RectTransform;
