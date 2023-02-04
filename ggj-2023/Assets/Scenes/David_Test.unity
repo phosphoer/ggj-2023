@@ -350,25 +350,6 @@ Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: af6c6601fb490cd4e8b211db3be3f3bb, type: 3}
   m_PrefabInstance: {fileID: 711385181}
   m_PrefabAsset: {fileID: 0}
---- !u!1 &711385183 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: af6c6601fb490cd4e8b211db3be3f3bb, type: 3}
-  m_PrefabInstance: {fileID: 711385181}
-  m_PrefabAsset: {fileID: 0}
---- !u!64 &711385184
-MeshCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 711385183}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 4
-  m_Convex: 0
-  m_CookingOptions: 30
-  m_Mesh: {fileID: 0}
 --- !u!1 &711385185 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: -5731229141766309534, guid: af6c6601fb490cd4e8b211db3be3f3bb, type: 3}
@@ -540,10 +521,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 135398942242454326, guid: b22dc2229e91047cfbd3b39cf0aa6ae1, type: 3}
-      propertyPath: m_Materials.Array.data[0]
-      value: 
-      objectReference: {fileID: 2100000, guid: f921cd8878f694a298db13b43de4bc85, type: 2}
     - target: {fileID: 1594447163315735888, guid: b22dc2229e91047cfbd3b39cf0aa6ae1, type: 3}
       propertyPath: m_Name
       value: test-player
