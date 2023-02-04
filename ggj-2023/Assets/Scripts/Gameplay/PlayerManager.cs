@@ -4,6 +4,7 @@ using System.Collections.Generic;
 public class PlayerManager : Singleton<PlayerManager>
 {
   public static event System.Action<PlayerCharacterController> PlayerJoined;
+  public static event System.Action<PlayerCharacterController> PlayerWon;
 
   public IReadOnlyList<PlayerCharacterController> Players => _players;
 
@@ -12,6 +13,9 @@ public class PlayerManager : Singleton<PlayerManager>
 
   [SerializeField]
   private Transform[] _spawnPoints = null;
+
+  [SerializeField]
+  private PirateController[] _pirates = null;
 
   private bool _canSpawnPlayers = false;
   private List<PlayerCharacterController> _players = new List<PlayerCharacterController>();
@@ -39,7 +43,16 @@ public class PlayerManager : Singleton<PlayerManager>
   {
     for (int i = 0; i < _players.Count; ++i)
     {
-      Destroy(_players[i].gameObject);
+      PlayerCharacterController player= _players[i];
+
+      if (_pirates.IsIndexValid(player.PlayerID))
+      {
+        PirateController pirateController= _pirates[player.PlayerID];
+
+        pirateController.PirateFull -= OnPirateFull;
+      }
+
+      Destroy(player.gameObject);
     }
 
     _players.Clear();
@@ -57,13 +70,28 @@ public class PlayerManager : Singleton<PlayerManager>
 
   public void RespawnPlayer(PlayerCharacterController player)
   {
-    var spawnIndex = _players.IndexOf(player);
-    if (_spawnPoints.IsIndexValid(spawnIndex))
+    var playerId = _players.IndexOf(player);
+
+    if (_spawnPoints.IsIndexValid(playerId))
     {
-      player.transform.position = _spawnPoints[spawnIndex].position;
-      player.transform.rotation = _spawnPoints[spawnIndex].rotation;
+      player.transform.position = _spawnPoints[playerId].position;
+      player.transform.rotation = _spawnPoints[playerId].rotation;
       player.CameraStack.SnapTransformToTarget();
+      player.AssignPlayerId(playerId);
     }
+
+    if (_pirates.IsIndexValid(playerId))
+    {
+      PirateController pirateController= _pirates[playerId];
+
+      pirateController.AssignPlayer(player);
+      pirateController.PirateFull += OnPirateFull;
+    }
+  }
+
+  private void OnPirateFull(PlayerCharacterController player)
+  {
+    PlayerWon?.Invoke(player);
   }
 
   private void Awake()

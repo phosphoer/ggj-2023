@@ -3,10 +3,18 @@ using System.Collections.Generic;
 
 public class PirateController : MonoBehaviour
 {
+  private PlayerCharacterController _assignedPlayer = null;
+  public event System.Action<PlayerCharacterController> PirateFull;
+
   [SerializeField]
   private Transform[] _teethRoots = null;
 
   private List<ItemController> _teeth = new List<ItemController>();
+
+  public void AssignPlayer(PlayerCharacterController player)
+  {
+    _assignedPlayer= player;
+  }
 
   public void AddTooth(ItemController toothItem)
   {

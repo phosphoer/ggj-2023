@@ -40,11 +40,13 @@ public class GameStateManager : Singleton<GameStateManager>
   {
     Instance = this;
     PlayerManager.PlayerJoined += OnPlayerJoined;
+    PlayerManager.PlayerWon += OnPlayerWon;
   }
 
   private void OnDestroy()
   {
     PlayerManager.PlayerJoined -= OnPlayerJoined;
+    PlayerManager.PlayerWon -= OnPlayerWon;
   }
 
   // Start is called before the first frame update
@@ -301,5 +303,11 @@ public class GameStateManager : Singleton<GameStateManager>
     {
       SetGameStage(GameStage.Gameplay);
     }
+  }
+
+  private void OnPlayerWon(PlayerCharacterController readyPlayer)
+  {
+    _winningPlayerID= readyPlayer.PlayerID;
+    SetGameStage(GameStage.PlayerWinCutscene);
   }
 }
