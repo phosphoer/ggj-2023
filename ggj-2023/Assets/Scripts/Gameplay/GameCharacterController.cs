@@ -161,7 +161,7 @@ public class GameCharacterController : MonoBehaviour
     DropItem();
     item.transform.parent = _heldItemRoot;
     item.transform.SetIdentityTransformLocal();
-    item.Interactable.enabled = false;
+    item.SetInteractable(false);
     _heldItem = item;
   }
 
@@ -169,7 +169,7 @@ public class GameCharacterController : MonoBehaviour
   {
     if (_heldItem != null)
     {
-      _heldItem.Interactable.enabled = true;
+      _heldItem.SetInteractable(true);
       _heldItem.transform.parent = null;
       _heldItem = null;
     }

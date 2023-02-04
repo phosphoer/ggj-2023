@@ -180,7 +180,7 @@ GameObject:
   m_Layer: 0
   m_Name: tooth-3
   m_TagString: Untagged
-  m_Icon: {fileID: 0}
+  m_Icon: {fileID: 4422084297763085224, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
@@ -192,8 +192,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 497223857500978292}
   m_LocalRotation: {x: -0.6168153, y: -0.113792874, z: 0.090738215, w: 0.7735352}
-  m_LocalPosition: {x: 0.136, y: -0.08, z: 0.516}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalPosition: {x: 0.228, y: -0.094, z: 0.517}
+  m_LocalScale: {x: 0.7, y: 0.7, z: 0.7}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 497223856747504370}
@@ -211,7 +211,7 @@ GameObject:
   m_Layer: 0
   m_Name: tooth-2
   m_TagString: Untagged
-  m_Icon: {fileID: 0}
+  m_Icon: {fileID: 4422084297763085224, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
@@ -223,8 +223,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 497223857665801461}
   m_LocalRotation: {x: -0.6185945, y: 0.097426854, z: -0.07768798, w: 0.7757664}
-  m_LocalPosition: {x: -0.055, y: -0.081, z: 0.516}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalPosition: {x: -0.147, y: -0.111, z: 0.516}
+  m_LocalScale: {x: 0.7, y: 0.7, z: 0.7}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 497223856747504370}
@@ -242,7 +242,7 @@ GameObject:
   m_Layer: 0
   m_Name: tooth-5
   m_TagString: Untagged
-  m_Icon: {fileID: 0}
+  m_Icon: {fileID: 4422084297763085224, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
@@ -254,8 +254,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 497223857826677803}
   m_LocalRotation: {x: -0.012889867, y: -0.6075652, z: 0.79275805, w: -0.047255456}
-  m_LocalPosition: {x: 0.03, y: 0.097, z: 0.508}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalPosition: {x: 0.03, y: 0.09, z: 0.502}
+  m_LocalScale: {x: 0.7, y: 0.7, z: 0.7}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 497223856747504370}
@@ -273,7 +273,7 @@ GameObject:
   m_Layer: 0
   m_Name: tooth-1
   m_TagString: Untagged
-  m_Icon: {fileID: 0}
+  m_Icon: {fileID: 4422084297763085224, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
@@ -285,8 +285,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 497223857865869019}
   m_LocalRotation: {x: -0.62345374, y: -0, z: -0, w: 0.78186035}
-  m_LocalPosition: {x: 0.04099998, y: -0.089, z: 0.514}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalPosition: {x: 0.043, y: -0.134, z: 0.514}
+  m_LocalScale: {x: 0.7, y: 0.7, z: 0.7}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 497223856747504370}
@@ -335,7 +335,7 @@ GameObject:
   m_Layer: 0
   m_Name: tooth-4
   m_TagString: Untagged
-  m_Icon: {fileID: 0}
+  m_Icon: {fileID: 4422084297763085224, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
@@ -347,8 +347,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 497223858020060371}
   m_LocalRotation: {x: 0.03972854, y: -0.603092, z: 0.7918669, w: -0.08745604}
-  m_LocalPosition: {x: 0.106, y: 0.108, z: 0.508}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalPosition: {x: 0.209, y: 0.101, z: 0.508}
+  m_LocalScale: {x: 0.7, y: 0.7, z: 0.7}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 497223856747504370}
@@ -388,6 +388,7 @@ Transform:
   - {fileID: 497223856427326541}
   - {fileID: 497223856747504370}
   - {fileID: 9140147668240508938}
+  - {fileID: 2916253528377240762}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -410,6 +411,7 @@ MonoBehaviour:
   - {fileID: 497223858020060368}
   - {fileID: 497223857826677800}
   - {fileID: 497223858308489453}
+  _foodRoot: {fileID: 2916253528377240762}
   _fxChomp: {fileID: 781025165623124088}
   _desiredFoodWeight: 10
 --- !u!114 &497223858041272137
@@ -542,7 +544,7 @@ GameObject:
   m_Layer: 0
   m_Name: tooth-6
   m_TagString: Untagged
-  m_Icon: {fileID: 0}
+  m_Icon: {fileID: 4422084297763085224, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
@@ -554,8 +556,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 497223858308489452}
   m_LocalRotation: {x: -0.05065558, y: -0.6091269, z: 0.79124296, w: -0.018247128}
-  m_LocalPosition: {x: -0.051, y: 0.104, z: 0.498}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalPosition: {x: -0.164, y: 0.097, z: 0.494}
+  m_LocalScale: {x: 0.7, y: 0.7, z: 0.7}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 497223856747504370}
@@ -5382,3 +5384,34 @@ ParticleSystemRenderer:
   m_MeshWeighting2: 1
   m_MeshWeighting3: 1
   m_MaskInteraction: 0
+--- !u!1 &3408834970956329149
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2916253528377240762}
+  m_Layer: 0
+  m_Name: food-root
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &2916253528377240762
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3408834970956329149}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0.034, y: 0.979, z: 0.515}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 497223858041272139}
+  m_RootOrder: 4
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
