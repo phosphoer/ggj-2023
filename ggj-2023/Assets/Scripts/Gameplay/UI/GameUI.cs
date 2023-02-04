@@ -6,6 +6,7 @@ public class GameUI : Singleton<GameUI>
 {
   public MainMenuUIHandler MainMenuUI;
   public UIPageBase WaitingForPlayersUI;
+  public GamePlayUIHandler GameplayUI;
   public WinGameUIHandler WinGameUI;
   public LoseGameUIHandler LoseGameUI;
   public EndGameUIHandler EndGameUI;

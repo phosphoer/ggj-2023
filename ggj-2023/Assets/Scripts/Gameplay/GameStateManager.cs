@@ -141,10 +141,7 @@ public class GameStateManager : Singleton<GameStateManager>
 
     case GameStage.Gameplay:
     {
-      // GameUI.Instance.ScenarioUI.Hide();
-      // GameUI.Instance.AngelUI.Hide();
-      // GameUI.Instance.DevilUI.Hide();
-      // GameUI.Instance.SidebarUI.Hide();
+      GameUI.Instance.GameplayUI.Hide();
     }
     break;
 
@@ -172,6 +169,8 @@ public class GameStateManager : Singleton<GameStateManager>
   public void OnEnterStage(GameStage newGameStage)
   {
     GameStateChangeEvent?.Invoke();
+
+    _timeInStage= 0.0f;
 
     switch (newGameStage)
     {
@@ -212,15 +211,7 @@ public class GameStateManager : Singleton<GameStateManager>
 
     case GameStage.Gameplay:
     {
-      // CameraManager.Instance.ScenarioCameraStack.SwitchController(ScenarioManager.Instance.CurrentScene.CurrentCamera);
-
-      // GameUI.Instance.AngelUI.AssignPlayer(ePlayer.AngelPlayer);
-      // GameUI.Instance.AngelUI.Show();
-
-      // GameUI.Instance.DevilUI.AssignPlayer(ePlayer.DevilPlayer);
-      // GameUI.Instance.DevilUI.Show();
-
-      //GameUI.Instance.SidebarUI.Show();
+      GameUI.Instance.GameplayUI.Show();
     }
     break;
 
