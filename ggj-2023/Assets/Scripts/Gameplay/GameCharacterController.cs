@@ -158,26 +158,41 @@ public class GameCharacterController : MonoBehaviour
 
   private void PickupItem(ItemController item)
   {
-    if (_heldItem != null)
-    {
-      _heldItem.Interactable.enabled = true;
-      _heldItem.transform.parent = null;
-      _heldItem = null;
-    }
-
+    DropItem();
     item.transform.parent = _heldItemRoot;
     item.transform.SetIdentityTransformLocal();
     item.Interactable.enabled = false;
     _heldItem = item;
   }
 
+  private void DropItem()
+  {
+    if (_heldItem != null)
+    {
+      _heldItem.Interactable.enabled = true;
+      _heldItem.transform.parent = null;
+      _heldItem = null;
+    }
+  }
+
   private void OnInteractionTriggered(Interactable interactable)
   {
+    Debug.Log($"{name} interacted with {interactable.name}");
     ItemController item = interactable.GetComponent<ItemController>();
     if (item != null)
     {
-      Debug.Log($"{name} interacted with item {item.name}");
       PickupItem(item);
+    }
+
+    PirateController pirate = interactable.GetComponent<PirateController>();
+    if (pirate != null)
+    {
+      if (_heldItem != null)
+      {
+        ItemController giveItem = _heldItem;
+        DropItem();
+        pirate.AddTooth(giveItem);
+      }
     }
   }
 }
