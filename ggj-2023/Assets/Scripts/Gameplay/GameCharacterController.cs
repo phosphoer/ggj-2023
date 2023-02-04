@@ -16,6 +16,8 @@ public class GameCharacterController : MonoBehaviour
   [Range(-1, 1)]
   public float LookVerticalAxis = 0.0f;
 
+  public RangedFloat LookVerticalRange = new RangedFloat(-45, 45);
+
   [SerializeField]
   private Transform _cameraRoot = null;
 
@@ -108,5 +110,14 @@ public class GameCharacterController : MonoBehaviour
     transform.position = newPosition;
     transform.Rotate(Vector3.up, LookHorizontalAxis * _turnSpeed * Time.deltaTime, Space.Self);
     _cameraRoot.Rotate(Vector3.right, -LookVerticalAxis * _turnSpeed * Time.deltaTime, Space.Self);
+
+    float verticalAngle = Vector3.SignedAngle(transform.forward, _cameraRoot.forward, transform.right);
+    float delta = 0;
+    if (verticalAngle < LookVerticalRange.MinValue)
+      delta = verticalAngle - LookVerticalRange.MinValue;
+    else if (verticalAngle > LookVerticalRange.MaxValue)
+      delta = verticalAngle - LookVerticalRange.MaxValue;
+
+    _cameraRoot.Rotate(Vector3.right, -delta, Space.Self);
   }
 }
