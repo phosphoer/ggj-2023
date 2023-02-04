@@ -7,3 +7,9 @@ Idle_Hold: 116 - 175
 Run_Hold: 176 - 205
 Recoil: 206 - 235
 Stunned: 236 - 295
+
+__________Pirate____
+Idle: 
+Eating: 
+Open/Close frames: 
+Recoil: 
