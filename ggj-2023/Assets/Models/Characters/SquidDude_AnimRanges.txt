@@ -2,3 +2,8 @@ __________Squid____
 T-Pose: 0
 Idle: 1 - 60
 Run: 61 - 90
+Attack: 91 - 115
+Idle_Hold: 116 - 175
+Run_Hold: 176 - 205
+Recoil: 206 - 235
+Stunned: 236 - 295
