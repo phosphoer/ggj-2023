@@ -1195,3 +1195,4 @@ MonoBehaviour:
   _lootSpawnCount:
     MinValue: 1
     MaxValue: 3
+  _destroySound: {fileID: 11400000, guid: 7ffd5bc1b4a813a438a34cdec968e175, type: 2}

@@ -28,7 +28,7 @@ public class GameStateManager : Singleton<GameStateManager>
   public float GameplayDuration = 300.0f;
   public float EndCutSceneDuration = 5.0f;
 
-  private int _winningPlayerID= -1;
+  private int _winningPlayerID = -1;
   public int WinningPlayerID => _winningPlayerID;
 
   public SoundBank MusicMenuLoop;
@@ -67,29 +67,29 @@ public class GameStateManager : Singleton<GameStateManager>
 
     switch (_gameStage)
     {
-    case GameStage.MainMenu:
-      break;
-    case GameStage.WaitingForPlayers:
-      break;
-    case GameStage.WaitingForReady:
-      break;
-    case GameStage.Gameplay:
-      if (_timeInStage >= GameplayDuration)
-      {
-        nextGameStage= GameStage.PlayerLoseCutscene;
-      }
-      break;
-    case GameStage.PlayerWinCutscene:
-    case GameStage.PlayerLoseCutscene:
-      if (_timeInStage >= EndCutSceneDuration)
-      {
-        nextGameStage= GameStage.EndGame;
-      }
-      break;
-    case GameStage.EndGame:
-      break;
+      case GameStage.MainMenu:
+        break;
+      case GameStage.WaitingForPlayers:
+        break;
+      case GameStage.WaitingForReady:
+        break;
+      case GameStage.Gameplay:
+        if (_timeInStage >= GameplayDuration)
+        {
+          nextGameStage = GameStage.PlayerLoseCutscene;
+        }
+        break;
+      case GameStage.PlayerWinCutscene:
+      case GameStage.PlayerLoseCutscene:
+        if (_timeInStage >= EndCutSceneDuration)
+        {
+          nextGameStage = GameStage.EndGame;
+        }
+        break;
+      case GameStage.EndGame:
+        break;
     }
-    _timeInStage+= Time.deltaTime;
+    _timeInStage += Time.deltaTime;
 
     SetGameStage(nextGameStage);
   }
@@ -114,57 +114,57 @@ public class GameStateManager : Singleton<GameStateManager>
   {
     switch (oldGameStage)
     {
-    case GameStage.MainMenu:
-    {
-      if (MusicMenuLoop != null)
-      {
-        AudioManager.Instance.FadeOutSound(gameObject, MusicMenuLoop, 3f);
-      }
+      case GameStage.MainMenu:
+        {
+          if (MusicMenuLoop != null)
+          {
+            AudioManager.Instance.FadeOutSound(gameObject, MusicMenuLoop, 3f);
+          }
 
-      GameUI.Instance.MainMenuUI.Hide();
-    }
-    break;
+          GameUI.Instance.MainMenuUI.Hide();
+        }
+        break;
 
-    case GameStage.WaitingForPlayers:
-      {
-        GameUI.Instance.WaitingForPlayersUI.Hide();
-      }
-      break;
+      case GameStage.WaitingForPlayers:
+        {
+          GameUI.Instance.WaitingForPlayersUI.Hide();
+        }
+        break;
 
-    case GameStage.WaitingForReady:
-    {
-      foreach (PlayerCharacterController player in _players)
-      {
-        player.ClearHudMessage();
-        player.SetIsAllowedToMove(true);
-      }
-    }
-    break;
+      case GameStage.WaitingForReady:
+        {
+          foreach (PlayerCharacterController player in _players)
+          {
+            player.ClearHudMessage();
+            player.SetIsAllowedToMove(true);
+          }
+        }
+        break;
 
-    case GameStage.Gameplay:
-    {
-      GameUI.Instance.GameplayUI.Hide();
-    }
-    break;
+      case GameStage.Gameplay:
+        {
+          GameUI.Instance.GameplayUI.Hide();
+        }
+        break;
 
-    case GameStage.PlayerWinCutscene:
-    {
-      GameUI.Instance.WinGameUI.Hide();
-    }
-    break;
+      case GameStage.PlayerWinCutscene:
+        {
+          GameUI.Instance.WinGameUI.Hide();
+        }
+        break;
 
-    case GameStage.PlayerLoseCutscene:
-    {
-      GameUI.Instance.LoseGameUI.Hide();
-    }
-    break;    
+      case GameStage.PlayerLoseCutscene:
+        {
+          GameUI.Instance.LoseGameUI.Hide();
+        }
+        break;
 
-    case GameStage.EndGame:
-    {
-      GameUI.Instance.EndGameUI.Hide();
-    }
+      case GameStage.EndGame:
+        {
+          GameUI.Instance.EndGameUI.Hide();
+        }
 
-    break;
+        break;
     }
   }
 
@@ -172,73 +172,77 @@ public class GameStateManager : Singleton<GameStateManager>
   {
     GameStateChangeEvent?.Invoke();
 
-    _timeInStage= 0.0f;
+    _timeInStage = 0.0f;
 
     switch (newGameStage)
     {
-    case GameStage.MainMenu:
-    {
-      CameraManager.Instance.SetScreenLayout(CameraManager.eScreenLayout.MenuCamera);
+      case GameStage.MainMenu:
+        {
+          CameraManager.Instance.SetScreenLayout(CameraManager.eScreenLayout.MenuCamera);
 
-      // Not allowed to spawn players in the main menu
-      PlayerManager.Instance.SetCanSpawnPlayers(false);
+          // Not allowed to spawn players in the main menu
+          PlayerManager.Instance.SetCanSpawnPlayers(false);
 
-      GameUI.Instance.MainMenuUI.Show();
+          GameUI.Instance.MainMenuUI.Show();
 
-      if (MusicMenuLoop != null)
-      {
-        AudioManager.Instance.FadeInSound(gameObject, MusicMenuLoop, 3.0f);
-      }
+          if (MusicMenuLoop != null)
+          {
+            AudioManager.Instance.FadeInSound(gameObject, MusicMenuLoop, 3.0f);
+          }
 
-      ResetGameStats();
-    }
-    break;
+          ResetGameStats();
+        }
+        break;
 
-    case GameStage.WaitingForPlayers:
-      {
-        // Now we can spawn players
-        PlayerManager.Instance.SetCanSpawnPlayers(true);
+      case GameStage.WaitingForPlayers:
+        {
+          // Now we can spawn players
+          PlayerManager.Instance.SetCanSpawnPlayers(true);
 
-        // Tell users that we are waiting for players to join
-        GameUI.Instance.WaitingForPlayersUI.Show();
-      }
-      break;
+          // Tell users that we are waiting for players to join
+          GameUI.Instance.WaitingForPlayersUI.Show();
+        }
+        break;
 
-    case GameStage.WaitingForReady:
-      {
-        // Switch to multi camera mode now that all the players are locked in
-        CameraManager.Instance.SetScreenLayout(CameraManager.eScreenLayout.MultiCamera);
-      }
-      break;
+      case GameStage.WaitingForReady:
+        {
+          // Switch to multi camera mode now that all the players are locked in
+          CameraManager.Instance.SetScreenLayout(CameraManager.eScreenLayout.MultiCamera);
+        }
+        break;
 
-    case GameStage.Gameplay:
-    {
-      GameUI.Instance.GameplayUI.Show();
-    }
-    break;
+		case GameStage.Gameplay:
+		{
+		  // Get rid of any pirate that wasn't assigned to a player
+		  PlayerManager.Instance.DeactivateUnassignedPirates();
 
-    case GameStage.PlayerWinCutscene:
-    {
-      CameraManager.Instance.SetScreenLayout(CameraManager.eScreenLayout.WinCamera);
-      PlayerManager.Instance.LockAllPlayers();
-      GameUI.Instance.WinGameUI.Show();
-    }
-    break;
+		  // Show the game timer UI
+		  GameUI.Instance.GameplayUI.Show();
+		}
+		break;
 
-    case GameStage.PlayerLoseCutscene:
-    {
-      CameraManager.Instance.SetScreenLayout(CameraManager.eScreenLayout.LoseCamera);
-      PlayerManager.Instance.LockAllPlayers();
-      GameUI.Instance.LoseGameUI.Show();
-    }
-    break;    
+      case GameStage.PlayerWinCutscene:
+        {
+          CameraManager.Instance.SetScreenLayout(CameraManager.eScreenLayout.WinCamera);
+          PlayerManager.Instance.LockAllPlayers();
+          GameUI.Instance.WinGameUI.Show();
+        }
+        break;
 
-    case GameStage.EndGame:
-    {
-      CameraManager.Instance.SetScreenLayout(CameraManager.eScreenLayout.MenuCamera);
-      GameUI.Instance.EndGameUI.Show();
-    }
-    break;
+      case GameStage.PlayerLoseCutscene:
+        {
+          CameraManager.Instance.SetScreenLayout(CameraManager.eScreenLayout.LoseCamera);
+          PlayerManager.Instance.LockAllPlayers();
+          GameUI.Instance.LoseGameUI.Show();
+        }
+        break;
+
+      case GameStage.EndGame:
+        {
+          CameraManager.Instance.SetScreenLayout(CameraManager.eScreenLayout.MenuCamera);
+          GameUI.Instance.EndGameUI.Show();
+        }
+        break;
     }
   }
 
@@ -273,17 +277,21 @@ public class GameStateManager : Singleton<GameStateManager>
       // Add the camera for the new player to the split screen layout
       CameraManager.Instance.SplitscreenLayout.AddCamera(player.CameraStack.Camera);
 
-      // Lock player in place until the start of the game
-      player.SetIsAllowedToMove(false);
+      // If the player joined pre-game, take them thru the ready flow
+      if (_gameStage < GameStage.Gameplay)
+      {
+        // Lock player in place until the start of the game
+        player.SetIsAllowedToMove(false);
 
-      // Wait for player to acknowledge they are ready
-      player.ClearReadyFlag();
-      player.ShowHudMessage("Ready?");
-      player.PlayerReady += OnPlayerReady;
+        // Wait for player to acknowledge they are ready
+        player.ClearReadyFlag();
+        player.ShowHudMessage("Ready?");
+        player.PlayerReady += OnPlayerReady;
 
-      // Move onto waiting-for-ready stage now that we have at least one player camera to use
-      if (isFirstPlayer)
-        SetGameStage(GameStage.WaitingForReady);
+        // Move onto waiting-for-ready stage now that we have at least one player camera to use
+        if (isFirstPlayer)
+          SetGameStage(GameStage.WaitingForReady);
+      }
     }
   }
 
@@ -309,7 +317,7 @@ public class GameStateManager : Singleton<GameStateManager>
 
   private void OnPlayerWon(PlayerCharacterController readyPlayer)
   {
-    _winningPlayerID= readyPlayer.PlayerID;
+    _winningPlayerID = readyPlayer.PlayerID;
     SetGameStage(GameStage.PlayerWinCutscene);
   }
 }

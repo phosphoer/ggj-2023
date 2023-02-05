@@ -63,6 +63,10 @@ public class PirateController : MonoBehaviour
   public void AssignPlayer(PlayerCharacterController player)
   {
     _assignedPlayer = player;
+
+    // Reactivate the pirate in case this player joined after the game started
+    // and they are binding to a deactivated pirate
+    gameObject.SetActive(true);
   }
 
   public void NotifyPirateFull()

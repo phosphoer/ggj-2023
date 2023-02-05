@@ -5,17 +5,18 @@ using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class EndGameUIHandler : UIPageBase
-{  
-  public SoundBank UIReveal;
+{
+  [SerializeField]
+  private Button _buttonNewGame = null;
+
+  [SerializeField]
+  private Button _buttonQuit = null;
 
   protected override void Awake()
   {
     base.Awake();
-    Shown += OnShown;
-  }
-
-  private void OnShown()
-  {
+    _buttonNewGame.onClick.AddListener(OnPlayAgainClicked);
+    _buttonQuit.onClick.AddListener(OnQuitGameClicked);
   }
 
   public void OnPlayAgainClicked()
