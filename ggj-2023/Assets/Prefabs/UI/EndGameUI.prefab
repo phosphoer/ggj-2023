@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 1556759891786935564}
   - component: {fileID: 4563264091467515014}
   - component: {fileID: 6101122537916017739}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: ButtonForeground
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -87,7 +87,7 @@ GameObject:
   - component: {fileID: 4130649532610309582}
   - component: {fileID: 5086380492038779073}
   - component: {fileID: 8439196467183959945}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: Text (Legacy)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -167,7 +167,7 @@ GameObject:
   - component: {fileID: 5848558096161717291}
   - component: {fileID: 9150752636335356528}
   - component: {fileID: 4580543343303081307}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: Text (TMP)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -302,7 +302,7 @@ GameObject:
   - component: {fileID: 244993745319358416}
   - component: {fileID: 1761612407083850556}
   - component: {fileID: 3194589559516987762}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: Text (Legacy)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -382,7 +382,7 @@ GameObject:
   - component: {fileID: 4725100232878198039}
   - component: {fileID: 173366985889204085}
   - component: {fileID: 4584039958779248735}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: ButtonForeground
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -457,7 +457,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6678661113844581081}
   - component: {fileID: 5251599341621975461}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: Buttons
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -523,7 +523,7 @@ GameObject:
   - component: {fileID: 2152047816947788697}
   - component: {fileID: 7439519609270289606}
   - component: {fileID: 7734887003277457263}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: ButtonShadow
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -601,7 +601,7 @@ GameObject:
   - component: {fileID: 8369796032038966320}
   - component: {fileID: 6701190052524573904}
   - component: {fileID: 5516375346650666028}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: EndGameUI
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -722,7 +722,7 @@ GameObject:
   - component: {fileID: 4955309080062074641}
   - component: {fileID: 1907292760679252178}
   - component: {fileID: 8766298389763737646}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: NewGame
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -874,7 +874,7 @@ GameObject:
   - component: {fileID: 1199642955080026724}
   - component: {fileID: 7320786497997128850}
   - component: {fileID: 6838081603047937070}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: ButtonShadow
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -952,7 +952,7 @@ GameObject:
   - component: {fileID: 1776180050956801032}
   - component: {fileID: 1737902152777356834}
   - component: {fileID: 8984815593193122727}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: QuitGame
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1106,7 +1106,7 @@ GameObject:
   - component: {fileID: 1982072225340520483}
   - component: {fileID: 4387691728260040290}
   - component: {fileID: 2930336280803022724}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: Window
   m_TagString: Untagged
   m_Icon: {fileID: 0}

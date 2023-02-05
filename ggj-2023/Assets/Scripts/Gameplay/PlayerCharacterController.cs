@@ -49,7 +49,7 @@ public class PlayerCharacterController : MonoBehaviour
     CameraStack.SnapTransformToTarget();
 
     _playerUI = Instantiate(PlayerUIPrefab);
-    _playerUI.Canvas.worldCamera = _cameraStack.Camera;
+    _playerUI.Canvas.worldCamera = _cameraStack.UICamera;
 
     Character.InteractionController.PlayerUI = _playerUI;
   }
@@ -87,7 +87,7 @@ public class PlayerCharacterController : MonoBehaviour
 
   public void AssignPirate(PirateController pirate)
   {
-    _assignedPirate= pirate;
+    _assignedPirate = pirate;
     _playerUI.PirateUI.BindPirate(pirate);
   }
 

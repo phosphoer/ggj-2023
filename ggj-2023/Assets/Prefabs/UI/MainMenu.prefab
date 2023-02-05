@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 4130649532610309582}
   - component: {fileID: 5086380492038779073}
   - component: {fileID: 8439196467183959945}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: Text (Legacy)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -91,7 +91,7 @@ GameObject:
   - component: {fileID: 4725100232878198039}
   - component: {fileID: 173366985889204085}
   - component: {fileID: 4584039958779248735}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: ButtonForeground
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -166,7 +166,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6678661113844581081}
   - component: {fileID: 5251599341621975461}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: Buttons
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -233,7 +233,7 @@ GameObject:
   - component: {fileID: 8369796032038966320}
   - component: {fileID: 6701190052524573904}
   - component: {fileID: 3503742986534565364}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: MainMenu
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -352,7 +352,7 @@ GameObject:
   - component: {fileID: 4955309080062074641}
   - component: {fileID: 1907292760679252178}
   - component: {fileID: 8766298389763737646}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: NewGame
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -504,7 +504,7 @@ GameObject:
   - component: {fileID: 1199642955080026724}
   - component: {fileID: 7320786497997128850}
   - component: {fileID: 6838081603047937070}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: ButtonShadow
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -582,7 +582,7 @@ GameObject:
   - component: {fileID: 1982072225340520483}
   - component: {fileID: 4387691728260040290}
   - component: {fileID: 2930336280803022724}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: Window
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -687,7 +687,7 @@ GameObject:
   - component: {fileID: 6859586105406849389}
   - component: {fileID: 1233266415464364244}
   - component: {fileID: 106344682083014343}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: Logo
   m_TagString: Untagged
   m_Icon: {fileID: 0}

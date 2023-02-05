@@ -9,6 +9,12 @@ public class CameraControllerStack : MonoBehaviour
     set { _camera = value; }
   }
 
+  public Camera UICamera
+  {
+    get { return _uiCamera; }
+    set { _uiCamera = value; }
+  }
+
   public IReadOnlyList<CameraControllerBase> Stack => _cameraControllers;
 
   public CameraControllerBase CurrentCameraController
@@ -23,6 +29,9 @@ public class CameraControllerStack : MonoBehaviour
 
   [SerializeField]
   private Camera _camera = null;
+
+  [SerializeField]
+  private Camera _uiCamera = null;
 
   private List<CameraControllerBase> _cameraControllers = new List<CameraControllerBase>();
   private List<KeyValuePair<string, float>> _fovStack = new List<KeyValuePair<string, float>>();

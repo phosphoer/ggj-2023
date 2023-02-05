@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 894881356933981034}
   - component: {fileID: 3464009982932346409}
   - component: {fileID: 2676558750534999037}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: TimerBackground
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -90,7 +90,7 @@ GameObject:
   - component: {fileID: 8369796032038966320}
   - component: {fileID: 6701190052524573904}
   - component: {fileID: 7027593433385150910}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: GamePlayUI
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -198,11 +198,6 @@ MonoBehaviour:
   LowWarningFraction: 0.1
   LowTimerWarning: {fileID: 0}
   TimerDial: {fileID: 9075069511589540959}
-  PirateUIHandlers:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
 --- !u!1 &8455878508825721101
 GameObject:
   m_ObjectHideFlags: 0
@@ -214,7 +209,7 @@ GameObject:
   - component: {fileID: 1231626376614575561}
   - component: {fileID: 4467546579738729874}
   - component: {fileID: 2930336280803022724}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: Window
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -278,7 +273,7 @@ GameObject:
   - component: {fileID: 5843300214391321529}
   - component: {fileID: 1396021698278437919}
   - component: {fileID: 9075069511589540959}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: Progress
   m_TagString: Untagged
   m_Icon: {fileID: 0}

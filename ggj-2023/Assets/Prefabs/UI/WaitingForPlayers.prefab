@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 7314362333508521535}
   - component: {fileID: 5326951097122405352}
   - component: {fileID: 5485108765550317270}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: Text (TMP)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -148,7 +148,7 @@ GameObject:
   - component: {fileID: 8369796032038966320}
   - component: {fileID: 6701190052524573904}
   - component: {fileID: 5667002504128553499}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: WaitingForPlayers
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -266,7 +266,7 @@ GameObject:
   - component: {fileID: 1982072225340520483}
   - component: {fileID: 4387691728260040290}
   - component: {fileID: 2930336280803022724}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: Window
   m_TagString: Untagged
   m_Icon: {fileID: 0}

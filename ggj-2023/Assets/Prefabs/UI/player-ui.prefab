@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 2115521830281371374}
   - component: {fileID: 2503620303014566621}
   - component: {fileID: 6774700765246181747}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: BottomBorder
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -87,7 +87,7 @@ GameObject:
   - component: {fileID: 1121616174188756233}
   - component: {fileID: 5422167183406477994}
   - component: {fileID: 5053016608356361258}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: FishIcon2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -163,7 +163,7 @@ GameObject:
   - component: {fileID: 3630204260177575163}
   - component: {fileID: 7501416584193792910}
   - component: {fileID: 2837257752228155216}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: FishIcon1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -239,7 +239,7 @@ GameObject:
   - component: {fileID: 2404200009915195374}
   - component: {fileID: 1870887514290509835}
   - component: {fileID: 7895320218316566171}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: LeftBorder
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -314,7 +314,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4349979099685841337}
   - component: {fileID: 2770072026376227291}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: onscreen-item
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -369,7 +369,7 @@ GameObject:
   - component: {fileID: 4349979100163968321}
   - component: {fileID: 4349979100163968351}
   - component: {fileID: 4349979100163968350}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: player-ui
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -447,7 +447,7 @@ GameObject:
   - component: {fileID: 4349979100491409792}
   - component: {fileID: 4349979100491409793}
   - component: {fileID: 4349979100491409795}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: onscreen-ui
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -525,7 +525,7 @@ GameObject:
   - component: {fileID: 2010803729488551967}
   - component: {fileID: 3017669702364847755}
   - component: {fileID: 527687511970435794}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: FishIcon3
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -601,7 +601,7 @@ GameObject:
   - component: {fileID: 5165622632521548854}
   - component: {fileID: 380478678792920647}
   - component: {fileID: 7693920036360545091}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: pirate-progress
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -683,7 +683,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8322942228667204694}
   - component: {fileID: 412743819843714015}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: player-border
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -747,7 +747,7 @@ GameObject:
   - component: {fileID: 1912968974816905819}
   - component: {fileID: 6535349861674901353}
   - component: {fileID: 3974849843376380083}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: RightBorder
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -823,7 +823,7 @@ GameObject:
   - component: {fileID: 6116458851665265534}
   - component: {fileID: 6175806558174319306}
   - component: {fileID: 4725289552598524976}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: TopBorder
   m_TagString: Untagged
   m_Icon: {fileID: 0}

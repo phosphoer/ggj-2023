@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 115872698571440286}
   - component: {fileID: 1993063473373084520}
   - component: {fileID: 377984254872780324}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: Text (TMP)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -148,7 +148,7 @@ GameObject:
   - component: {fileID: 8369796032038966320}
   - component: {fileID: 6701190052524573904}
   - component: {fileID: 2614801020540755090}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: LoseGameUI
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -264,7 +264,7 @@ GameObject:
   - component: {fileID: 1231626376614575561}
   - component: {fileID: 4467546579738729874}
   - component: {fileID: 2930336280803022724}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: Window
   m_TagString: Untagged
   m_Icon: {fileID: 0}
