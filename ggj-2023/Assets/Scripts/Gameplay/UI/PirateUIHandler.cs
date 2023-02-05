@@ -6,21 +6,21 @@ using UnityEngine.UI;
 public class PirateUIHandler : MonoBehaviour
 {
   public GameObject[] fishIcons;
+  private int _swallowCounter= 0;
 
   public void BindPirate(PirateController pirateController)
   {
     pirateController.PirateSwallowed+= OnPirateSwallowed;
-
-    int playerIndex= pirateController.AssignedPlayerController.PlayerID;
   }
 
   public void OnPirateSwallowed(PirateController pirate)
   {
-    int fishCount= Mathf.RoundToInt(pirate.FoodWeight);
-    for (int iconIndex = 0; iconIndex < fishIcons.Length; iconIndex++)
+    if (_swallowCounter >= 0 && _swallowCounter < fishIcons.Length)
     {
-      fishIcons[iconIndex].SetActive(iconIndex < fishCount);
+      fishIcons[_swallowCounter].SetActive(true);
     }
+    
+    _swallowCounter++;
   }
 
   void Start()

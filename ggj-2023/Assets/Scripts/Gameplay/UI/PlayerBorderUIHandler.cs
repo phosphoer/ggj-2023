@@ -8,9 +8,9 @@ public class PlayerBorderUIHandler : MonoBehaviour
   public Image[] Edges;
   public Color[] PlayerColors;
 
-  public void BindPlayerController(PlayerCharacterController player)
+  public void BindPlayerID(int playerID)
   {
-    int colorIndex = Mathf.Min(player.PlayerID, PlayerColors.Length -1);
+    int colorIndex = Mathf.Min(playerID, PlayerColors.Length -1);
 
     foreach(Image edge in Edges)
     {
