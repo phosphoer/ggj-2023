@@ -41,7 +41,7 @@ public class Destructable : MonoBehaviour
   {
     if (_destroySound != null)
     {
-      AudioManager.Instance.PlaySound(gameObject, _destroySound);
+      AudioManager.Instance.PlaySound(_destroySound);
     }
 
     _visualRoot.SetActive(false);
