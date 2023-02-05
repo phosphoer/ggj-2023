@@ -92,7 +92,7 @@ MonoBehaviour:
   - {fileID: 7309947917571794720}
   - {fileID: 1645163432212703915}
   _foodRoot: {fileID: 2916253528377240762}
-  _barrelBulgeRoot: {fileID: 0}
+  _barrelBulgeRoot: {fileID: 8340003893922303382}
   _fxChomp: {fileID: 781025165623124088}
   _desiredFoodWeight: 10
   _maxBarrelBulgeScale: 2
@@ -5415,5 +5415,10 @@ Transform:
 --- !u!4 &7309947917571794720 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -3563629776362684743, guid: fdb806491eaabbc42954ea75145f2c48, type: 3}
+  m_PrefabInstance: {fileID: 3168660019388127641}
+  m_PrefabAsset: {fileID: 0}
+--- !u!4 &8340003893922303382 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 6360474816209851407, guid: fdb806491eaabbc42954ea75145f2c48, type: 3}
   m_PrefabInstance: {fileID: 3168660019388127641}
   m_PrefabAsset: {fileID: 0}

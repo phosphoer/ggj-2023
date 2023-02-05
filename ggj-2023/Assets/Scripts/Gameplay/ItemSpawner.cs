@@ -7,6 +7,9 @@ public class ItemSpawner : MonoBehaviour
   [SerializeField]
   private GameObject[] _droptable = default;
 
+  [SerializeField]
+  private RangedFloat _respawnTimer = new RangedFloat(10, 15);
+
   private GameObject _spawnedObject;
   private float _spawnTimer;
 
@@ -15,6 +18,7 @@ public class ItemSpawner : MonoBehaviour
     _spawnTimer -= Time.deltaTime;
     if (_spawnTimer < 0)
     {
+      _spawnTimer = _respawnTimer.RandomValue;
       if (_spawnedObject == null)
       {
         _spawnedObject = SpawnItem();
