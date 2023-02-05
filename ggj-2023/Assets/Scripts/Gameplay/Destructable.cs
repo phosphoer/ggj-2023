@@ -18,6 +18,9 @@ public class Destructable : MonoBehaviour
   [SerializeField]
   private RangedInt _lootSpawnCount = default;
 
+  [SerializeField]
+  private SoundBank _destroySound = null;
+
   private void Awake()
   {
     _visualRoot.SetActive(true);
@@ -36,6 +39,11 @@ public class Destructable : MonoBehaviour
 
   private void OnSlapped(GameCharacterController fromCharacter)
   {
+    if (_destroySound != null)
+    {
+      AudioManager.Instance.PlaySound(gameObject, _destroySound);
+    }
+
     _visualRoot.SetActive(false);
     _destroyedRoot.SetActive(true);
     foreach (Transform piece in _destroyedRoot.transform)
