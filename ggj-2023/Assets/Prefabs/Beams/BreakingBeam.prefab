@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1386595361899284954}
   - component: {fileID: 5207232873200333093}
+  - component: {fileID: 628756774365488758}
   m_Layer: 6
   m_Name: BreakingBeam
   m_TagString: Untagged
@@ -54,6 +55,19 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
+--- !u!114 &628756774365488758
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1879906515697197915}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6c042bb38d0d7e5459abf2e20d1fa83d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  animator: {fileID: 5207232873200333093}
 --- !u!1 &2416628660996182229
 GameObject:
   m_ObjectHideFlags: 0
