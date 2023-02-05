@@ -7,14 +7,14 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: GBTWater
-  m_Shader: {fileID: 4800000, guid: e3abd12776ae1334caf278b2e8eba1f2, type: 3}
+  m_Name: skybox
+  m_Shader: {fileID: 4800000, guid: 98e785dbf9ee14e048641b7c87ea5584, type: 3}
   m_ValidKeywords: []
   m_InvalidKeywords: []
   m_LightmapFlags: 4
   m_EnableInstancingVariants: 0
   m_DoubleSidedGI: 0
-  m_CustomRenderQueue: -1
+  m_CustomRenderQueue: 2000
   stringTagMap: {}
   disabledShaderPasses: []
   m_SavedProperties:
@@ -40,9 +40,13 @@ Material:
         m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
+    - _LightRamp:
+        m_Texture: {fileID: 2800000, guid: 768b6d602b0054e469d93ea7204cc3c4, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
     - _MainTex:
-        m_Texture: {fileID: 2800000, guid: 0aa8c07b5c95947ab905590abb9d9658, type: 3}
-        m_Scale: {x: 50, y: 50}
+        m_Texture: {fileID: 2800000, guid: 70433a18e2a4f40bfa7f0222fb28a54e, type: 3}
+        m_Scale: {x: 5, y: 5}
         m_Offset: {x: 0, y: 0}
     - _MetallicGlossMap:
         m_Texture: {fileID: 0}
@@ -61,26 +65,25 @@ Material:
     - _BumpScale: 1
     - _Cutoff: 0.5
     - _DetailNormalMapScale: 1
-    - _Distortion: 1
     - _DstBlend: 0
     - _GlossMapScale: 1
     - _Glossiness: 0.5
     - _GlossyReflections: 1
-    - _GlowRadius: 0
+    - _GlowRadius: 5
+    - _MainTexAlpha: 1
     - _Metallic: 0
     - _Mode: 0
     - _OcclusionStrength: 1
     - _Parallax: 0.02
     - _SmoothnessTextureChannel: 0
     - _SpecularHighlights: 1
-    - _Speed: 0.03
     - _SrcBlend: 1
     - _UVSec: 0
     - _ZTest: 4
     - _ZWrite: 1
     m_Colors:
-    - _Color: {r: 0.14792213, g: 0.109914556, b: 0.24528301, a: 1}
-    - _Color2: {r: 0.11890358, g: 0.08757565, b: 0.1509434, a: 1}
+    - _Color: {r: 0.34901962, g: 0.3529412, b: 0.38431376, a: 1}
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
-    - _HorizonColor: {r: 0.13333334, g: 0.15686275, b: 0.3019608, a: 1}
+    - _HorizonColor: {r: 0.13243146, g: 0.15533084, b: 0.3018868, a: 1}
+    - _SkyColor: {r: 0.20906018, g: 0.27209747, b: 0.5471698, a: 1}
   m_BuildTextureStacks: []
