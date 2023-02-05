@@ -57,6 +57,9 @@ MonoBehaviour:
   - {fileID: 6781657317764764622}
   - {fileID: 1304264777677589677}
   - {fileID: 6454654040580736248}
+  CameraShakeDuration: 0.25
+  CameraShakeMagnitude: 5
+  _krackenRoar: {fileID: 11400000, guid: d4e274792272a6843941e01f12366aaa, type: 2}
 --- !u!1001 &1180389959662861473
 PrefabInstance:
   m_ObjectHideFlags: 0
