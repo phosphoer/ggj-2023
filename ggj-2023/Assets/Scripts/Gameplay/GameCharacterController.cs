@@ -2,6 +2,8 @@ using UnityEngine;
 
 public class GameCharacterController : MonoBehaviour
 {
+  public event System.Action OutOfBounds;
+
   public Transform CameraRoot => _cameraRoot;
   public Transform HeldItemRoot => _heldItemRoot;
   public ItemController HeldItem => _heldItem;
@@ -96,6 +98,7 @@ public class GameCharacterController : MonoBehaviour
   private Vector3 _lastGroundPos;
   private ItemController _heldItem;
   private float _holdItemBlend;
+  private bool _isOutOfBounds;
   private Collider[] _overlapColliders = new Collider[10];
 
   private Vector3 _raycastStartPos => transform.position + transform.up * _raycastUpStartOffset;
@@ -149,6 +152,11 @@ public class GameCharacterController : MonoBehaviour
 
   private void Update()
   {
+    if (transform.position.y < -5 && !_isOutOfBounds)
+    {
+      OutOfBounds?.Invoke();
+    }
+
     // Calculate next position based on movement
     float moveAxisTotal = Mathf.Clamp01(Mathf.Abs(MoveAxis) + Mathf.Abs(StrafeAxis));
     Vector3 moveVec = (transform.forward * MoveAxis + transform.right.WithY(0) * StrafeAxis).NormalizedSafe() * moveAxisTotal;
@@ -169,7 +177,7 @@ public class GameCharacterController : MonoBehaviour
     // If no ground, go towards where it was last
     else
     {
-      Vector3 fallDir = (_lastGroundPos - newPosition).normalized;
+      Vector3 fallDir = Vector3.down;
       Quaternion desiredRot = Quaternion.FromToRotation(transform.up, -fallDir) * transform.rotation;
 
       newPosition += fallDir * Time.deltaTime * _gravity;
