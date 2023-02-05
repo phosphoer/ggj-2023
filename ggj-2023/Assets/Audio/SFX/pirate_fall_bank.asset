@@ -12,7 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c345fe0be4353445895a73c7861c323d, type: 3}
   m_Name: pirate_fall_bank
   m_EditorClassIdentifier: 
-  AudioClips: []
+  AudioClips:
+  - {fileID: 8300000, guid: 4348b3cd044e246ecb2e75a2bd40e831, type: 3}
   SequencedClips: []
   IsLooping: 0
   IsSpatial: 0

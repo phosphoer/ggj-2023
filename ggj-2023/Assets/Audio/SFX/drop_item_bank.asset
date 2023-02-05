@@ -12,7 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c345fe0be4353445895a73c7861c323d, type: 3}
   m_Name: drop_item_bank
   m_EditorClassIdentifier: 
-  AudioClips: []
+  AudioClips:
+  - {fileID: 8300000, guid: 61a47a1dddbd24ae5a43a43e5753cff0, type: 3}
   SequencedClips: []
   IsLooping: 0
   IsSpatial: 0
