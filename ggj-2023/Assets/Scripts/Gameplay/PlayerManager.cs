@@ -68,6 +68,17 @@ public class PlayerManager : Singleton<PlayerManager>
     }
   }
 
+  public void DeactivateUnassignedPirates()
+  {
+    foreach (PirateController pirate in _pirates)
+    {
+      if (pirate.AssignedPlayerController == null)
+      {
+        pirate.gameObject.SetActive(false);
+      }
+    }
+  }
+
   private void OnPirateFull(PirateController pirate)
   {
     PlayerWon?.Invoke(pirate.AssignedPlayerController);

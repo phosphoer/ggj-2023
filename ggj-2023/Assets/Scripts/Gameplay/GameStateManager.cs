@@ -213,6 +213,10 @@ public class GameStateManager : Singleton<GameStateManager>
 
     case GameStage.Gameplay:
     {
+      // Get rid of any pirate that wasn't assigned to a player
+      PlayerManager.Instance.DeactivateUnassignedPirates();
+
+      // Show the game timer UI
       GameUI.Instance.GameplayUI.Show();
     }
     break;
@@ -273,17 +277,21 @@ public class GameStateManager : Singleton<GameStateManager>
       // Add the camera for the new player to the split screen layout
       CameraManager.Instance.SplitscreenLayout.AddCamera(player.CameraStack.Camera);
 
-      // Lock player in place until the start of the game
-      player.SetIsAllowedToMove(false);
+      // If the player joined pre-game, take them thru the ready flow
+      if (_gameStage < GameStage.Gameplay)
+      {
+        // Lock player in place until the start of the game
+        player.SetIsAllowedToMove(false);
 
-      // Wait for player to acknowledge they are ready
-      player.ClearReadyFlag();
-      player.ShowHudMessage("Ready?");
-      player.PlayerReady += OnPlayerReady;
+        // Wait for player to acknowledge they are ready
+        player.ClearReadyFlag();
+        player.ShowHudMessage("Ready?");
+        player.PlayerReady += OnPlayerReady;
 
-      // Move onto waiting-for-ready stage now that we have at least one player camera to use
-      if (isFirstPlayer)
-        SetGameStage(GameStage.WaitingForReady);
+        // Move onto waiting-for-ready stage now that we have at least one player camera to use
+        if (isFirstPlayer)
+          SetGameStage(GameStage.WaitingForReady);
+      }
     }
   }
 
