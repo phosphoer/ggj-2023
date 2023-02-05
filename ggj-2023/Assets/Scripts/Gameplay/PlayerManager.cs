@@ -106,10 +106,12 @@ public class PlayerManager : Singleton<PlayerManager>
     // Assign a pirate if possible
     if (_pirates.IsIndexValid(playerId))
     {
-      PirateController pirateController= _pirates[playerId];
+      PirateController pirate= _pirates[playerId];
 
-      pirateController.AssignPlayer(player);
-      pirateController.PirateFull += OnPirateFull;
+      pirate.AssignPlayer(player);
+      pirate.PirateFull += OnPirateFull;
+
+      player.AssignPirate(pirate);
     }
 
     // Set joined state
@@ -145,5 +147,11 @@ public class PlayerManager : Singleton<PlayerManager>
   private static void DebugFillFirstPirate()
   {
     Instance._pirates[0].NotifyPirateFull();
+  }
+
+  [UnityEditor.MenuItem("Game/Debug Pirate Swallow")]
+  private static void DebugPirateSwallow()
+  {
+    Instance._pirates[0].NotifyPirateSwallowed();
   }
 }

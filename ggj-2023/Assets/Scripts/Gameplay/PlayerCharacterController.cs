@@ -25,6 +25,9 @@ public class PlayerCharacterController : MonoBehaviour
   public int PlayerID => _playerID;
   private int _playerID = -1;
 
+  public PirateController AssignedPirate => _assignedPirate;
+  private PirateController _assignedPirate = null;
+
   [SerializeField]
   private Transform _playerHudUIAnchor;
 
@@ -79,6 +82,13 @@ public class PlayerCharacterController : MonoBehaviour
   public void AssignPlayerId(int playerID)
   {
     _playerID = playerID;
+    _playerUI.BorderUI.BindPlayerID(playerID);
+  }
+
+  public void AssignPirate(PirateController pirate)
+  {
+    _assignedPirate= pirate;
+    _playerUI.PirateUI.BindPirate(pirate);
   }
 
   private void Update()
