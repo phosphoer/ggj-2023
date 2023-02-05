@@ -20735,10 +20735,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: BreakingBeam
       objectReference: {fileID: 0}
-    - target: {fileID: 5207232873200333093, guid: e14aee8bd90c6b64caaa0cfda32880ea, type: 3}
-      propertyPath: m_Enabled
-      value: 0
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e14aee8bd90c6b64caaa0cfda32880ea, type: 3}
 --- !u!4 &389897647601297536 stripped
@@ -23421,10 +23417,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: BreakingBeam
       objectReference: {fileID: 0}
-    - target: {fileID: 5207232873200333093, guid: e14aee8bd90c6b64caaa0cfda32880ea, type: 3}
-      propertyPath: m_Enabled
-      value: 0
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e14aee8bd90c6b64caaa0cfda32880ea, type: 3}
 --- !u!4 &2423021034477051958 stripped
@@ -23998,10 +23990,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: BreakingBeam
       objectReference: {fileID: 0}
-    - target: {fileID: 5207232873200333093, guid: e14aee8bd90c6b64caaa0cfda32880ea, type: 3}
-      propertyPath: m_Enabled
-      value: 0
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e14aee8bd90c6b64caaa0cfda32880ea, type: 3}
 --- !u!4 &5710833158852087881 stripped
@@ -24191,10 +24179,6 @@ PrefabInstance:
     - target: {fileID: 1879906515697197915, guid: e14aee8bd90c6b64caaa0cfda32880ea, type: 3}
       propertyPath: m_Name
       value: BreakingBeam
-      objectReference: {fileID: 0}
-    - target: {fileID: 5207232873200333093, guid: e14aee8bd90c6b64caaa0cfda32880ea, type: 3}
-      propertyPath: m_Enabled
-      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e14aee8bd90c6b64caaa0cfda32880ea, type: 3}

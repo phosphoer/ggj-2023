@@ -45,10 +45,20 @@ public class PirateController : MonoBehaviour
   private PlayerCharacterController _assignedPlayer;
   public PlayerCharacterController AssignedPlayerController => _assignedPlayer;
 
+  private Rigidbody _rigidBody = null;
+  private CapsuleCollider _physicsCollider = null;
+
   private List<ItemController> _teeth = new List<ItemController>();
 
   private static readonly int kAnimIsMouthOpen = Animator.StringToHash("IsMouthOpen");
   private static readonly int kAnimIsEating = Animator.StringToHash("IsEating");
+
+
+  private void Awake()
+  {
+    _rigidBody = GetComponent<Rigidbody>();
+    _physicsCollider = GetComponent<CapsuleCollider>();
+  }
 
   public void AssignPlayer(PlayerCharacterController player)
   {
@@ -63,6 +73,13 @@ public class PirateController : MonoBehaviour
   public void NotifyPirateSwallowed()
   {
     PirateSwallowed?.Invoke(this);
+  }
+
+  public void ActivatePhysics()
+  {
+    _physicsCollider.enabled = true;
+    _rigidBody.isKinematic = false;
+    _rigidBody.WakeUp();
   }
 
   public void AddFood(ItemController foodItem)
