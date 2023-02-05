@@ -11,6 +11,6 @@ public class PlayerUI : MonoBehaviour
 
   private void Awake()
   {
-    Canvas.planeDistance = 1;
+    Canvas.planeDistance = 0.11f;
   }
 }
