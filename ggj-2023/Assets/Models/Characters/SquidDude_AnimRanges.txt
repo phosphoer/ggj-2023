@@ -9,7 +9,8 @@ Recoil: 206 - 235
 Stunned: 236 - 295
 
 __________Pirate____
-Idle: 
-Eating: 
-Open/Close frames: 
-Recoil: 
+BasePose: 0
+Idle: 1-60
+Eating: 61-90
+Open/Close frames: 91-92
+Recoil: 93 - 118
