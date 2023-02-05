@@ -48,18 +48,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 3100854447143640048}
     m_Modifications:
-    - target: {fileID: 5875314625411579244, guid: 63751a73ddb0aae4ebc02bf834a638ad, type: 3}
-      propertyPath: _droptable.Array.size
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 5875314625411579244, guid: 63751a73ddb0aae4ebc02bf834a638ad, type: 3}
-      propertyPath: _droptable.Array.data[0]
-      value: 
-      objectReference: {fileID: 1384513694449696196, guid: abd6b48d3da734384ab09c9f092c901e, type: 3}
-    - target: {fileID: 5875314625411579244, guid: 63751a73ddb0aae4ebc02bf834a638ad, type: 3}
-      propertyPath: _droptable.Array.data[1]
-      value: 
-      objectReference: {fileID: 1384513694449696196, guid: 20638a25c87c44ef88f96b0b7a4fb32d, type: 3}
     - target: {fileID: 7005769260376207247, guid: 63751a73ddb0aae4ebc02bf834a638ad, type: 3}
       propertyPath: m_Name
       value: ItemSpawner (7)
@@ -122,18 +110,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 3100854447143640048}
     m_Modifications:
-    - target: {fileID: 5875314625411579244, guid: 63751a73ddb0aae4ebc02bf834a638ad, type: 3}
-      propertyPath: _droptable.Array.size
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 5875314625411579244, guid: 63751a73ddb0aae4ebc02bf834a638ad, type: 3}
-      propertyPath: _droptable.Array.data[0]
-      value: 
-      objectReference: {fileID: 1384513694449696196, guid: abd6b48d3da734384ab09c9f092c901e, type: 3}
-    - target: {fileID: 5875314625411579244, guid: 63751a73ddb0aae4ebc02bf834a638ad, type: 3}
-      propertyPath: _droptable.Array.data[1]
-      value: 
-      objectReference: {fileID: 1384513694449696196, guid: 20638a25c87c44ef88f96b0b7a4fb32d, type: 3}
     - target: {fileID: 7005769260376207247, guid: 63751a73ddb0aae4ebc02bf834a638ad, type: 3}
       propertyPath: m_Name
       value: ItemSpawner (8)
@@ -196,18 +172,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 3100854447143640048}
     m_Modifications:
-    - target: {fileID: 5875314625411579244, guid: 63751a73ddb0aae4ebc02bf834a638ad, type: 3}
-      propertyPath: _droptable.Array.size
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 5875314625411579244, guid: 63751a73ddb0aae4ebc02bf834a638ad, type: 3}
-      propertyPath: _droptable.Array.data[0]
-      value: 
-      objectReference: {fileID: 1384513694449696196, guid: abd6b48d3da734384ab09c9f092c901e, type: 3}
-    - target: {fileID: 5875314625411579244, guid: 63751a73ddb0aae4ebc02bf834a638ad, type: 3}
-      propertyPath: _droptable.Array.data[1]
-      value: 
-      objectReference: {fileID: 1384513694449696196, guid: 20638a25c87c44ef88f96b0b7a4fb32d, type: 3}
     - target: {fileID: 7005769260376207247, guid: 63751a73ddb0aae4ebc02bf834a638ad, type: 3}
       propertyPath: m_Name
       value: ItemSpawner (9)
@@ -270,18 +234,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 3100854447143640048}
     m_Modifications:
-    - target: {fileID: 5875314625411579244, guid: 63751a73ddb0aae4ebc02bf834a638ad, type: 3}
-      propertyPath: _droptable.Array.size
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 5875314625411579244, guid: 63751a73ddb0aae4ebc02bf834a638ad, type: 3}
-      propertyPath: _droptable.Array.data[0]
-      value: 
-      objectReference: {fileID: 1384513694449696196, guid: abd6b48d3da734384ab09c9f092c901e, type: 3}
-    - target: {fileID: 5875314625411579244, guid: 63751a73ddb0aae4ebc02bf834a638ad, type: 3}
-      propertyPath: _droptable.Array.data[1]
-      value: 
-      objectReference: {fileID: 1384513694449696196, guid: 20638a25c87c44ef88f96b0b7a4fb32d, type: 3}
     - target: {fileID: 7005769260376207247, guid: 63751a73ddb0aae4ebc02bf834a638ad, type: 3}
       propertyPath: m_Name
       value: ItemSpawner (10)
@@ -344,18 +296,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 3100854447143640048}
     m_Modifications:
-    - target: {fileID: 5875314625411579244, guid: 63751a73ddb0aae4ebc02bf834a638ad, type: 3}
-      propertyPath: _droptable.Array.size
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 5875314625411579244, guid: 63751a73ddb0aae4ebc02bf834a638ad, type: 3}
-      propertyPath: _droptable.Array.data[0]
-      value: 
-      objectReference: {fileID: 1384513694449696196, guid: abd6b48d3da734384ab09c9f092c901e, type: 3}
-    - target: {fileID: 5875314625411579244, guid: 63751a73ddb0aae4ebc02bf834a638ad, type: 3}
-      propertyPath: _droptable.Array.data[1]
-      value: 
-      objectReference: {fileID: 1384513694449696196, guid: 20638a25c87c44ef88f96b0b7a4fb32d, type: 3}
     - target: {fileID: 7005769260376207247, guid: 63751a73ddb0aae4ebc02bf834a638ad, type: 3}
       propertyPath: m_Name
       value: ItemSpawner (3)
@@ -418,18 +358,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 3100854447143640048}
     m_Modifications:
-    - target: {fileID: 5875314625411579244, guid: 63751a73ddb0aae4ebc02bf834a638ad, type: 3}
-      propertyPath: _droptable.Array.size
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 5875314625411579244, guid: 63751a73ddb0aae4ebc02bf834a638ad, type: 3}
-      propertyPath: _droptable.Array.data[0]
-      value: 
-      objectReference: {fileID: 1384513694449696196, guid: abd6b48d3da734384ab09c9f092c901e, type: 3}
-    - target: {fileID: 5875314625411579244, guid: 63751a73ddb0aae4ebc02bf834a638ad, type: 3}
-      propertyPath: _droptable.Array.data[1]
-      value: 
-      objectReference: {fileID: 1384513694449696196, guid: 20638a25c87c44ef88f96b0b7a4fb32d, type: 3}
     - target: {fileID: 7005769260376207247, guid: 63751a73ddb0aae4ebc02bf834a638ad, type: 3}
       propertyPath: m_Name
       value: ItemSpawner (6)
@@ -492,18 +420,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 3100854447143640048}
     m_Modifications:
-    - target: {fileID: 5875314625411579244, guid: 63751a73ddb0aae4ebc02bf834a638ad, type: 3}
-      propertyPath: _droptable.Array.size
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 5875314625411579244, guid: 63751a73ddb0aae4ebc02bf834a638ad, type: 3}
-      propertyPath: _droptable.Array.data[0]
-      value: 
-      objectReference: {fileID: 1384513694449696196, guid: abd6b48d3da734384ab09c9f092c901e, type: 3}
-    - target: {fileID: 5875314625411579244, guid: 63751a73ddb0aae4ebc02bf834a638ad, type: 3}
-      propertyPath: _droptable.Array.data[1]
-      value: 
-      objectReference: {fileID: 1384513694449696196, guid: 20638a25c87c44ef88f96b0b7a4fb32d, type: 3}
     - target: {fileID: 7005769260376207247, guid: 63751a73ddb0aae4ebc02bf834a638ad, type: 3}
       propertyPath: m_Name
       value: ItemSpawner (2)
@@ -566,18 +482,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 3100854447143640048}
     m_Modifications:
-    - target: {fileID: 5875314625411579244, guid: 63751a73ddb0aae4ebc02bf834a638ad, type: 3}
-      propertyPath: _droptable.Array.size
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 5875314625411579244, guid: 63751a73ddb0aae4ebc02bf834a638ad, type: 3}
-      propertyPath: _droptable.Array.data[0]
-      value: 
-      objectReference: {fileID: 1384513694449696196, guid: abd6b48d3da734384ab09c9f092c901e, type: 3}
-    - target: {fileID: 5875314625411579244, guid: 63751a73ddb0aae4ebc02bf834a638ad, type: 3}
-      propertyPath: _droptable.Array.data[1]
-      value: 
-      objectReference: {fileID: 1384513694449696196, guid: 20638a25c87c44ef88f96b0b7a4fb32d, type: 3}
     - target: {fileID: 7005769260376207247, guid: 63751a73ddb0aae4ebc02bf834a638ad, type: 3}
       propertyPath: m_Name
       value: ItemSpawner (5)
@@ -640,18 +544,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 3100854447143640048}
     m_Modifications:
-    - target: {fileID: 5875314625411579244, guid: 63751a73ddb0aae4ebc02bf834a638ad, type: 3}
-      propertyPath: _droptable.Array.size
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 5875314625411579244, guid: 63751a73ddb0aae4ebc02bf834a638ad, type: 3}
-      propertyPath: _droptable.Array.data[0]
-      value: 
-      objectReference: {fileID: 1384513694449696196, guid: abd6b48d3da734384ab09c9f092c901e, type: 3}
-    - target: {fileID: 5875314625411579244, guid: 63751a73ddb0aae4ebc02bf834a638ad, type: 3}
-      propertyPath: _droptable.Array.data[1]
-      value: 
-      objectReference: {fileID: 1384513694449696196, guid: 20638a25c87c44ef88f96b0b7a4fb32d, type: 3}
     - target: {fileID: 7005769260376207247, guid: 63751a73ddb0aae4ebc02bf834a638ad, type: 3}
       propertyPath: m_Name
       value: ItemSpawner (4)
@@ -714,18 +606,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 3100854447143640048}
     m_Modifications:
-    - target: {fileID: 5875314625411579244, guid: 63751a73ddb0aae4ebc02bf834a638ad, type: 3}
-      propertyPath: _droptable.Array.size
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 5875314625411579244, guid: 63751a73ddb0aae4ebc02bf834a638ad, type: 3}
-      propertyPath: _droptable.Array.data[0]
-      value: 
-      objectReference: {fileID: 1384513694449696196, guid: abd6b48d3da734384ab09c9f092c901e, type: 3}
-    - target: {fileID: 5875314625411579244, guid: 63751a73ddb0aae4ebc02bf834a638ad, type: 3}
-      propertyPath: _droptable.Array.data[1]
-      value: 
-      objectReference: {fileID: 1384513694449696196, guid: 20638a25c87c44ef88f96b0b7a4fb32d, type: 3}
     - target: {fileID: 7005769260376207247, guid: 63751a73ddb0aae4ebc02bf834a638ad, type: 3}
       propertyPath: m_Name
       value: ItemSpawner (1)

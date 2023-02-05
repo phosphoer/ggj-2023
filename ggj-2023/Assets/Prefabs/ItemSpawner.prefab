@@ -143,5 +143,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _droptable:
-  - {fileID: 1384513694449696196, guid: abd6b48d3da734384ab09c9f092c901e, type: 3}
-  - {fileID: 1384513694449696196, guid: 20638a25c87c44ef88f96b0b7a4fb32d, type: 3}
+  - {fileID: 1384513694449696196, guid: c526174f1697ae14f82256772710eee4, type: 3}
+  - {fileID: 1384513694449696196, guid: d17b07f96c4b9084981425ab4932e7c3, type: 3}
+  - {fileID: 1384513694449696196, guid: eaae2e4aa6dc56a499770975faece011, type: 3}
+  - {fileID: 1384513694449696196, guid: 4cd45114a2a94e84f831f83339455ee2, type: 3}
+  - {fileID: 1384513694449696196, guid: 5df88c9a02e1f324399ded19854ae1c0, type: 3}
+  - {fileID: 1384513694449696196, guid: e0bb642fb84d4334cadc4e76523a96ad, type: 3}
