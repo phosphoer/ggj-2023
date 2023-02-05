@@ -1,10 +1,8 @@
-Shader "Custom/Water"
+Shader "Custom/UnlitTransparent"
 {
   Properties
   {
-    _Color ("Color", Color) = (0,0,0,1)
-    _Color2 ("Color2", Color) = (1,1,1,1)
-    _HorizonColor ("Horizon Color", Color) = (1,1,1,1)
+    _Color ("Color", Color) = (1,1,1,1)
     _MainTex ("Texture", 2D) = "white" {}
     _GlowRadius ("Glow Scale", float) = 0
     
@@ -16,7 +14,8 @@ Shader "Custom/Water"
   }
   SubShader
   {
-    Tags { "RenderType"="Opaque" "Queue"="Geometry" }
+    Tags { "RenderType"="Transparent" "Queue"="Transparent" }
+    Blend SrcAlpha OneMinusSrcAlpha
     ZWrite [_ZWrite]
     ZTest [_ZTest]
 
@@ -47,8 +46,6 @@ Shader "Custom/Water"
       sampler2D _MainTex;
       float4 _MainTex_ST;
       float4 _Color;
-      float4 _Color2;
-      float4 _HorizonColor;
       float4 _TintColor;
       float _GlowRadius;
 
@@ -65,18 +62,8 @@ Shader "Custom/Water"
 
       fixed4 frag (v2f i) : SV_Target
       {
-        i.uv.x += sin(_Time.x * 3 + i.uv.y * 1.5) * 0.5;
-        i.uv.y += cos(_Time.x * 3 + i.uv.x * 1.2) * 0.5;
-        float4 color = _Color * i.color;
-        float4 foamColor = tex2D(_MainTex, i.uv);
-        float4 finalColor = lerp(color, foamColor * _Color2, foamColor.r);
-
-        float3 camToWorldVec = (i.worldPos - _WorldSpaceCameraPos.xyz);
-        float distanceT = saturate(length(camToWorldVec) / 500.0);
-        distanceT = distanceT * distanceT;
-        
-        finalColor = lerp(finalColor, _HorizonColor, distanceT);
-        return fixed4(finalColor.rgb + finalColor.rgb * _GlowRadius, color.a);
+        float4 color = _Color * tex2D(_MainTex, i.uv) * i.color;
+        return fixed4(color.rgb * _GlowRadius, color.a);
       }
       ENDCG
     }

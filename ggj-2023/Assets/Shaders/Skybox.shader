@@ -1,10 +1,9 @@
-Shader "Custom/Water"
+Shader "Custom/Skybox"
 {
   Properties
   {
-    _Color ("Color", Color) = (0,0,0,1)
-    _Color2 ("Color2", Color) = (1,1,1,1)
-    _HorizonColor ("Horizon Color", Color) = (1,1,1,1)
+    _HorizonColor ("Horizon Color", Color) = (0,0,0,1)
+    _SkyColor ("Sky Color", Color) = (1,1,1,1)
     _MainTex ("Texture", 2D) = "white" {}
     _GlowRadius ("Glow Scale", float) = 0
     
@@ -19,6 +18,7 @@ Shader "Custom/Water"
     Tags { "RenderType"="Opaque" "Queue"="Geometry" }
     ZWrite [_ZWrite]
     ZTest [_ZTest]
+    Cull Off
 
     Pass
     {
@@ -42,13 +42,13 @@ Shader "Custom/Water"
         float2 uv : TEXCOORD0;
         fixed4 color : COLOR;
         float4 worldPos : TEXCOORD1;
+        float4 vertex: TEXCOORD2;
       };
 
       sampler2D _MainTex;
       float4 _MainTex_ST;
-      float4 _Color;
-      float4 _Color2;
       float4 _HorizonColor;
+      float4 _SkyColor;
       float4 _TintColor;
       float _GlowRadius;
 
@@ -56,7 +56,9 @@ Shader "Custom/Water"
       {
         v2f o;
         o.worldPos = mul(unity_ObjectToWorld, v.vertex);
+        o.worldPos.xyz += _WorldSpaceCameraPos;
         o.pos = UnityWorldToClipPos(o.worldPos);
+        o.vertex = v.vertex;
         o.uv = TRANSFORM_TEX(v.uv, _MainTex);
         o.color = v.color;
 
@@ -65,18 +67,10 @@ Shader "Custom/Water"
 
       fixed4 frag (v2f i) : SV_Target
       {
-        i.uv.x += sin(_Time.x * 3 + i.uv.y * 1.5) * 0.5;
-        i.uv.y += cos(_Time.x * 3 + i.uv.x * 1.2) * 0.5;
-        float4 color = _Color * i.color;
-        float4 foamColor = tex2D(_MainTex, i.uv);
-        float4 finalColor = lerp(color, foamColor * _Color2, foamColor.r);
-
-        float3 camToWorldVec = (i.worldPos - _WorldSpaceCameraPos.xyz);
-        float distanceT = saturate(length(camToWorldVec) / 500.0);
-        distanceT = distanceT * distanceT;
-        
-        finalColor = lerp(finalColor, _HorizonColor, distanceT);
-        return fixed4(finalColor.rgb + finalColor.rgb * _GlowRadius, color.a);
+        float4 blendColor = lerp(_HorizonColor, _SkyColor, i.vertex.y * 2);
+        float4 texColor = tex2D(_MainTex, i.uv);
+        float4 finalColor = blendColor + texColor * _GlowRadius;
+        return fixed4(finalColor.rgb, 1);
       }
       ENDCG
     }
