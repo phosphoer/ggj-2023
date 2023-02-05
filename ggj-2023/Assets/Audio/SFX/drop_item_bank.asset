@@ -23,6 +23,6 @@ MonoBehaviour:
   DopplerLevel: 0
   PitchOffset: 0
   PitchOffsetRange:
-    MinValue: 0
-    MaxValue: 0
+    MinValue: -0.2
+    MaxValue: 0.2
   AudioMixerGroup: {fileID: 0}

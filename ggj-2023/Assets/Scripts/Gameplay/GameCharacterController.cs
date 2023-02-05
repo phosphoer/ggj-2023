@@ -79,6 +79,9 @@ public class GameCharacterController : MonoBehaviour
   private float _gravity = 5;
 
   [SerializeField]
+  private float _slapCooldownTime = 1;
+
+  [SerializeField]
   private SoundBank _dropItemSound = null;
 
   [SerializeField]
@@ -98,6 +101,7 @@ public class GameCharacterController : MonoBehaviour
   private Vector3 _lastGroundPos;
   private ItemController _heldItem;
   private float _holdItemBlend;
+  private float _slapCooldownTimer;
   private bool _isOutOfBounds;
   private Vector3 _slapPushVec;
   private Collider[] _overlapColliders = new Collider[10];
@@ -129,11 +133,15 @@ public class GameCharacterController : MonoBehaviour
 
   public void Attack()
   {
-    _animator.SetTrigger(kAnimAttack);
-
-    if (_attackSound != null)
+    if (_slapCooldownTimer <= 0)
     {
-      AudioManager.Instance.PlaySound(_attackSound);
+      _slapCooldownTimer = _slapCooldownTime;
+      _animator.SetTrigger(kAnimAttack);
+
+      if (_attackSound != null)
+      {
+        AudioManager.Instance.PlaySound(_attackSound);
+      }
     }
   }
 
@@ -153,6 +161,7 @@ public class GameCharacterController : MonoBehaviour
 
   private void Update()
   {
+    _slapCooldownTimer -= Time.deltaTime;
     if (transform.position.y < -5 && !_isOutOfBounds)
     {
       OutOfBounds?.Invoke();
