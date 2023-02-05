@@ -6,6 +6,8 @@ public class PlayerUI : MonoBehaviour
 {
   public Canvas Canvas;
   public WorldAttachedUI OnScreenUI;
+  public PirateUIHandler PirateUI;
+  public PlayerBorderUIHandler BorderUI;
 
   private void Awake()
   {

@@ -60,38 +60,9 @@ public class PlayerManager : Singleton<PlayerManager>
     _nextSpawnIndex = 0;
   }
 
-  //public void RespawnAllPlayers()
-  //{
-  //  foreach (var player in _players)
-  //  {
-  //    RespawnPlayer(player);
-  //  }
-  //}
-
-  //public void RespawnPlayer(PlayerCharacterController player)
-  //{
-  //  var playerId = _players.IndexOf(player);
-
-  //  if (_spawnPoints.IsIndexValid(playerId))
-  //  {
-  //    player.transform.position = _spawnPoints[playerId].position;
-  //    player.transform.rotation = _spawnPoints[playerId].rotation;
-  //    player.CameraStack.SnapTransformToTarget();
-  //    player.AssignPlayerId(playerId);
-  //  }
-
-  //  if (_pirates.IsIndexValid(playerId))
-  //  {
-  //    PirateController pirateController= _pirates[playerId];
-
-  //    pirateController.AssignPlayer(player);
-  //    pirateController.PirateFull += OnPirateFull;
-  //  }
-  //}
-
-  private void OnPirateFull(PlayerCharacterController player)
+  private void OnPirateFull(PirateController pirate)
   {
-    PlayerWon?.Invoke(player);
+    PlayerWon?.Invoke(pirate.AssignedPlayerController);
   }
 
   private void Awake()

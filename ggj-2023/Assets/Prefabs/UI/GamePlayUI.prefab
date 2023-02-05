@@ -198,6 +198,11 @@ MonoBehaviour:
   LowWarningFraction: 0.1
   LowTimerWarning: {fileID: 0}
   TimerDial: {fileID: 9075069511589540959}
+  PirateUIHandlers:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
 --- !u!1 &8455878508825721101
 GameObject:
   m_ObjectHideFlags: 0

@@ -4,7 +4,8 @@ using System.Collections.Generic;
 
 public class PirateController : MonoBehaviour
 {
-  public event System.Action<PlayerCharacterController> PirateFull;
+  public event System.Action<PirateController> PirateFull;
+  public event System.Action<PirateController> PirateSwallowed;
 
   public float FoodWeight => _foodWeight;
   public float FullPercent => Mathf.Clamp01(_foodWeight / _desiredFoodWeight);
@@ -36,6 +37,7 @@ public class PirateController : MonoBehaviour
   private float _chompTimer;
   private ItemController _currentFood;
   private PlayerCharacterController _assignedPlayer;
+  public PlayerCharacterController AssignedPlayerController => _assignedPlayer;
 
   private List<ItemController> _teeth = new List<ItemController>();
 
@@ -46,7 +48,12 @@ public class PirateController : MonoBehaviour
 
   public void NotifyPirateFull()
   {
-    PirateFull?.Invoke(_assignedPlayer);
+    PirateFull?.Invoke(this);
+  }
+
+  public void NotifyPirateSwallowed()
+  {
+    PirateSwallowed?.Invoke(this);
   }
 
   public void AddFood(ItemController foodItem)
@@ -149,6 +156,8 @@ public class PirateController : MonoBehaviour
     _currentFood = null;
 
     StartCoroutine(BulgeAnimAsync(Mathf.Lerp(1, _maxBarrelBulgeScale, FullPercent)));
+
+    NotifyPirateSwallowed();
 
     if (_foodWeight >= _desiredFoodWeight)
     {
