@@ -7,7 +7,7 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: color-orange
+  m_Name: color-grey
   m_Shader: {fileID: 4800000, guid: 6d9112faed4ea40e4b1044aa7e841bd3, type: 3}
   m_ValidKeywords: []
   m_InvalidKeywords: []
@@ -80,6 +80,6 @@ Material:
     - _UVSec: 0
     - _ZWrite: 1
     m_Colors:
-    - _Color: {r: 0.6901961, g: 0.45098042, b: 0.31764707, a: 1}
+    - _Color: {r: 0.34901962, g: 0.3529412, b: 0.38431376, a: 1}
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
   m_BuildTextureStacks: []
