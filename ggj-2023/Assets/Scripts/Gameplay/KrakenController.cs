@@ -17,7 +17,7 @@ public class KrakenController : MonoBehaviour
         if(FindObjectOfType(typeof(GameStateManager))) GSM = GameObject.FindObjectOfType<GameStateManager>();
         if(GSM)
         {
-            activationInterval = GSM.GameplayDuration / KrakenArms.Count;
+            activationInterval = GSM.GameplayDuration / (KrakenArms.Count+1);
         }
         else disabled = true;
     }
