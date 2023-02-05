@@ -15,6 +15,7 @@ GameObject:
   - component: {fileID: 5365938114461762382}
   - component: {fileID: 8363574814896866707}
   - component: {fileID: 4501605768305427082}
+  - component: {fileID: 3994569337878563152}
   m_Layer: 5
   m_Name: GameUI
   m_TagString: Untagged
@@ -78,7 +79,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 76c392e42b5098c458856cdf6ecaaaa1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_FirstSelected: {fileID: 0}
+  m_FirstSelected: {fileID: 1027978470564941282}
   m_sendNavigationEvents: 1
   m_DragThreshold: 10
 --- !u!114 &793762673659616188
@@ -97,7 +98,7 @@ MonoBehaviour:
   rewiredInputManager: {fileID: 0}
   useAllRewiredGamePlayers: 0
   useRewiredSystemPlayer: 0
-  rewiredPlayerIds: 00000000
+  rewiredPlayerIds: 0000000001000000020000000300000004000000
   usePlayingPlayersOnly: 0
   playerMice: []
   moveOneElementPerAxisPress: 0
@@ -179,6 +180,18 @@ MonoBehaviour:
   m_BlockingMask:
     serializedVersion: 2
     m_Bits: 32
+--- !u!114 &3994569337878563152
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 793762673659616191}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9f00d1761064743ae8f6c2758ec95a52, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &1247517311306378569
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -750,6 +763,11 @@ PrefabInstance:
 --- !u!224 &480553780168403377 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 4799978838289031289, guid: 5f771563e6060ba489cb021eb4b48a21, type: 3}
+  m_PrefabInstance: {fileID: 4915597970930698696}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &1027978470564941282 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 5364819286050292778, guid: 5f771563e6060ba489cb021eb4b48a21, type: 3}
   m_PrefabInstance: {fileID: 4915597970930698696}
   m_PrefabAsset: {fileID: 0}
 --- !u!114 &8406107110938262588 stripped
