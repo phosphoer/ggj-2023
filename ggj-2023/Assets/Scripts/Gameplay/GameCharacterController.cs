@@ -75,6 +75,21 @@ public class GameCharacterController : MonoBehaviour
   [SerializeField]
   private float _gravity = 5;
 
+  [SerializeField]
+  private SoundBank _dropItemSound = null;
+
+  [SerializeField]
+  private SoundBank _collectToothSound = null;
+
+  [SerializeField]
+  private SoundBank _collectFishSound = null;
+
+  [SerializeField]
+  private SoundBank _attackSound = null;
+
+  [SerializeField]
+  private SoundBank _hitSound = null;
+
   private RaycastHit _groundRaycast;
   private RaycastHit _obstacleRaycast;
   private Vector3 _lastGroundPos;
@@ -99,7 +114,7 @@ public class GameCharacterController : MonoBehaviour
     }
     else if (_heldItem != null)
     {
-      DropItem();
+      DropItem(true);
     }
     else
     {
@@ -110,6 +125,11 @@ public class GameCharacterController : MonoBehaviour
   public void Attack()
   {
     _animator.SetTrigger(kAnimAttack);
+
+    if (_attackSound != null)
+    {
+      AudioManager.Instance.PlaySound(_attackSound);
+    }
   }
 
   private void OnEnable()
@@ -201,7 +221,12 @@ public class GameCharacterController : MonoBehaviour
   private void OnSlapped(GameCharacterController fromCharacter)
   {
     _animator.SetTrigger(kAnimRecoil);
-    DropItem();
+    DropItem(false);
+
+    if (_hitSound != null)
+    {
+      AudioManager.Instance.PlaySound(_hitSound);
+    }
   }
 
   private void OnAttackFrame()
@@ -220,14 +245,23 @@ public class GameCharacterController : MonoBehaviour
 
   private void PickupItem(ItemController item)
   {
-    DropItem();
+    DropItem(false);
     item.transform.parent = _heldItemRoot;
     item.transform.SetIdentityTransformLocal();
     item.SetInteractable(false);
     _heldItem = item;
+
+    if (item.Type == ItemType.Food && _collectFishSound != null)
+    {
+      AudioManager.Instance.PlaySound(_collectFishSound);
+    }
+    else if (item.Type == ItemType.Tooth && _collectToothSound != null)
+    {
+      AudioManager.Instance.PlaySound(_collectToothSound);
+    }
   }
 
-  private void DropItem()
+  private void DropItem(bool playSound)
   {
     if (_heldItem != null)
     {
@@ -235,6 +269,11 @@ public class GameCharacterController : MonoBehaviour
       _heldItem.transform.parent = null;
       _heldItem.transform.localScale = Vector3.one;
       _heldItem = null;
+
+      if (playSound && _dropItemSound)
+      {
+        AudioManager.Instance.PlaySound(_dropItemSound);
+      }
     }
   }
 
@@ -253,7 +292,7 @@ public class GameCharacterController : MonoBehaviour
       if (_heldItem != null)
       {
         ItemController giveItem = _heldItem;
-        DropItem();
+        DropItem(true);
 
         if (giveItem.Type == ItemType.Tooth)
           pirate.AddTooth(giveItem);
