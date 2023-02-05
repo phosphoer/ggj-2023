@@ -12,6 +12,12 @@ public class Destructable : MonoBehaviour
   [SerializeField]
   private GameObject _destroyedRoot = null;
 
+  [SerializeField]
+  private GameObject[] _lootSpawnTable = null;
+
+  [SerializeField]
+  private RangedInt _lootSpawnCount = default;
+
   private void Awake()
   {
     _visualRoot.SetActive(true);
@@ -35,14 +41,23 @@ public class Destructable : MonoBehaviour
     foreach (Transform piece in _destroyedRoot.transform)
     {
       Rigidbody rb = piece.GetComponent<Rigidbody>();
-      rb.AddForce(Random.insideUnitSphere * 2, ForceMode.VelocityChange);
-      rb.AddTorque(Random.insideUnitSphere * 2, ForceMode.VelocityChange);
+      rb.AddForce(Random.insideUnitSphere * 4, ForceMode.VelocityChange);
+      rb.AddTorque(Random.insideUnitSphere * 4, ForceMode.VelocityChange);
 
       CoroutineRoot.Instance.StartCoroutine(DehydratePieceAsync(piece));
     }
 
     while (_destroyedRoot.transform.childCount > 0)
       _destroyedRoot.transform.GetChild(0).parent = null;
+
+    int spawnCount = _lootSpawnCount.RandomValue;
+    for (int i = 0; i < spawnCount; ++i)
+    {
+      GameObject spawnPrefab = _lootSpawnTable[Random.Range(0, _lootSpawnTable.Length)];
+      GameObject spawnInstance = Instantiate(spawnPrefab, transform.parent);
+      spawnInstance.transform.position = transform.position + Vector3.up * 0.5f + Random.insideUnitSphere * 0.3f;
+      spawnInstance.transform.rotation = Random.rotationUniform;
+    }
 
     Destroy(gameObject);
   }

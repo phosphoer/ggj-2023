@@ -1183,3 +1183,16 @@ MonoBehaviour:
   _slappable: {fileID: 2036377473821323004}
   _visualRoot: {fileID: 7670337370550530755}
   _destroyedRoot: {fileID: 5688493911232670814}
+  _lootSpawnTable:
+  - {fileID: 4134182884085362736, guid: b256a1244421bb94584618186c8a11d9, type: 3}
+  - {fileID: 3937633933590854469, guid: b90b15c986b83e44a88e382baca13186, type: 3}
+  - {fileID: 8911472145433018966, guid: adfc924ae55475d48b8a05108440c02d, type: 3}
+  - {fileID: 1384513694449696196, guid: e0bb642fb84d4334cadc4e76523a96ad, type: 3}
+  - {fileID: 1384513694449696196, guid: 5df88c9a02e1f324399ded19854ae1c0, type: 3}
+  - {fileID: 1384513694449696196, guid: 4cd45114a2a94e84f831f83339455ee2, type: 3}
+  - {fileID: 1384513694449696196, guid: eaae2e4aa6dc56a499770975faece011, type: 3}
+  - {fileID: 1384513694449696196, guid: d17b07f96c4b9084981425ab4932e7c3, type: 3}
+  - {fileID: 1384513694449696196, guid: c526174f1697ae14f82256772710eee4, type: 3}
+  _lootSpawnCount:
+    MinValue: 1
+    MaxValue: 3
