@@ -38,6 +38,9 @@ public class PirateController : MonoBehaviour
   [SerializeField]
   private AnimationCurve _barrelBulgeAnim = null;
 
+  [SerializeField]
+  private SoundBank _fallSound = null;
+
   private float _foodWeight;
   private float _chompCount;
   private float _chompTimer;
@@ -81,6 +84,11 @@ public class PirateController : MonoBehaviour
 
   public void ActivatePhysics()
   {
+    if (_fallSound != null)
+    {
+      AudioManager.Instance.PlaySound(_fallSound);
+    }
+
     _physicsCollider.enabled = true;
     _rigidBody.isKinematic = false;
     _rigidBody.WakeUp();

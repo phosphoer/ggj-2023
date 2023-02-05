@@ -23,13 +23,13 @@ public class CameraManager : Singleton<CameraManager>
   private CameraControllerStack _menuCameraStack = null;
 
   [SerializeField]
-  private CameraControllerDynamic _menuCameraController = null;  
+  private CameraControllerDynamic _menuCameraController = null;
 
   [SerializeField]
   private CameraControllerDynamic[] _winCameraControllers = null;
 
   [SerializeField]
-  private CameraControllerDynamic _loseCameraControllers = null;  
+  private CameraControllerDynamic _loseCameraControllers = null;
 
   [SerializeField]
   private SplitscreenLayout _splitscreenLayout = null;
@@ -47,60 +47,75 @@ public class CameraManager : Singleton<CameraManager>
     if (targetLayout != _cameraLayout)
     {
       // Clear up the previous camera layout
-      switch(_cameraLayout)
+      switch (_cameraLayout)
       {
-        case eScreenLayout.MenuCamera:
-          _menuCameraStack.PopController(_menuCameraController);
-          _menuCamera.enabled = false;
-          break;
-        case eScreenLayout.MultiCamera:
-          _splitscreenLayout.SetEnabled(false);
-          break;
-        case eScreenLayout.WinCamera:
-          { 
-            // Show the corresponding winners camera
-            int winnerIndex= GameStateManager.Instance.WinningPlayerID;
-            if (_winCameraControllers.IsIndexValid(winnerIndex))
-            {
-              _menuCameraStack.PopController(_winCameraControllers[winnerIndex]);
-            }
-            _menuCamera.enabled = false;
-          }
-          break;
-        case eScreenLayout.LoseCamera:
-          _menuCameraStack.PopController(_menuCameraController);
-          _menuCamera.enabled = false;
-          break;
+      case eScreenLayout.MenuCamera:
+        _menuCameraStack.PopController(_menuCameraController);
+        _menuCamera.enabled = false;
+        break;
+      case eScreenLayout.MultiCamera:
+        _splitscreenLayout.SetEnabled(false);
+        break;
+      case eScreenLayout.WinCamera:
+      {
+        // Show the corresponding winners camera
+        int winnerIndex = GameStateManager.Instance.WinningPlayerID;
+        if (_winCameraControllers.IsIndexValid(winnerIndex))
+        {
+          _menuCameraStack.PopController(_winCameraControllers[winnerIndex]);
+        }
+        _menuCamera.enabled = false;
+      }
+      break;
+      case eScreenLayout.LoseCamera:
+        _menuCameraStack.PopController(_menuCameraController);
+        _menuCamera.enabled = false;
+        break;
       }
 
       // Then enable the one we want
       switch (targetLayout)
       {
-        case eScreenLayout.MenuCamera:
-          _menuCameraStack.PushController(_menuCameraController);
-          _menuCamera.enabled = true;
-          break;
-        case eScreenLayout.MultiCamera:
-          _splitscreenLayout.SetEnabled(true);
-          break;
-        case eScreenLayout.WinCamera:
-          { 
-            // Show the corresponding winners camera
-            int winnerIndex= GameStateManager.Instance.WinningPlayerID;
-            if (_winCameraControllers.IsIndexValid(winnerIndex))
-            {
-              _menuCameraStack.PushController(_winCameraControllers[winnerIndex]);
-            }
-            _menuCamera.enabled = true;
-          }
-          break;
-        case eScreenLayout.LoseCamera:
-          _menuCameraStack.PushController(_loseCameraControllers);
-          _menuCamera.enabled = true;
-          break;
+      case eScreenLayout.MenuCamera:
+        _menuCameraStack.PushController(_menuCameraController);
+        _menuCamera.enabled = true;
+        break;
+      case eScreenLayout.MultiCamera:
+        _splitscreenLayout.SetEnabled(true);
+        break;
+      case eScreenLayout.WinCamera:
+      {
+        // Show the corresponding winners camera
+        int winnerIndex = GameStateManager.Instance.WinningPlayerID;
+        if (_winCameraControllers.IsIndexValid(winnerIndex))
+        {
+          _menuCameraStack.PushController(_winCameraControllers[winnerIndex]);
+        }
+        _menuCamera.enabled = true;
+      }
+      break;
+      case eScreenLayout.LoseCamera:
+        _menuCameraStack.PushController(_loseCameraControllers);
+        _menuCamera.enabled = true;
+        break;
       }
 
       _cameraLayout = targetLayout;
+    }
+  }
+
+  public void ShakeActiveCameras(float magnitide, float duration)
+  {
+    if (_cameraLayout == eScreenLayout.MultiCamera)
+    {
+      foreach (PlayerCharacterController player in PlayerManager.Instance.Players)
+      {
+        player.CameraStack.CameraShake(magnitide, duration);
+      }
+    }
+    else
+    {
+      _menuCameraStack.CameraShake(magnitide, duration);
     }
   }
 }

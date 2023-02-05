@@ -1,4 +1,5 @@
 using UnityEngine;
+using System.Collections;
 using Rewired;
 
 public class PlayerCharacterController : MonoBehaviour
@@ -40,6 +41,7 @@ public class PlayerCharacterController : MonoBehaviour
   private PirateController _assignedPirate = null;
   private bool _isReady = true;
   private bool _isAllowedToMove = true;
+  private Vector3 _startPos;
 
   private void Awake()
   {
@@ -57,19 +59,43 @@ public class PlayerCharacterController : MonoBehaviour
     _cameraStack.UICamera.cullingMask = _playerUILayerMask;
 
     Character.InteractionController.PlayerUI = _playerUI;
+    Character.Slappable.Slapped += OnSlapped;
+    Character.OutOfBounds += OnOutOfBounds;
 
     SplitscreenLayout.LayoutUpdated += OnLayoutUpdated;
     OnLayoutUpdated();
   }
 
+  private void Start()
+  {
+    _startPos = transform.position;
+  }
+
   private void OnDestroy()
   {
     SplitscreenLayout.LayoutUpdated -= OnLayoutUpdated;
+    Character.Slappable.Slapped -= OnSlapped;
+  }
+
+  private void OnSlapped(GameCharacterController fromCharacter)
+  {
+    _cameraStack.CameraShake(1, 0.5f);
   }
 
   private void OnLayoutUpdated()
   {
     _cameraStack.UICamera.rect = _cameraStack.Camera.rect;
+  }
+
+  private void OnOutOfBounds()
+  {
+    transform.position = _startPos;
+  }
+
+  private IEnumerator RespawnAsync()
+  {
+    yield return Tween.WaitForTime(1);
+
   }
 
   public bool GetIsReady()

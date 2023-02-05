@@ -4,37 +4,45 @@ using UnityEngine;
 
 public class KrakenController : MonoBehaviour
 {
-    public List<GameObject> KrakenArms = new List<GameObject>();
-    // Start is called before the first frame update
+  public List<GameObject> KrakenArms = new List<GameObject>();
+  public float CameraShakeDuration= 0.5f;
+  public float CameraShakeMagnitude= 10.0f;
 
-    GameStateManager GSM;
-    bool disabled = false;
-    float activationInterval = 0f;
-    int currentArm = 0;
-    int randOffset = 0;
+  [SerializeField]
+  private SoundBank _krackenRoar = null;
 
-    void Start()
+  private float _activationInterval = 0f;
+  private int _activatedArmCount = 0;
+  private int _randOffset = 0;
+
+  void Start()
+  {
+    _activationInterval = GameStateManager.Instance.GameplayDuration / (KrakenArms.Count + 1);
+    _randOffset = Random.Range(0, KrakenArms.Count);
+  }
+
+  // Update is called once per frame
+  void Update()
+  {
+    if (_activatedArmCount < KrakenArms.Count &&
+        GameStateManager.Instance.TimeInState >= ((_activatedArmCount + 1) * _activationInterval))
     {
-        if(FindObjectOfType(typeof(GameStateManager))) GSM = GameObject.FindObjectOfType<GameStateManager>();
+      ActivateArm();
+    }
+  }
 
-        if(GSM)
-        {
-            activationInterval = GSM.GameplayDuration / (KrakenArms.Count+1);
-            randOffset = Random.Range(0,KrakenArms.Count);
-        }
-        else disabled = true;
+  public void ActivateArm()
+  {
+    int armIndex= (_activatedArmCount + _randOffset) % KrakenArms.Count;
+
+    KrakenArms[armIndex].SetActive(true);
+    _activatedArmCount++;
+
+    if (_krackenRoar != null)
+    {
+      AudioManager.Instance.PlaySound(_krackenRoar);
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-           if(!disabled && GSM.TimeInState>=((currentArm+1)*activationInterval)) ActivateArm();
-    }
-
-    public void ActivateArm()
-    {
-        if(randOffset+currentArm>=KrakenArms.Count) randOffset=0;
-        KrakenArms[currentArm+randOffset].SetActive(true);
-        currentArm++;
-    }
+    CameraManager.Instance.ShakeActiveCameras(CameraShakeDuration, CameraShakeMagnitude);
+  }
 }
