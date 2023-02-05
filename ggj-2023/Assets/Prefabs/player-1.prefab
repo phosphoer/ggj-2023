@@ -9,7 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7606062836508132136}
-  m_Layer: 12
+  m_Layer: 0
   m_Name: item-root
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -24,7 +24,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 470795864665409454}
   m_LocalRotation: {x: -0.71276885, y: 0.00000029057253, z: -0.00000031292427, w: 0.7013991}
-  m_LocalPosition: {x: 0.046, y: 0.014, z: -0.002}
+  m_LocalPosition: {x: 0.076, y: 0.014, z: 0.014}
   m_LocalScale: {x: 0.3, y: 0.3, z: 0.3}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -645,6 +645,10 @@ PrefabInstance:
       propertyPath: m_Controller
       value: 
       objectReference: {fileID: 9100000, guid: 19007328e852846c1ad855f637b3ac43, type: 2}
+    - target: {fileID: 5866666021909216657, guid: 486c4dc566d294b6dabc63db23536a8f, type: 3}
+      propertyPath: m_CullingMode
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 6030173316572466027, guid: 486c4dc566d294b6dabc63db23536a8f, type: 3}
       propertyPath: m_Layer
       value: 12
