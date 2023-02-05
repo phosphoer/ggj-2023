@@ -46,6 +46,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   EditorDefaultStage: 1
+  GameplayDuration: 300
+  EndCutSceneDuration: 5
   MusicMenuLoop: {fileID: 0}
   MenuCamera: {fileID: 0}
 --- !u!114 &6747696525931932296
@@ -61,8 +63,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _playerPrefabs:
-  - {fileID: 1594447163315735885, guid: b22dc2229e91047cfbd3b39cf0aa6ae1, type: 3}
-  - {fileID: 1594447163315735885, guid: b22dc2229e91047cfbd3b39cf0aa6ae1, type: 3}
-  - {fileID: 1594447163315735885, guid: b22dc2229e91047cfbd3b39cf0aa6ae1, type: 3}
-  - {fileID: 1594447163315735885, guid: b22dc2229e91047cfbd3b39cf0aa6ae1, type: 3}
+  - {fileID: 1594447163315735885, guid: 041c6886f4c814414b34e9526e61da5e, type: 3}
+  - {fileID: 6341948001400396607, guid: 3c28521ebc7a44341989758e0485012d, type: 3}
+  - {fileID: 6341948001400396607, guid: 51c0c127bd9954b8698e7c77ad239c1c, type: 3}
+  - {fileID: 6341948001400396607, guid: 17111a037502d48bb8d78bfc9f365e5e, type: 3}
   _spawnPoints: []
+  _pirates: []
