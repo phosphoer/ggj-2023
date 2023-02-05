@@ -25,7 +25,13 @@ public class GameCharacterController : MonoBehaviour
   private InteractionController _interactionController = null;
 
   [SerializeField]
+  private Slappable _slappable = null;
+
+  [SerializeField]
   private Animator _animator = null;
+
+  [SerializeField]
+  private AnimatorCallbacks _animatorCallback = null;
 
   [SerializeField]
   private Transform _cameraRoot = null;
@@ -34,10 +40,16 @@ public class GameCharacterController : MonoBehaviour
   private Transform _heldItemRoot = null;
 
   [SerializeField]
+  private Transform _attackPos = null;
+
+  [SerializeField]
   private LayerMask _groundLayer = default(LayerMask);
 
   [SerializeField]
   private LayerMask _obstacleLayer = default(LayerMask);
+
+  [SerializeField]
+  private LayerMask _attackLayer = default(LayerMask);
 
   [SerializeField]
   private float _groundRaycastRadius = 0.4f;
@@ -68,6 +80,7 @@ public class GameCharacterController : MonoBehaviour
   private Vector3 _lastGroundPos;
   private ItemController _heldItem;
   private float _holdItemBlend;
+  private Collider[] _overlapColliders = new Collider[10];
 
   private Vector3 _raycastStartPos => transform.position + transform.up * _raycastUpStartOffset;
 
@@ -102,11 +115,15 @@ public class GameCharacterController : MonoBehaviour
   private void OnEnable()
   {
     _interactionController.InteractionTriggered += OnInteractionTriggered;
+    _slappable.Slapped += OnSlapped;
+    _animatorCallback.AddCallback("OnAttackFrame", OnAttackFrame);
   }
 
   private void OnDisable()
   {
     _interactionController.InteractionTriggered -= OnInteractionTriggered;
+    _slappable.Slapped -= OnSlapped;
+    _animatorCallback.RemoveCallback("OnAttackFrame", OnAttackFrame);
   }
 
   private void Update()
@@ -179,6 +196,26 @@ public class GameCharacterController : MonoBehaviour
       delta = verticalAngle - LookVerticalRange.MaxValue;
 
     _cameraRoot.Rotate(Vector3.right, -delta, Space.Self);
+  }
+
+  private void OnSlapped(GameCharacterController fromCharacter)
+  {
+    _animator.SetTrigger(kAnimRecoil);
+    DropItem();
+  }
+
+  private void OnAttackFrame()
+  {
+    int overlapCount = Physics.OverlapSphereNonAlloc(_attackPos.position, 0.25f, _overlapColliders, _attackLayer, QueryTriggerInteraction.Collide);
+    for (int i = 0; i < overlapCount; ++i)
+    {
+      Collider c = _overlapColliders[i];
+      Slappable slappable = c.GetComponentInParent<Slappable>();
+      if (slappable != null && slappable != _slappable)
+      {
+        slappable.ReceiveSlap(fromCharacter: this);
+      }
+    }
   }
 
   private void PickupItem(ItemController item)

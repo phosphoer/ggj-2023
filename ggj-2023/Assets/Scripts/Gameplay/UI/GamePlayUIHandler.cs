@@ -1,12 +1,13 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class GamePlayUIHandler : UIPageBase
 {
   public float LowWarningFraction = 0.1f;
   public SoundBank LowTimerWarning;
-  public RectTransform TimerTransform;
+  public Image TimerDial;
 
   private float _previousRemainingFraction;
 
@@ -18,7 +19,7 @@ public class GamePlayUIHandler : UIPageBase
 
   private void OnShown()
   {
-    TimerTransform.transform.localScale = new Vector3(1, 1, 1);
+    TimerDial.fillAmount= 1.0f;
     _previousRemainingFraction= 1.0f;
   }
 
@@ -28,7 +29,7 @@ public class GamePlayUIHandler : UIPageBase
     float gameDuration = GameStateManager.Instance.GameplayDuration;
     float newRemainingFraction = Mathf.Clamp01((gameDuration - gameTimer) / gameDuration);
 
-    TimerTransform.transform.localScale = new Vector3(newRemainingFraction, 1, 1);
+    TimerDial.fillAmount = newRemainingFraction;
 
     if (_previousRemainingFraction >= LowWarningFraction && newRemainingFraction < LowWarningFraction)
     {
