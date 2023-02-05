@@ -220,6 +220,7 @@ public class GameStateManager : Singleton<GameStateManager>
     case GameStage.PlayerWinCutscene:
     {
       CameraManager.Instance.SetScreenLayout(CameraManager.eScreenLayout.WinCamera);
+      PlayerManager.Instance.LockAllPlayers();
       GameUI.Instance.WinGameUI.Show();
     }
     break;
@@ -227,6 +228,7 @@ public class GameStateManager : Singleton<GameStateManager>
     case GameStage.PlayerLoseCutscene:
     {
       CameraManager.Instance.SetScreenLayout(CameraManager.eScreenLayout.LoseCamera);
+      PlayerManager.Instance.LockAllPlayers();
       GameUI.Instance.LoseGameUI.Show();
     }
     break;    
