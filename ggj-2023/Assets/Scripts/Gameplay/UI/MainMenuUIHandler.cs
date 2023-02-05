@@ -9,10 +9,14 @@ public class MainMenuUIHandler : UIPageBase
   [SerializeField]
   private Button _buttonNewGame = null;
 
+  [SerializeField]
+  private Button _buttonQuit = null;
+
   protected override void Awake()
   {
     base.Awake();
     _buttonNewGame.onClick.AddListener(OnNewGameClicked);
+    _buttonQuit.onClick.AddListener(OnQuitGameClicked);
   }
 
   public void OnNewGameClicked()
