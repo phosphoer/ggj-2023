@@ -10,19 +10,19 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: c345fe0be4353445895a73c7861c323d, type: 3}
-  m_Name: get_fish_bank
+  m_Name: end_screen_music
   m_EditorClassIdentifier: 
   AudioClips:
-  - {fileID: 8300000, guid: 893306389d4d247e6b7f0cb1e006563f, type: 3}
+  - {fileID: 8300000, guid: 34be02163a94325409190d1f9def5b4e, type: 3}
   SequencedClips: []
   IsLooping: 0
   IsSpatial: 0
   MaxDistance: 100
   MinDistance: 10
-  VolumeScale: 1
+  VolumeScale: 0.1
   DopplerLevel: 0
   PitchOffset: 0
   PitchOffsetRange:
-    MinValue: -0.2
-    MaxValue: 0.2
+    MinValue: 0
+    MaxValue: 0
   AudioMixerGroup: {fileID: 0}

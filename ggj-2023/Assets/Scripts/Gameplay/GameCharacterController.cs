@@ -2,6 +2,8 @@ using UnityEngine;
 
 public class GameCharacterController : MonoBehaviour
 {
+  public event System.Action OutOfBounds;
+
   public Transform CameraRoot => _cameraRoot;
   public Transform HeldItemRoot => _heldItemRoot;
   public ItemController HeldItem => _heldItem;
@@ -77,6 +79,9 @@ public class GameCharacterController : MonoBehaviour
   private float _gravity = 5;
 
   [SerializeField]
+  private float _slapCooldownTime = 1;
+
+  [SerializeField]
   private SoundBank _dropItemSound = null;
 
   [SerializeField]
@@ -96,6 +101,9 @@ public class GameCharacterController : MonoBehaviour
   private Vector3 _lastGroundPos;
   private ItemController _heldItem;
   private float _holdItemBlend;
+  private float _slapCooldownTimer;
+  private bool _isOutOfBounds;
+  private Vector3 _slapPushVec;
   private Collider[] _overlapColliders = new Collider[10];
 
   private Vector3 _raycastStartPos => transform.position + transform.up * _raycastUpStartOffset;
@@ -125,11 +133,15 @@ public class GameCharacterController : MonoBehaviour
 
   public void Attack()
   {
-    _animator.SetTrigger(kAnimAttack);
-
-    if (_attackSound != null)
+    if (_slapCooldownTimer <= 0)
     {
-      AudioManager.Instance.PlaySound(_attackSound);
+      _slapCooldownTimer = _slapCooldownTime;
+      _animator.SetTrigger(kAnimAttack);
+
+      if (_attackSound != null)
+      {
+        AudioManager.Instance.PlaySound(_attackSound);
+      }
     }
   }
 
@@ -149,10 +161,19 @@ public class GameCharacterController : MonoBehaviour
 
   private void Update()
   {
+    _slapCooldownTimer -= Time.deltaTime;
+    if (transform.position.y < -5 && !_isOutOfBounds)
+    {
+      OutOfBounds?.Invoke();
+    }
+
     // Calculate next position based on movement
     float moveAxisTotal = Mathf.Clamp01(Mathf.Abs(MoveAxis) + Mathf.Abs(StrafeAxis));
     Vector3 moveVec = (transform.forward * MoveAxis + transform.right.WithY(0) * StrafeAxis).NormalizedSafe() * moveAxisTotal;
     Vector3 newPosition = transform.position + moveVec * _moveSpeed * Time.deltaTime;
+
+    newPosition += _slapPushVec * Time.deltaTime;
+    _slapPushVec = Mathfx.Damp(_slapPushVec, Vector3.zero, 0.25f, Time.deltaTime * 3);
 
     // Snap and align to ground
     Vector3 raycastDir = -transform.up + (transform.forward * MoveAxis + transform.right * StrafeAxis) * 0.5f;
@@ -169,7 +190,7 @@ public class GameCharacterController : MonoBehaviour
     // If no ground, go towards where it was last
     else
     {
-      Vector3 fallDir = (_lastGroundPos - newPosition).normalized;
+      Vector3 fallDir = Vector3.down;
       Quaternion desiredRot = Quaternion.FromToRotation(transform.up, -fallDir) * transform.rotation;
 
       newPosition += fallDir * Time.deltaTime * _gravity;
@@ -221,6 +242,15 @@ public class GameCharacterController : MonoBehaviour
 
   private void OnSlapped(GameCharacterController fromCharacter)
   {
+    Vector3 slapDir = (transform.position - fromCharacter.transform.position).normalized;
+    slapDir.y += 1;
+    _slapPushVec = slapDir * 10;
+
+    if (fromCharacter._heldItem != null)
+    {
+      _slapPushVec *= 3;
+    }
+
     _animator.SetTrigger(kAnimRecoil);
     DropItem(false);
 

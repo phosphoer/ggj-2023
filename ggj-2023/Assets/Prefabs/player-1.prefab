@@ -202,7 +202,7 @@ MonoBehaviour:
   _terrainAlignmentSpeed: 3
   _moveSpeed: 3
   _turnSpeed: 360
-  _gravity: 5
+  _gravity: 9
   _dropItemSound: {fileID: 11400000, guid: 068f5e3d82c6bfb43947efc62086cc07, type: 2}
   _collectToothSound: {fileID: 11400000, guid: 2aaf095b4c72ab041b7a9aaf93a65e37, type: 2}
   _collectFishSound: {fileID: 11400000, guid: ff60cfacab690874ca66d8051146bde6, type: 2}

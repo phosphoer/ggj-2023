@@ -32,6 +32,8 @@ public class GameStateManager : Singleton<GameStateManager>
   public int WinningPlayerID => _winningPlayerID;
 
   public SoundBank MusicMenuLoop;
+  public SoundBank MusicGameLoop;
+  public SoundBank MusicEndLoop;
   public CameraControllerBase MenuCamera;
 
   private List<PlayerCharacterController> _players = new List<PlayerCharacterController>();
@@ -143,6 +145,11 @@ public class GameStateManager : Singleton<GameStateManager>
 
       case GameStage.Gameplay:
         {
+          if (MusicGameLoop != null)
+          {
+            AudioManager.Instance.FadeOutSound(gameObject, MusicGameLoop, 3f);
+          }
+
           GameUI.Instance.GameplayUI.Hide();
         }
         break;
@@ -161,6 +168,11 @@ public class GameStateManager : Singleton<GameStateManager>
 
       case GameStage.EndGame:
         {
+          if (MusicEndLoop != null)
+          {
+            AudioManager.Instance.FadeOutSound(gameObject, MusicEndLoop, 3f);
+          }
+
           GameUI.Instance.EndGameUI.Hide();
         }
 
@@ -213,6 +225,11 @@ public class GameStateManager : Singleton<GameStateManager>
 
 		case GameStage.Gameplay:
 		{
+      if (MusicGameLoop != null)
+      {
+        AudioManager.Instance.FadeInSound(gameObject, MusicGameLoop, 3.0f);
+      }
+
 		  // Get rid of any pirate that wasn't assigned to a player
 		  PlayerManager.Instance.DeactivateUnassignedPirates();
 
@@ -223,6 +240,10 @@ public class GameStateManager : Singleton<GameStateManager>
 
       case GameStage.PlayerWinCutscene:
         {
+          if (MusicEndLoop != null)
+          {
+            AudioManager.Instance.FadeInSound(gameObject, MusicEndLoop, 3.0f);
+          }
           CameraManager.Instance.SetScreenLayout(CameraManager.eScreenLayout.WinCamera);
           PlayerManager.Instance.LockAllPlayers();
           GameUI.Instance.WinGameUI.Show();
@@ -231,6 +252,10 @@ public class GameStateManager : Singleton<GameStateManager>
 
       case GameStage.PlayerLoseCutscene:
         {
+          if (MusicEndLoop != null)
+          {
+            AudioManager.Instance.FadeInSound(gameObject, MusicEndLoop, 3.0f);
+          }
           CameraManager.Instance.SetScreenLayout(CameraManager.eScreenLayout.LoseCamera);
           PlayerManager.Instance.LockAllPlayers();
           GameUI.Instance.LoseGameUI.Show();
