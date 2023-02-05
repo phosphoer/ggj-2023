@@ -17,10 +17,19 @@ public class PirateController : MonoBehaviour
   private Transform _foodRoot = null;
 
   [SerializeField]
+  private Transform _barrelBulgeRoot = null;
+
+  [SerializeField]
   private ParticleSystem _fxChomp = null;
 
   [SerializeField]
   private float _desiredFoodWeight = 10;
+
+  [SerializeField]
+  private float _maxBarrelBulgeScale = 2;
+
+  [SerializeField]
+  private AnimationCurve _barrelBulgeAnim = null;
 
   private float _foodWeight;
   private float _chompCount;
@@ -139,6 +148,8 @@ public class PirateController : MonoBehaviour
     Destroy(_currentFood.gameObject);
     _currentFood = null;
 
+    StartCoroutine(BulgeAnimAsync(Mathf.Lerp(1, _maxBarrelBulgeScale, FullPercent)));
+
     if (_foodWeight >= _desiredFoodWeight)
     {
       NotifyPirateFull();
@@ -155,5 +166,16 @@ public class PirateController : MonoBehaviour
     }
 
     return null;
+  }
+
+  private IEnumerator BulgeAnimAsync(float targetScale)
+  {
+    Vector3 startScale = _barrelBulgeRoot.localScale;
+    Vector3 endScale = Vector3.one * targetScale;
+    yield return Tween.CustomTween(1, t =>
+    {
+      float scaleT = _barrelBulgeAnim.Evaluate(t);
+      _barrelBulgeRoot.transform.localScale = Vector3.LerpUnclamped(startScale, endScale, scaleT);
+    });
   }
 }
