@@ -9,7 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7914611797475621213}
-  - component: {fileID: 4372734744572607282}
+  - component: {fileID: 1097782855990229137}
   m_Layer: 0
   m_Name: lose-camera
   m_TagString: Untagged
@@ -32,49 +32,23 @@ Transform:
   m_Father: {fileID: 388033577301875857}
   m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 31.23, y: -105.4, z: 0}
---- !u!20 &4372734744572607282
-Camera:
+--- !u!114 &1097782855990229137
+MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 132256345907813719}
   m_Enabled: 1
-  serializedVersion: 2
-  m_ClearFlags: 1
-  m_BackGroundColor: {r: 0.19215687, g: 0.3019608, b: 0.4745098, a: 0}
-  m_projectionMatrixMode: 1
-  m_GateFitMode: 2
-  m_FOVAxisMode: 0
-  m_SensorSize: {x: 36, y: 24}
-  m_LensShift: {x: 0, y: 0}
-  m_FocalLength: 50
-  m_NormalizedViewPortRect:
-    serializedVersion: 2
-    x: 0
-    y: 0
-    width: 1
-    height: 1
-  near clip plane: 0.3
-  far clip plane: 1000
-  field of view: 60
-  orthographic: 0
-  orthographic size: 5
-  m_Depth: 0
-  m_CullingMask:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_RenderingPath: -1
-  m_TargetTexture: {fileID: 0}
-  m_TargetDisplay: 0
-  m_TargetEye: 3
-  m_HDR: 1
-  m_AllowMSAA: 1
-  m_AllowDynamicResolution: 0
-  m_ForceIntoRT: 0
-  m_OcclusionCulling: 1
-  m_StereoConvergence: 10
-  m_StereoSeparation: 0.022
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9dfb7a75ae6087e4baaa77e5e6860664, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  FieldOfView: 65
+  _mountPoint: {fileID: 0}
+  AxisSensitivty: 1
+  MaxAngle: 5
+  HandheldScale: 1
 --- !u!1 &3439249318612041772
 GameObject:
   m_ObjectHideFlags: 0
@@ -126,14 +100,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: eec19d45b167b084b9560b0e6c041cb9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _menuCameraStack: {fileID: 6784846919589596605}
   _menuCamera: {fileID: 1958019096894336023}
-  _winCameras:
-  - {fileID: 4960312508008732779}
-  - {fileID: 2593124797023432394}
-  - {fileID: 29879864342602323}
-  - {fileID: 8633905113298514673}
-  _loseCamera: {fileID: 4372734744572607282}
+  _menuCameraStack: {fileID: 6784846919589596605}
+  _menuCameraController: {fileID: 1924450334360791800}
+  _winCameraControllers:
+  - {fileID: 6845930696734499782}
+  - {fileID: 3345958469289975111}
+  - {fileID: 2647509826560908343}
+  - {fileID: 3446093024694057339}
+  _loseCameraControllers: {fileID: 1097782855990229137}
 --- !u!81 &8255287380724957941
 AudioListener:
   m_ObjectHideFlags: 0
@@ -151,7 +126,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5697738686194124603}
-  - component: {fileID: 8633905113298514673}
+  - component: {fileID: 3446093024694057339}
   m_Layer: 0
   m_Name: player3-win-camera
   m_TagString: Untagged
@@ -174,49 +149,23 @@ Transform:
   m_Father: {fileID: 388033577301875857}
   m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 43.92, y: 0, z: 0}
---- !u!20 &8633905113298514673
-Camera:
+--- !u!114 &3446093024694057339
+MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4115271592181098607}
   m_Enabled: 1
-  serializedVersion: 2
-  m_ClearFlags: 1
-  m_BackGroundColor: {r: 0.19215687, g: 0.3019608, b: 0.4745098, a: 0}
-  m_projectionMatrixMode: 1
-  m_GateFitMode: 2
-  m_FOVAxisMode: 0
-  m_SensorSize: {x: 36, y: 24}
-  m_LensShift: {x: 0, y: 0}
-  m_FocalLength: 50
-  m_NormalizedViewPortRect:
-    serializedVersion: 2
-    x: 0
-    y: 0
-    width: 1
-    height: 1
-  near clip plane: 0.3
-  far clip plane: 1000
-  field of view: 60
-  orthographic: 0
-  orthographic size: 5
-  m_Depth: 0
-  m_CullingMask:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_RenderingPath: -1
-  m_TargetTexture: {fileID: 0}
-  m_TargetDisplay: 0
-  m_TargetEye: 3
-  m_HDR: 1
-  m_AllowMSAA: 1
-  m_AllowDynamicResolution: 0
-  m_ForceIntoRT: 0
-  m_OcclusionCulling: 1
-  m_StereoConvergence: 10
-  m_StereoSeparation: 0.022
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9dfb7a75ae6087e4baaa77e5e6860664, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  FieldOfView: 65
+  _mountPoint: {fileID: 0}
+  AxisSensitivty: 1
+  MaxAngle: 5
+  HandheldScale: 1
 --- !u!1 &4534186087172698346
 GameObject:
   m_ObjectHideFlags: 0
@@ -226,7 +175,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3731748341714580398}
-  - component: {fileID: 29879864342602323}
+  - component: {fileID: 2647509826560908343}
   m_Layer: 0
   m_Name: player2-win-camera
   m_TagString: Untagged
@@ -249,49 +198,23 @@ Transform:
   m_Father: {fileID: 388033577301875857}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 43.92, y: 0, z: 0}
---- !u!20 &29879864342602323
-Camera:
+--- !u!114 &2647509826560908343
+MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4534186087172698346}
   m_Enabled: 1
-  serializedVersion: 2
-  m_ClearFlags: 1
-  m_BackGroundColor: {r: 0.19215687, g: 0.3019608, b: 0.4745098, a: 0}
-  m_projectionMatrixMode: 1
-  m_GateFitMode: 2
-  m_FOVAxisMode: 0
-  m_SensorSize: {x: 36, y: 24}
-  m_LensShift: {x: 0, y: 0}
-  m_FocalLength: 50
-  m_NormalizedViewPortRect:
-    serializedVersion: 2
-    x: 0
-    y: 0
-    width: 1
-    height: 1
-  near clip plane: 0.3
-  far clip plane: 1000
-  field of view: 60
-  orthographic: 0
-  orthographic size: 5
-  m_Depth: 0
-  m_CullingMask:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_RenderingPath: -1
-  m_TargetTexture: {fileID: 0}
-  m_TargetDisplay: 0
-  m_TargetEye: 3
-  m_HDR: 1
-  m_AllowMSAA: 1
-  m_AllowDynamicResolution: 0
-  m_ForceIntoRT: 0
-  m_OcclusionCulling: 1
-  m_StereoConvergence: 10
-  m_StereoSeparation: 0.022
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9dfb7a75ae6087e4baaa77e5e6860664, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  FieldOfView: 65
+  _mountPoint: {fileID: 0}
+  AxisSensitivty: 1
+  MaxAngle: 5
+  HandheldScale: 1
 --- !u!1 &5218962012899748831
 GameObject:
   m_ObjectHideFlags: 0
@@ -303,6 +226,7 @@ GameObject:
   - component: {fileID: 6675446416022762926}
   - component: {fileID: 1958019096894336023}
   - component: {fileID: 6784846919589596605}
+  - component: {fileID: 1924450334360791800}
   m_Layer: 0
   m_Name: menu-camera
   m_TagString: Untagged
@@ -381,6 +305,23 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _camera: {fileID: 1958019096894336023}
+--- !u!114 &1924450334360791800
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5218962012899748831}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9dfb7a75ae6087e4baaa77e5e6860664, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  FieldOfView: 65
+  _mountPoint: {fileID: 0}
+  AxisSensitivty: 1
+  MaxAngle: 5
+  HandheldScale: 1
 --- !u!1 &7441714877850890852
 GameObject:
   m_ObjectHideFlags: 0
@@ -390,7 +331,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3652602263239521166}
-  - component: {fileID: 2593124797023432394}
+  - component: {fileID: 3345958469289975111}
   m_Layer: 0
   m_Name: player1-win-camera
   m_TagString: Untagged
@@ -413,49 +354,23 @@ Transform:
   m_Father: {fileID: 388033577301875857}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 43.92, y: 0, z: 0}
---- !u!20 &2593124797023432394
-Camera:
+--- !u!114 &3345958469289975111
+MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7441714877850890852}
   m_Enabled: 1
-  serializedVersion: 2
-  m_ClearFlags: 1
-  m_BackGroundColor: {r: 0.19215687, g: 0.3019608, b: 0.4745098, a: 0}
-  m_projectionMatrixMode: 1
-  m_GateFitMode: 2
-  m_FOVAxisMode: 0
-  m_SensorSize: {x: 36, y: 24}
-  m_LensShift: {x: 0, y: 0}
-  m_FocalLength: 50
-  m_NormalizedViewPortRect:
-    serializedVersion: 2
-    x: 0
-    y: 0
-    width: 1
-    height: 1
-  near clip plane: 0.3
-  far clip plane: 1000
-  field of view: 60
-  orthographic: 0
-  orthographic size: 5
-  m_Depth: 0
-  m_CullingMask:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_RenderingPath: -1
-  m_TargetTexture: {fileID: 0}
-  m_TargetDisplay: 0
-  m_TargetEye: 3
-  m_HDR: 1
-  m_AllowMSAA: 1
-  m_AllowDynamicResolution: 0
-  m_ForceIntoRT: 0
-  m_OcclusionCulling: 1
-  m_StereoConvergence: 10
-  m_StereoSeparation: 0.022
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9dfb7a75ae6087e4baaa77e5e6860664, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  FieldOfView: 65
+  _mountPoint: {fileID: 0}
+  AxisSensitivty: 1
+  MaxAngle: 5
+  HandheldScale: 1
 --- !u!1 &8783618603041213612
 GameObject:
   m_ObjectHideFlags: 0
@@ -465,7 +380,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5327023138357316713}
-  - component: {fileID: 4960312508008732779}
+  - component: {fileID: 6845930696734499782}
   m_Layer: 0
   m_Name: player0-win-camera
   m_TagString: Untagged
@@ -488,46 +403,20 @@ Transform:
   m_Father: {fileID: 388033577301875857}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 43.92, y: 0, z: 0}
---- !u!20 &4960312508008732779
-Camera:
+--- !u!114 &6845930696734499782
+MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8783618603041213612}
   m_Enabled: 1
-  serializedVersion: 2
-  m_ClearFlags: 1
-  m_BackGroundColor: {r: 0.19215687, g: 0.3019608, b: 0.4745098, a: 0}
-  m_projectionMatrixMode: 1
-  m_GateFitMode: 2
-  m_FOVAxisMode: 0
-  m_SensorSize: {x: 36, y: 24}
-  m_LensShift: {x: 0, y: 0}
-  m_FocalLength: 50
-  m_NormalizedViewPortRect:
-    serializedVersion: 2
-    x: 0
-    y: 0
-    width: 1
-    height: 1
-  near clip plane: 0.3
-  far clip plane: 1000
-  field of view: 60
-  orthographic: 0
-  orthographic size: 5
-  m_Depth: 0
-  m_CullingMask:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_RenderingPath: -1
-  m_TargetTexture: {fileID: 0}
-  m_TargetDisplay: 0
-  m_TargetEye: 3
-  m_HDR: 1
-  m_AllowMSAA: 1
-  m_AllowDynamicResolution: 0
-  m_ForceIntoRT: 0
-  m_OcclusionCulling: 1
-  m_StereoConvergence: 10
-  m_StereoSeparation: 0.022
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9dfb7a75ae6087e4baaa77e5e6860664, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  FieldOfView: 65
+  _mountPoint: {fileID: 0}
+  AxisSensitivty: 1
+  MaxAngle: 5
+  HandheldScale: 1
