@@ -60,6 +60,14 @@ public class PlayerManager : Singleton<PlayerManager>
     _nextSpawnIndex = 0;
   }
 
+  public void LockAllPlayers()
+  {
+    foreach (PlayerCharacterController player in _players)
+    {
+      player.SetIsAllowedToMove(false);
+    }
+  }
+
   private void OnPirateFull(PirateController pirate)
   {
     PlayerWon?.Invoke(pirate.AssignedPlayerController);
