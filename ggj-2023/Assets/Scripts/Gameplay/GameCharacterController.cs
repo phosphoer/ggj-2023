@@ -137,11 +137,6 @@ public class GameCharacterController : MonoBehaviour
     {
       _slapCooldownTimer = _slapCooldownTime;
       _animator.SetTrigger(kAnimAttack);
-
-      if (_attackSound != null)
-      {
-        AudioManager.Instance.PlaySound(_attackSound);
-      }
     }
   }
 
@@ -262,6 +257,11 @@ public class GameCharacterController : MonoBehaviour
 
   private void OnAttackFrame()
   {
+    if (_attackSound != null)
+    {
+      AudioManager.Instance.PlaySound(_attackSound);
+    }
+
     int overlapCount = Physics.OverlapSphereNonAlloc(_attackPos.position, 0.25f, _overlapColliders, _attackLayer, QueryTriggerInteraction.Collide);
     for (int i = 0; i < overlapCount; ++i)
     {
@@ -323,7 +323,7 @@ public class GameCharacterController : MonoBehaviour
       if (_heldItem != null)
       {
         ItemController giveItem = _heldItem;
-        DropItem(true);
+        DropItem(false);
 
         if (giveItem.Type == ItemType.Tooth)
           pirate.AddTooth(giveItem);

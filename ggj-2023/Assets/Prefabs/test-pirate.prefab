@@ -152,6 +152,11 @@ MonoBehaviour:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+  _addToothSound: {fileID: 11400000, guid: 8d7a2ad7a85b86748b36c1d11d283ff1, type: 2}
+  _addFoodSound: {fileID: 11400000, guid: 54a60ef727dc41644b4d569924946026, type: 2}
+  _addPointSound: {fileID: 11400000, guid: 88b9f0fa918cb9e459eab0818288238c, type: 2}
+  _destroyToothSound: {fileID: 11400000, guid: 446cc331817c4dc48b2b75ac34fa69ca, type: 2}
+  _fallSound: {fileID: 11400000, guid: 03a1255b4ca14db479589d3f0960168e, type: 2}
 --- !u!114 &497223858041272137
 MonoBehaviour:
   m_ObjectHideFlags: 0

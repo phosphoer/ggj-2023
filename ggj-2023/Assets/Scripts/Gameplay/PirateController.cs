@@ -39,6 +39,18 @@ public class PirateController : MonoBehaviour
   private AnimationCurve _barrelBulgeAnim = null;
 
   [SerializeField]
+  private SoundBank _addToothSound = null;
+
+  [SerializeField]
+  private SoundBank _addFoodSound = null;
+
+  [SerializeField]
+  private SoundBank _addPointSound = null;
+
+  [SerializeField]
+  private SoundBank _destroyToothSound = null;
+
+  [SerializeField]
   private SoundBank _fallSound = null;
 
   private float _foodWeight;
@@ -106,6 +118,11 @@ public class PirateController : MonoBehaviour
         _currentFood.transform.SetIdentityTransformLocal();
         _currentFood.SetInteractable(false);
         _chompCount = 0;
+
+        if (_addFoodSound != null)
+        {
+          AudioManager.Instance.PlaySound(_addFoodSound);
+        }
       }
       else
       {
@@ -132,6 +149,11 @@ public class PirateController : MonoBehaviour
         toothItem.ToothDestroyed += OnToothDestroyed;
 
         UIHydrate.Hydrate(toothItem.transform);
+
+        if (_addToothSound != null)
+        {
+          AudioManager.Instance.PlaySound(_addToothSound);
+        }
       }
     }
     else
@@ -163,6 +185,11 @@ public class PirateController : MonoBehaviour
 
   private void OnToothDestroyed(ItemController tooth)
   {
+    if (_destroyToothSound)
+    {
+      AudioManager.Instance.PlaySound(_destroyToothSound);
+    }
+
     tooth.ToothDestroyed -= OnToothDestroyed;
     _teeth.Remove(tooth);
     Destroy(tooth.gameObject);
@@ -204,6 +231,11 @@ public class PirateController : MonoBehaviour
     StartCoroutine(BulgeAnimAsync(Mathf.Lerp(1, _maxBarrelBulgeScale, FullPercent)));
 
     NotifyPirateSwallowed();
+
+    if (_addPointSound != null)
+    {
+      AudioManager.Instance.PlaySound(_addPointSound);
+    }
 
     if (_foodWeight >= _desiredFoodWeight)
     {
