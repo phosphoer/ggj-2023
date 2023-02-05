@@ -57,6 +57,7 @@ public class PlayerCharacterController : MonoBehaviour
     _cameraStack.UICamera.cullingMask = _playerUILayerMask;
 
     Character.InteractionController.PlayerUI = _playerUI;
+    Character.Slappable.Slapped += OnSlapped;
 
     SplitscreenLayout.LayoutUpdated += OnLayoutUpdated;
     OnLayoutUpdated();
@@ -65,6 +66,12 @@ public class PlayerCharacterController : MonoBehaviour
   private void OnDestroy()
   {
     SplitscreenLayout.LayoutUpdated -= OnLayoutUpdated;
+    Character.Slappable.Slapped -= OnSlapped;
+  }
+
+  private void OnSlapped(GameCharacterController fromCharacter)
+  {
+    _cameraStack.CameraShake(1, 1);
   }
 
   private void OnLayoutUpdated()

@@ -15,12 +15,12 @@ MonoBehaviour:
   Priority: 0
   Bloom:
     Enabled: 1
-    BloomFilterSize: 1.03
-    BloomThreshold: 1.02
-    BloomThresholdSoft: 0.65
-    BloomIntensity: 1.51
+    BloomFilterSize: 1.02
+    BloomThreshold: 1.12
+    BloomThresholdSoft: 0.61
+    BloomIntensity: 1.42
   SaturationContrast:
-    Enabled: 0
+    Enabled: 1
     ColorSaturation: 1
     ColorContrast: 1
   WhiteBalance:

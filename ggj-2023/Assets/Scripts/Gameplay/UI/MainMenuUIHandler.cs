@@ -22,7 +22,6 @@ public class MainMenuUIHandler : UIPageBase
   public void OnNewGameClicked()
   {
     GameStateManager.Instance.NewGame();
-    Debug.Log("Button Click");
   }
 
   public void OnQuitGameClicked()
