@@ -7,19 +7,29 @@ public class ItemSpawner : MonoBehaviour
   [SerializeField]
   private GameObject[] _droptable = default;
 
-  void Start()
+  private GameObject _spawnedObject;
+  private float _spawnTimer;
+
+  private void Update()
   {
-    SelectItem();
+    _spawnTimer -= Time.deltaTime;
+    if (_spawnTimer < 0)
+    {
+      if (_spawnedObject == null)
+      {
+        _spawnedObject = SpawnItem();
+      }
+    }
   }
 
-  public GameObject SelectItem()
+  public GameObject SpawnItem()
   {
     if (_droptable.Length == 0)
       return null;
 
-    int randomIndex = Random.Range(0, _droptable.Length); 
+    int randomIndex = Random.Range(0, _droptable.Length);
     GameObject itemTemplate = _droptable[randomIndex];
-    GameObject item= Instantiate(itemTemplate, transform);
+    GameObject item = Instantiate(itemTemplate, transform);
 
     return item;
   }
