@@ -8,6 +8,9 @@ public class GamePlayUIHandler : UIPageBase
   public float LowWarningFraction = 0.1f;
   public SoundBank LowTimerWarning;
   public Image TimerDial;
+  public Transform TimerRoot;
+  public Transform TimerRootCenter;
+  public Transform TimerRootCorner;
 
   private float _previousRemainingFraction;
 
@@ -15,12 +18,27 @@ public class GamePlayUIHandler : UIPageBase
   {
     base.Awake();
     Shown += OnShown;
+    PlayerManager.PlayerJoined += OnPlayerJoined;
   }
 
   private void OnShown()
   {
-    TimerDial.fillAmount= 1.0f;
-    _previousRemainingFraction= 1.0f;
+    TimerDial.fillAmount = 1.0f;
+    _previousRemainingFraction = 1.0f;
+  }
+
+  private void OnPlayerJoined(PlayerCharacterController player)
+  {
+    if (PlayerManager.Instance.Players.Count == 1)
+    {
+      TimerRoot.SetParent(TimerRootCorner, worldPositionStays: false);
+      TimerRoot.SetIdentityTransformLocal();
+    }
+    else
+    {
+      TimerRoot.SetParent(TimerRootCenter, worldPositionStays: false);
+      TimerRoot.SetIdentityTransformLocal();
+    }
   }
 
   private void Update()

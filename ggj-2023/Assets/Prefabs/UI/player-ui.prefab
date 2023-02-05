@@ -87,6 +87,7 @@ GameObject:
   - component: {fileID: 1121616174188756233}
   - component: {fileID: 5422167183406477994}
   - component: {fileID: 5053016608356361258}
+  - component: {fileID: 2758659665958985899}
   m_Layer: 5
   m_Name: FishIcon2
   m_TagString: Untagged
@@ -112,7 +113,7 @@ RectTransform:
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 50, y: 50}
+  m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &5422167183406477994
 CanvasRenderer:
@@ -144,7 +145,7 @@ MonoBehaviour:
       m_Calls: []
   m_Sprite: {fileID: 21300000, guid: 9fbefb4587933a34dab1294532cb7586, type: 3}
   m_Type: 0
-  m_PreserveAspect: 0
+  m_PreserveAspect: 1
   m_FillCenter: 1
   m_FillMethod: 4
   m_FillAmount: 1
@@ -152,6 +153,23 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
+--- !u!114 &2758659665958985899
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1248578083708778975}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ed003a223ff5cec44a63f04754845d47, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  HydrateOnEnable: 1
+  StartDehydrated: 0
+  _targetTransform: {fileID: 0}
+  _useNormalizedScale: 1
+  _enableRandomDelay: 0
 --- !u!1 &1959584840423091181
 GameObject:
   m_ObjectHideFlags: 0
@@ -163,6 +181,7 @@ GameObject:
   - component: {fileID: 3630204260177575163}
   - component: {fileID: 7501416584193792910}
   - component: {fileID: 2837257752228155216}
+  - component: {fileID: 8725579493239882902}
   m_Layer: 5
   m_Name: FishIcon1
   m_TagString: Untagged
@@ -188,7 +207,7 @@ RectTransform:
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 50, y: 50}
+  m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &7501416584193792910
 CanvasRenderer:
@@ -220,7 +239,7 @@ MonoBehaviour:
       m_Calls: []
   m_Sprite: {fileID: 21300000, guid: 9fbefb4587933a34dab1294532cb7586, type: 3}
   m_Type: 0
-  m_PreserveAspect: 0
+  m_PreserveAspect: 1
   m_FillCenter: 1
   m_FillMethod: 4
   m_FillAmount: 1
@@ -228,6 +247,23 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
+--- !u!114 &8725579493239882902
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1959584840423091181}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ed003a223ff5cec44a63f04754845d47, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  HydrateOnEnable: 1
+  StartDehydrated: 0
+  _targetTransform: {fileID: 0}
+  _useNormalizedScale: 1
+  _enableRandomDelay: 0
 --- !u!1 &2566956611365375531
 GameObject:
   m_ObjectHideFlags: 0
@@ -525,6 +561,7 @@ GameObject:
   - component: {fileID: 2010803729488551967}
   - component: {fileID: 3017669702364847755}
   - component: {fileID: 527687511970435794}
+  - component: {fileID: 7429239246895154810}
   m_Layer: 5
   m_Name: FishIcon3
   m_TagString: Untagged
@@ -550,7 +587,7 @@ RectTransform:
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 50, y: 50}
+  m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &3017669702364847755
 CanvasRenderer:
@@ -582,7 +619,7 @@ MonoBehaviour:
       m_Calls: []
   m_Sprite: {fileID: 21300000, guid: 9fbefb4587933a34dab1294532cb7586, type: 3}
   m_Type: 0
-  m_PreserveAspect: 0
+  m_PreserveAspect: 1
   m_FillCenter: 1
   m_FillMethod: 4
   m_FillAmount: 1
@@ -590,6 +627,23 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
+--- !u!114 &7429239246895154810
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5151822864386703372}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ed003a223ff5cec44a63f04754845d47, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  HydrateOnEnable: 1
+  StartDehydrated: 0
+  _targetTransform: {fileID: 0}
+  _useNormalizedScale: 1
+  _enableRandomDelay: 0
 --- !u!1 &6625207671212760040
 GameObject:
   m_ObjectHideFlags: 0
@@ -628,8 +682,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 100, y: 100}
+  m_AnchoredPosition: {x: 10, y: -10}
+  m_SizeDelta: {x: 204.6495, y: 51.8835}
   m_Pivot: {x: 0, y: 1}
 --- !u!114 &380478678792920647
 MonoBehaviour:
@@ -667,9 +721,9 @@ MonoBehaviour:
   m_ChildAlignment: 0
   m_Spacing: 0
   m_ChildForceExpandWidth: 0
-  m_ChildForceExpandHeight: 0
-  m_ChildControlWidth: 0
-  m_ChildControlHeight: 0
+  m_ChildForceExpandHeight: 1
+  m_ChildControlWidth: 1
+  m_ChildControlHeight: 1
   m_ChildScaleWidth: 0
   m_ChildScaleHeight: 0
   m_ReverseArrangement: 0

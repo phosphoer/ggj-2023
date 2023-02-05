@@ -2,14 +2,17 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
+using UnityEngine.UI;
 
 public class MainMenuUIHandler : UIPageBase
 {
-  EventSystem eventSystem;
+  [SerializeField]
+  private Button _buttonNewGame = null;
 
-  void OnEnable()
+  protected override void Awake()
   {
-    eventSystem = EventSystem.current;
+    base.Awake();
+    _buttonNewGame.onClick.AddListener(OnNewGameClicked);
   }
 
   public void OnNewGameClicked()

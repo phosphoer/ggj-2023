@@ -227,6 +227,7 @@ GameObject:
   - component: {fileID: 1958019096894336023}
   - component: {fileID: 6784846919589596605}
   - component: {fileID: 1924450334360791800}
+  - component: {fileID: 8610903877100239749}
   m_Layer: 0
   m_Name: menu-camera
   m_TagString: Untagged
@@ -259,7 +260,7 @@ Camera:
   m_GameObject: {fileID: 5218962012899748831}
   m_Enabled: 1
   serializedVersion: 2
-  m_ClearFlags: 1
+  m_ClearFlags: 2
   m_BackGroundColor: {r: 0.19215687, g: 0.3019608, b: 0.4745098, a: 0}
   m_projectionMatrixMode: 1
   m_GateFitMode: 2
@@ -281,7 +282,7 @@ Camera:
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
-    m_Bits: 4294967295
+    m_Bits: 215
   m_RenderingPath: -1
   m_TargetTexture: {fileID: 0}
   m_TargetDisplay: 0
@@ -324,6 +325,21 @@ MonoBehaviour:
   AxisSensitivty: 1
   MaxAngle: 5
   HandheldScale: 1
+--- !u!114 &8610903877100239749
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5218962012899748831}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fc41b4b8598bd4c37b41791dcb99291c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Shader: {fileID: 4800000, guid: c66c4c29e240a4d73a28afe772cc8ad9, type: 3}
+  InitialSettings: {fileID: 11400000, guid: de898a20578124ad5a932f8ae3791de6, type: 2}
+  BloomIterations: 6
 --- !u!1 &7441714877850890852
 GameObject:
   m_ObjectHideFlags: 0
