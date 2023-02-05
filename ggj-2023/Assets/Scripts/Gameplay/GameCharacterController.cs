@@ -196,6 +196,7 @@ public class GameCharacterController : MonoBehaviour
     {
       _heldItem.SetInteractable(true);
       _heldItem.transform.parent = null;
+      _heldItem.transform.localScale = Vector3.one;
       _heldItem = null;
     }
   }
