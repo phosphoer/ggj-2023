@@ -25,6 +25,7 @@ public class KrakenController : MonoBehaviour
   void Update()
   {
     if (_activatedArmCount < KrakenArms.Count &&
+        GameStateManager.Instance.CurrentStage == GameStateManager.GameStage.Gameplay &&
         GameStateManager.Instance.TimeInState >= ((_activatedArmCount + 1) * _activationInterval))
     {
       ActivateArm();

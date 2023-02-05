@@ -48,7 +48,9 @@ MonoBehaviour:
   EditorDefaultStage: 1
   GameplayDuration: 300
   EndCutSceneDuration: 5
-  MusicMenuLoop: {fileID: 0}
+  MusicMenuLoop: {fileID: 11400000, guid: 77fc64e3733598041a74b646d0429e54, type: 2}
+  MusicGameLoop: {fileID: 11400000, guid: f297db1249f09804887075feb3c8f69e, type: 2}
+  MusicEndLoop: {fileID: 11400000, guid: 97f29b7f6d0af8d43a2511eb54ace933, type: 2}
   MenuCamera: {fileID: 0}
 --- !u!114 &6747696525931932296
 MonoBehaviour:
