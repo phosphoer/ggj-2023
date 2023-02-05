@@ -10,6 +10,15 @@ public class PirateUIHandler : MonoBehaviour
 
   public void BindPirate(PirateController pirateController)
   {
+    PlayerCharacterController player= pirateController.AssignedPlayerController;
+    Color[] playerColors= player.PlayerUI.BorderUI.PlayerColors;
+    Color playerColor= playerColors.IsIndexValid(player.PlayerID) ? playerColors[player.PlayerID] : Color.white;
+
+    foreach (GameObject icon in fishIcons)
+    {
+      icon.GetComponent<Image>().color = playerColor;
+    }
+
     pirateController.PirateSwallowed+= OnPirateSwallowed;
   }
 
@@ -24,7 +33,7 @@ public class PirateUIHandler : MonoBehaviour
   }
 
   void Start()
-  {
+  { 
     foreach (GameObject icon in fishIcons)
     {
       icon.SetActive(false);
