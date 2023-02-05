@@ -12,6 +12,12 @@ public class PirateController : MonoBehaviour
   public float EatPercent => _currentFood != null ? Mathf.Clamp01(_chompCount / _currentFood.FoodChompCount) : 0;
 
   [SerializeField]
+  private Animator _animator = null;
+
+  [SerializeField]
+  private AnimatorCallbacks _animatorCallbacks = null;
+
+  [SerializeField]
   private Transform[] _teethRoots = null;
 
   [SerializeField]
@@ -40,6 +46,9 @@ public class PirateController : MonoBehaviour
   public PlayerCharacterController AssignedPlayerController => _assignedPlayer;
 
   private List<ItemController> _teeth = new List<ItemController>();
+
+  private static readonly int kAnimIsMouthOpen = Animator.StringToHash("IsMouthOpen");
+  private static readonly int kAnimIsEating = Animator.StringToHash("IsEating");
 
   public void AssignPlayer(PlayerCharacterController player)
   {
@@ -102,17 +111,25 @@ public class PirateController : MonoBehaviour
     }
   }
 
+  private void OnEnable()
+  {
+    _animatorCallbacks.AddCallback("OnChompFrame", OnChompFrame);
+  }
+
+  private void OnDisable()
+  {
+    _animatorCallbacks.RemoveCallback("OnChompFrame", OnChompFrame);
+  }
+
   private void Update()
   {
-    if (_currentFood != null && _teeth.Count > 0)
-    {
-      _chompTimer += Time.deltaTime;
-      if (_chompTimer >= 0.5f)
-      {
-        Chomp();
-        _chompTimer = 0;
-      }
-    }
+    _animator.SetBool(kAnimIsEating, _currentFood != null && _teeth.Count > 0);
+    _animator.SetBool(kAnimIsMouthOpen, _currentFood == null || _teeth.Count == 0);
+  }
+
+  private void OnChompFrame()
+  {
+    Chomp();
   }
 
   private void OnToothDestroyed(ItemController tooth)
