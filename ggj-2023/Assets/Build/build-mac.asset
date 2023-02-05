@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8c8b8b4c4b7824373a4c8ea1b3f5e208, type: 3}
   m_Name: build-mac
   m_EditorClassIdentifier: 
-  LocationPathName: ../build/burt-mac/burt.app
+  LocationPathName: ../build/noteeth-mac/noteeth.app
   ProductNameOverride: 
   CompanyNameOverride: 
   BuildTarget: 2
