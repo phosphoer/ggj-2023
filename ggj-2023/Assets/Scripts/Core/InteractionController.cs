@@ -22,6 +22,10 @@ public class InteractionController : MonoBehaviour
   private Interactable _closestInteractable;
   private InteractableUI _interactableUI;
 
+  //$HACK -- Game specific kludge
+  private PlayerCharacterController _ownerPlayer;
+  //$HACK -- Game specific kludge
+
   public void TriggerInteraction()
   {
     if (_closestInteractable != null)
@@ -33,6 +37,13 @@ public class InteractionController : MonoBehaviour
   private void OnDisable()
   {
     SetClosestInteractable(null);
+  }
+
+  private void Start()
+  {
+    //$HACK -- Game specific kludge
+    _ownerPlayer= gameObject.GetComponent<PlayerCharacterController>();
+    //$HACK -- Game specific kludge
   }
 
   private void Update()
@@ -82,7 +93,7 @@ public class InteractionController : MonoBehaviour
       if (isInteractableMoreContextual)
       {
         // Make this interactable the current one, if it was in line of sight
-        if (IsInLineOfSight(interactable))
+        if (CanInteractWith(interactable) && IsInLineOfSight(interactable))
         {
           SetClosestInteractable(interactable);
         }
@@ -98,6 +109,21 @@ public class InteractionController : MonoBehaviour
       _lazyUpdateIndex = (_lazyUpdateIndex + 1) % Interactable.Instances.Count;
     }
   }
+
+  //$HACK -- Game specific kludge
+  private bool CanInteractWith(Interactable interactable)
+  {
+    // See if the interaction being considered is a pirate
+    PirateController pirate= interactable.gameObject.GetComponent<PirateController>();
+    if (pirate != null)
+    {
+      // only allow if the pirate is owned by the same player that owns this interaction controller
+      return pirate.AssignedPlayerController == _ownerPlayer;
+    }
+
+    return true;
+  }
+  //$HACK -- Game specific kludge
 
   private void OnInteractionTriggered(InteractionController _)
   {
