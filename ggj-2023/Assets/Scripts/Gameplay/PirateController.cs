@@ -4,11 +4,18 @@ using System.Collections.Generic;
 
 public class PirateController : MonoBehaviour
 {
-  public event System.Action<PlayerCharacterController> PirateFull;
+  public event System.Action<PirateController> PirateFull;
+  public event System.Action<PirateController> PirateSwallowed;
 
   public float FoodWeight => _foodWeight;
   public float FullPercent => Mathf.Clamp01(_foodWeight / _desiredFoodWeight);
   public float EatPercent => _currentFood != null ? Mathf.Clamp01(_chompCount / _currentFood.FoodChompCount) : 0;
+
+  [SerializeField]
+  private Animator _animator = null;
+
+  [SerializeField]
+  private AnimatorCallbacks _animatorCallbacks = null;
 
   [SerializeField]
   private Transform[] _teethRoots = null;
@@ -36,8 +43,22 @@ public class PirateController : MonoBehaviour
   private float _chompTimer;
   private ItemController _currentFood;
   private PlayerCharacterController _assignedPlayer;
+  public PlayerCharacterController AssignedPlayerController => _assignedPlayer;
+
+  private Rigidbody _rigidBody = null;
+  private CapsuleCollider _physicsCollider = null;
 
   private List<ItemController> _teeth = new List<ItemController>();
+
+  private static readonly int kAnimIsMouthOpen = Animator.StringToHash("IsMouthOpen");
+  private static readonly int kAnimIsEating = Animator.StringToHash("IsEating");
+
+
+  private void Awake()
+  {
+    _rigidBody = GetComponent<Rigidbody>();
+    _physicsCollider = GetComponent<CapsuleCollider>();
+  }
 
   public void AssignPlayer(PlayerCharacterController player)
   {
@@ -46,7 +67,19 @@ public class PirateController : MonoBehaviour
 
   public void NotifyPirateFull()
   {
-    PirateFull?.Invoke(_assignedPlayer);
+    PirateFull?.Invoke(this);
+  }
+
+  public void NotifyPirateSwallowed()
+  {
+    PirateSwallowed?.Invoke(this);
+  }
+
+  public void ActivatePhysics()
+  {
+    _physicsCollider.enabled = true;
+    _rigidBody.isKinematic = false;
+    _rigidBody.WakeUp();
   }
 
   public void AddFood(ItemController foodItem)
@@ -95,17 +128,25 @@ public class PirateController : MonoBehaviour
     }
   }
 
+  private void OnEnable()
+  {
+    _animatorCallbacks.AddCallback("OnChompFrame", OnChompFrame);
+  }
+
+  private void OnDisable()
+  {
+    _animatorCallbacks.RemoveCallback("OnChompFrame", OnChompFrame);
+  }
+
   private void Update()
   {
-    if (_currentFood != null && _teeth.Count > 0)
-    {
-      _chompTimer += Time.deltaTime;
-      if (_chompTimer >= 0.5f)
-      {
-        Chomp();
-        _chompTimer = 0;
-      }
-    }
+    _animator.SetBool(kAnimIsEating, _currentFood != null && _teeth.Count > 0);
+    _animator.SetBool(kAnimIsMouthOpen, _currentFood == null || _teeth.Count == 0);
+  }
+
+  private void OnChompFrame()
+  {
+    Chomp();
   }
 
   private void OnToothDestroyed(ItemController tooth)
@@ -149,6 +190,8 @@ public class PirateController : MonoBehaviour
     _currentFood = null;
 
     StartCoroutine(BulgeAnimAsync(Mathf.Lerp(1, _maxBarrelBulgeScale, FullPercent)));
+
+    NotifyPirateSwallowed();
 
     if (_foodWeight >= _desiredFoodWeight)
     {

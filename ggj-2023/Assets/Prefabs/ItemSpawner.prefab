@@ -149,3 +149,8 @@ MonoBehaviour:
   - {fileID: 1384513694449696196, guid: 4cd45114a2a94e84f831f83339455ee2, type: 3}
   - {fileID: 1384513694449696196, guid: 5df88c9a02e1f324399ded19854ae1c0, type: 3}
   - {fileID: 1384513694449696196, guid: e0bb642fb84d4334cadc4e76523a96ad, type: 3}
+  - {fileID: 1384513694449696196, guid: 2b9404cd5a93fad45b9b354e993793df, type: 3}
+  - {fileID: 1384513694449696196, guid: dc6f54fa8fc5e5140bb29dcd8bce017f, type: 3}
+  _respawnTimer:
+    MinValue: 10
+    MaxValue: 15

@@ -72,7 +72,7 @@ MonoBehaviour:
   _interactable: {fileID: 1384513694449696202}
   _rigidbody: {fileID: 7185087617541173793}
   _type: 0
-  _toothHealthMax: 1
+  _toothHealthMax: 3
   _toothChompPower: 1
   _foodWeightValue: 1
   _foodChompCount: 1
