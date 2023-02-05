@@ -7,7 +7,7 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: player-purple
+  m_Name: player-4
   m_Shader: {fileID: 4800000, guid: 6d9112faed4ea40e4b1044aa7e841bd3, type: 3}
   m_ValidKeywords: []
   m_InvalidKeywords: []
@@ -80,6 +80,6 @@ Material:
     - _UVSec: 0
     - _ZWrite: 1
     m_Colors:
-    - _Color: {r: 0.5839291, g: 0.35294122, b: 0.81960785, a: 1}
+    - _Color: {r: 0.4247864, g: 0.81960785, b: 0.35294122, a: 1}
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
   m_BuildTextureStacks: []

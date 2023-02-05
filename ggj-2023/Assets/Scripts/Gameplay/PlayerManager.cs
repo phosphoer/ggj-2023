@@ -43,11 +43,11 @@ public class PlayerManager : Singleton<PlayerManager>
   {
     for (int i = 0; i < _players.Count; ++i)
     {
-      PlayerCharacterController player= _players[i];
+      PlayerCharacterController player = _players[i];
 
       if (_pirates.IsIndexValid(player.PlayerID))
       {
-        PirateController pirateController= _pirates[player.PlayerID];
+        PirateController pirateController = _pirates[player.PlayerID];
 
         pirateController.PirateFull -= OnPirateFull;
       }
@@ -125,7 +125,7 @@ public class PlayerManager : Singleton<PlayerManager>
     // Assign a pirate if possible
     if (_pirates.IsIndexValid(playerId))
     {
-      PirateController pirate= _pirates[playerId];
+      PirateController pirate = _pirates[playerId];
 
       pirate.AssignPlayer(player);
       pirate.PirateFull += OnPirateFull;
@@ -146,6 +146,7 @@ public class PlayerManager : Singleton<PlayerManager>
     return player;
   }
 
+#if UNITY_EDITOR
   [UnityEditor.MenuItem("Game/Add Debug Player")]
   private static void DebugAddPlayer()
   {
@@ -173,4 +174,5 @@ public class PlayerManager : Singleton<PlayerManager>
   {
     Instance._pirates[0].NotifyPirateSwallowed();
   }
+#endif
 }

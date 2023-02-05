@@ -34,6 +34,9 @@ public class GameCharacterController : MonoBehaviour
   private Animator _animator = null;
 
   [SerializeField]
+  private Animator _animatorFirstPerson = null;
+
+  [SerializeField]
   private AnimatorCallbacks _animatorCallback = null;
 
   [SerializeField]
@@ -136,7 +139,12 @@ public class GameCharacterController : MonoBehaviour
     if (_slapCooldownTimer <= 0)
     {
       _slapCooldownTimer = _slapCooldownTime;
-      _animator.SetTrigger(kAnimAttack);
+      SetAnimatorTrigger(kAnimAttack);
+
+      if (_attackSound != null)
+      {
+        AudioManager.Instance.PlaySound(_attackSound);
+      }
     }
   }
 
@@ -212,12 +220,13 @@ public class GameCharacterController : MonoBehaviour
 
     // Update animation
     float moveDir = Mathf.Sign(MoveAxis);
-    _animator.SetFloat(kAnimMoveSpeed, moveAxisTotal * moveDir);
-    _animator.SetBool(kAnimIsMoving, moveAxisTotal > 0);
+    SetAnimatorFloat(kAnimMoveSpeed, moveAxisTotal * moveDir);
+    SetAnimatorBool(kAnimIsMoving, moveAxisTotal > 0);
 
     float holdItemBlendTarget = _heldItem != null ? 1 : 0;
     _holdItemBlend = Mathfx.Damp(_holdItemBlend, holdItemBlendTarget, 0.25f, Time.deltaTime * 3);
-    _animator.SetFloat(kAnimHoldItemBlend, _holdItemBlend);
+    SetAnimatorFloat(kAnimHoldItemBlend, _holdItemBlend);
+
 
     // Apply movement
     transform.position = newPosition;
@@ -235,6 +244,24 @@ public class GameCharacterController : MonoBehaviour
     _cameraRoot.Rotate(Vector3.right, -delta, Space.Self);
   }
 
+  private void SetAnimatorTrigger(int triggerId)
+  {
+    _animator.SetTrigger(triggerId);
+    _animatorFirstPerson.SetTrigger(triggerId);
+  }
+
+  private void SetAnimatorFloat(int triggerId, float value)
+  {
+    _animator.SetFloat(triggerId, value);
+    _animatorFirstPerson.SetFloat(triggerId, value);
+  }
+
+  private void SetAnimatorBool(int triggerId, bool value)
+  {
+    _animator.SetBool(triggerId, value);
+    _animatorFirstPerson.SetBool(triggerId, value);
+  }
+
   private void OnSlapped(GameCharacterController fromCharacter)
   {
     Vector3 slapDir = (transform.position - fromCharacter.transform.position).normalized;
@@ -246,7 +273,7 @@ public class GameCharacterController : MonoBehaviour
       _slapPushVec *= 3;
     }
 
-    _animator.SetTrigger(kAnimRecoil);
+    SetAnimatorTrigger(kAnimRecoil);
     DropItem(false);
 
     if (_hitSound != null)
