@@ -514,6 +514,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: core
       objectReference: {fileID: 0}
+    - target: {fileID: 7787705365488450556, guid: f2a76d5dd00e5df499b16423d45e9916, type: 3}
+      propertyPath: _userData.players.Array.data[1]._defaultJoystickMaps.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7787705365488450556, guid: f2a76d5dd00e5df499b16423d45e9916, type: 3}
+      propertyPath: _userData.players.Array.data[1]._defaultJoystickMaps.Array.data[0]._enabled
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f2a76d5dd00e5df499b16423d45e9916, type: 3}
 --- !u!114 &1753224795 stripped
