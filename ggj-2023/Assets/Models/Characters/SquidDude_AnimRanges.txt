@@ -14,3 +14,4 @@ Idle: 1-60
 Eating: 61-90
 Open/Close frames: 91-92
 Recoil: 93 - 118
+Open Hold: 119 - 130
