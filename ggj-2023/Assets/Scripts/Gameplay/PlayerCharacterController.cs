@@ -3,41 +3,43 @@ using Rewired;
 
 public class PlayerCharacterController : MonoBehaviour
 {
+  public event System.Action<PlayerCharacterController> PlayerReady;
+
   public CameraControllerStack CameraStack => _cameraStack;
   public CameraControllerPlayer CameraController => _cameraController;
   public PlayerUI PlayerUI => _playerUI;
+  public PirateController AssignedPirate => _assignedPirate;
+  public int PlayerID => _playerID;
+  public Transform PlayerHudUIAnchor => _playerHudUIAnchor;
+  public InteractableUI PlayerHudPrefab => _playerHudPrefab;
 
   public int RewiredPlayerId = 0;
   public GameCharacterController Character = null;
   public CameraControllerStack CameraStackPrefab = null;
   public CameraControllerPlayer CameraControllerPrefab = null;
   public PlayerUI PlayerUIPrefab = null;
-
-  private InteractableUI _hudMessageUI;
-  public Transform PlayerHudUIAnchor => _playerHudUIAnchor;
-  public InteractableUI PlayerHudPrefab => _playerHudPrefab;
   public float PlayerHudHeight = 0;
-
-  private CameraControllerStack _cameraStack;
-  private CameraControllerPlayer _cameraController;
-  private PlayerUI _playerUI;
-
-  public int PlayerID => _playerID;
-  private int _playerID = -1;
-
-  public PirateController AssignedPirate => _assignedPirate;
-  private PirateController _assignedPirate = null;
 
   [SerializeField]
   private Transform _playerHudUIAnchor;
 
-  private bool _isReady = true;
-  private bool _isAllowedToMove = true;
-
   [SerializeField]
   private InteractableUI _playerHudPrefab = null;
 
-  public event System.Action<PlayerCharacterController> PlayerReady;
+  [SerializeField]
+  private LayerMask _playerWorldLayerMask = default;
+
+  [SerializeField]
+  private LayerMask _playerUILayerMask = default;
+
+  private CameraControllerStack _cameraStack;
+  private CameraControllerPlayer _cameraController;
+  private PlayerUI _playerUI;
+  private int _playerID = -1;
+  private InteractableUI _hudMessageUI;
+  private PirateController _assignedPirate = null;
+  private bool _isReady = true;
+  private bool _isAllowedToMove = true;
 
   private void Awake()
   {
@@ -51,7 +53,30 @@ public class PlayerCharacterController : MonoBehaviour
     _playerUI = Instantiate(PlayerUIPrefab);
     _playerUI.Canvas.worldCamera = _cameraStack.UICamera;
 
+    _cameraStack.Camera.cullingMask = _playerWorldLayerMask;
+    _cameraStack.UICamera.cullingMask = _playerUILayerMask;
+
     Character.InteractionController.PlayerUI = _playerUI;
+    Character.Slappable.Slapped += OnSlapped;
+
+    SplitscreenLayout.LayoutUpdated += OnLayoutUpdated;
+    OnLayoutUpdated();
+  }
+
+  private void OnDestroy()
+  {
+    SplitscreenLayout.LayoutUpdated -= OnLayoutUpdated;
+    Character.Slappable.Slapped -= OnSlapped;
+  }
+
+  private void OnSlapped(GameCharacterController fromCharacter)
+  {
+    _cameraStack.CameraShake(1, 1);
+  }
+
+  private void OnLayoutUpdated()
+  {
+    _cameraStack.UICamera.rect = _cameraStack.Camera.rect;
   }
 
   public bool GetIsReady()

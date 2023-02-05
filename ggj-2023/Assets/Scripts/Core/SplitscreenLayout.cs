@@ -4,6 +4,8 @@ using System.Collections.Generic;
 [System.Serializable]
 public class SplitscreenLayout
 {
+  public static event System.Action LayoutUpdated;
+
   private List<Camera> _activeCameras = new List<Camera>();
 
   private static Rect[] _gridLayout4 = new Rect[4]
@@ -65,5 +67,7 @@ public class SplitscreenLayout
     {
       _activeCameras[i].rect = gridLayout[i];
     }
+
+    LayoutUpdated?.Invoke();
   }
 }

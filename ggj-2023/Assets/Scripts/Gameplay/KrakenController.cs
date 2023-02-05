@@ -11,13 +11,16 @@ public class KrakenController : MonoBehaviour
     bool disabled = false;
     float activationInterval = 0f;
     int currentArm = 0;
+    int randOffset = 0;
 
     void Start()
     {
         if(FindObjectOfType(typeof(GameStateManager))) GSM = GameObject.FindObjectOfType<GameStateManager>();
+
         if(GSM)
         {
-            activationInterval = GSM.GameplayDuration / KrakenArms.Count;
+            activationInterval = GSM.GameplayDuration / (KrakenArms.Count+1);
+            randOffset = Random.Range(0,KrakenArms.Count);
         }
         else disabled = true;
     }
@@ -25,15 +28,13 @@ public class KrakenController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-           if(!disabled && GSM.TimeInState>=((currentArm+1)*activationInterval))
-           {
-                ActivateArm();
-           }
+           if(!disabled && GSM.TimeInState>=((currentArm+1)*activationInterval)) ActivateArm();
     }
 
     public void ActivateArm()
     {
-        KrakenArms[currentArm].SetActive(true);
+        if(randOffset+currentArm>=KrakenArms.Count) randOffset=0;
+        KrakenArms[currentArm+randOffset].SetActive(true);
         currentArm++;
     }
 }

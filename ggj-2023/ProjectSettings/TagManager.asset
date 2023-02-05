@@ -13,14 +13,14 @@ TagManager:
   - UI
   - Ground
   - Obstacle
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
+  - Player1
+  - Player2
+  - Player3
+  - Player4
+  - Player1UI
+  - Player2UI
+  - Player3UI
+  - Player4UI
   - 
   - 
   - 
