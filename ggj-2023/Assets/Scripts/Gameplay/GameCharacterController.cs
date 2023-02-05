@@ -99,6 +99,7 @@ public class GameCharacterController : MonoBehaviour
   private ItemController _heldItem;
   private float _holdItemBlend;
   private bool _isOutOfBounds;
+  private Vector3 _slapPushVec;
   private Collider[] _overlapColliders = new Collider[10];
 
   private Vector3 _raycastStartPos => transform.position + transform.up * _raycastUpStartOffset;
@@ -161,6 +162,9 @@ public class GameCharacterController : MonoBehaviour
     float moveAxisTotal = Mathf.Clamp01(Mathf.Abs(MoveAxis) + Mathf.Abs(StrafeAxis));
     Vector3 moveVec = (transform.forward * MoveAxis + transform.right.WithY(0) * StrafeAxis).NormalizedSafe() * moveAxisTotal;
     Vector3 newPosition = transform.position + moveVec * _moveSpeed * Time.deltaTime;
+
+    newPosition += _slapPushVec * Time.deltaTime;
+    _slapPushVec = Mathfx.Damp(_slapPushVec, Vector3.zero, 0.25f, Time.deltaTime * 3);
 
     // Snap and align to ground
     Vector3 raycastDir = -transform.up + (transform.forward * MoveAxis + transform.right * StrafeAxis) * 0.5f;
@@ -229,6 +233,15 @@ public class GameCharacterController : MonoBehaviour
 
   private void OnSlapped(GameCharacterController fromCharacter)
   {
+    Vector3 slapDir = (transform.position - fromCharacter.transform.position).normalized;
+    slapDir.y += 1;
+    _slapPushVec = slapDir * 10;
+
+    if (fromCharacter._heldItem != null)
+    {
+      _slapPushVec *= 3;
+    }
+
     _animator.SetTrigger(kAnimRecoil);
     DropItem(false);
 
