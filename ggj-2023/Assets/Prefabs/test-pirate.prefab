@@ -99,7 +99,7 @@ MonoBehaviour:
   _foodRoot: {fileID: 2916253528377240762}
   _barrelBulgeRoot: {fileID: 8340003893922303382}
   _fxChomp: {fileID: 781025165623124088}
-  _desiredFoodWeight: 10
+  _desiredFoodWeight: 3
   _maxBarrelBulgeScale: 2
   _barrelBulgeAnim:
     serializedVersion: 2
