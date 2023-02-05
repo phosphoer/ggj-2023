@@ -6,6 +6,7 @@ public class GameCharacterController : MonoBehaviour
   public Transform HeldItemRoot => _heldItemRoot;
   public ItemController HeldItem => _heldItem;
   public InteractionController InteractionController => _interactionController;
+  public Slappable Slappable => _slappable;
 
   [Range(-1, 1)]
   public float MoveAxis = 0.0f;
