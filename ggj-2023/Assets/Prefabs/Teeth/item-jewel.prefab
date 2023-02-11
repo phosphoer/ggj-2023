@@ -161,6 +161,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Diamond
       objectReference: {fileID: 0}
+    - target: {fileID: 5921939154763734384, guid: 0f6a478ebd125aa4d87aae7447a59ff9, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: e23594e4bb7a044d4975139dbbbe0df8, type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 0f6a478ebd125aa4d87aae7447a59ff9, type: 3}
 --- !u!4 &7900961349248169641 stripped
