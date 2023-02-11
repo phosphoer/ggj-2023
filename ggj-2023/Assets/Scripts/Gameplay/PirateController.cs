@@ -176,6 +176,16 @@ public class PirateController : MonoBehaviour
   {
     _animator.SetBool(kAnimIsEating, _currentFood != null && _teeth.Count > 0);
     _animator.SetBool(kAnimIsMouthOpen, _currentFood == null || _teeth.Count == 0);
+    
+    //Jeff is fucking around making the pirates rotate. Sorry. :)
+    if (_assignedPlayer != null)
+    {
+      transform.LookAt(_assignedPlayer.transform);
+      Vector3 eulerAngles = transform.rotation.eulerAngles;
+      eulerAngles.x = 0;
+      eulerAngles.z = 0;
+      transform.rotation = Quaternion.Euler(eulerAngles);
+    }
   }
 
   private void OnChompFrame()

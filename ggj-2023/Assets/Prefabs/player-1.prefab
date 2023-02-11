@@ -202,7 +202,7 @@ MonoBehaviour:
   _minDistToObstacle: 0.4
   _raycastUpStartOffset: 1
   _terrainAlignmentSpeed: 3
-  _moveSpeed: 3
+  _moveSpeed: 1
   _turnSpeed: 360
   _gravity: 9
   _slapCooldownTime: 1

@@ -69,5 +69,13 @@ MonoBehaviour:
   - {fileID: 6341948001400396607, guid: 3c28521ebc7a44341989758e0485012d, type: 3}
   - {fileID: 6341948001400396607, guid: 51c0c127bd9954b8698e7c77ad239c1c, type: 3}
   - {fileID: 6341948001400396607, guid: 17111a037502d48bb8d78bfc9f365e5e, type: 3}
-  _spawnPoints: []
-  _pirates: []
+  _spawnPoints:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  _pirates:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
